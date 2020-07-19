@@ -61,3 +61,7 @@
     text-align: center !important;
     margin-bottom:12%;
 }
+.form-control:focus {
+    border-color: #615d5a !important ;
+    box-shadow: 0 0 0 0.2rem rgba(68, 25, 9, 0.25);
+  }

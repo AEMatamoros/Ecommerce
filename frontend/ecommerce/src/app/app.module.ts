@@ -7,7 +7,6 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 import { LoginComponent } from './components/auth/login/login.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
-
 import { ComprasComponent } from './pages/compras/compras.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -17,6 +16,7 @@ import { UpdateComponent } from './pages/products/update/update.component';
 import { MyproductsComponent } from './pages/products/myproducts/myproducts.component';
 import { DeleteComponent } from './pages/products/delete/delete.component';
 import { CreateComponent } from './pages/products/create/create.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { CreateComponent } from './pages/products/create/create.component';
     UpdateComponent,
     MyproductsComponent,
     DeleteComponent,
-    CreateComponent
+    CreateComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
