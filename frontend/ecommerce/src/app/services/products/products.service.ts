@@ -35,10 +35,10 @@ export class ProductsService {
   }
 
   putProduct(id,product){
-    return this.http.put<Product[]>(this.API_Url_Products+''+id, JSON.stringify(product),this.httpOptions)
+    return this.http.put<Product[]>(this.API_Url_Products+''+id+'/', JSON.stringify(product),this.httpOptions)
   }
   deleteProduct(id){
-    return this.http.delete<Product[]>(this.API_Url_Products+''+id,this.httpOptions)
+    return this.http.delete<Product[]>(this.API_Url_Products+''+id+'/',this.httpOptions)
   }
   //Categorias
   getCategories(){
