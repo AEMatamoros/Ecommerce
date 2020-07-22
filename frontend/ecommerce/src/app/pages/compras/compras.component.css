@@ -30,6 +30,7 @@
 .flip-card {
   background-color: transparent;
   height: 80px;
+  margin-bottom: 0px;
   /* perspective: 1000px; */
 }
 
@@ -104,4 +105,49 @@
 }
 .btn-carrito:hover {
   transform: scale(1.1);
+}
+
+
+.div-cuerpo {
+  margin-left: 19%;
+}
+
+@media (max-width:575px) {
+
+  .div-cuerpo {
+    margin-left: 0%;
+  }
+
+  .div-busqueda {
+    padding-bottom: 15px;
+    width: 90%;
+    margin: auto;
+  }
+
+  .contenedor-img {
+    height: 120px;
+  }
+  .label-desc {
+    margin: 0px;
+    font-size: small
+  }
+
+}
+
+@media screen and (max-width: 1100px) and (min-width: 576px) {
+
+  .div-busqueda {
+    padding-bottom: 15px;
+    width: 90%;
+    margin: auto;
+  }
+
+  .contenedor-img {
+    height: 140px;
+  }
+
+  .label-desc {
+    margin: 0px;
+    font-size: small
+  }
 }

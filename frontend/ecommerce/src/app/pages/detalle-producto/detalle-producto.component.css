@@ -35,3 +35,16 @@ td {
   border: 1px solid rgb(218, 210, 210);
   width: auto ;
 }
+
+
+table {
+  width: 400px;
+}
+
+@media (max-width:500px){
+
+  table {
+    width: 300px;
+  }
+
+}
