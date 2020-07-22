@@ -11,21 +11,22 @@ import { Category } from 'src/app/models/product/category';
 })
 export class UpdateComponent implements OnInit {
   @Input() product: Product
-  @Input() productDetail =  {name:'', description:'', price:0, category_id:0,user_id:0}
+  @Input() productDetail =  {id:0,name:'', description:'', price:0, category_id:0,user_id:0}
 
   categories: Category[];
 
   constructor(private dataService:ProductsService,public router:Router) { }
 
   ngOnInit() {
-    console.log(this.product)
+    this.productDetail.id= this.product.id
     return this.dataService.getCategories()
       .subscribe(data =>this.categories=data) 
   }
 
-  updateproduct(id) {
+  updateproduct() {
     console.log("Actualizando")
-    this.dataService.putProduct(id,this.productDetail)
+    console.log(this.productDetail)
+    this.dataService.putProduct(this.product.id,this.productDetail)
       .subscribe((data: {}) => {
         this.router.navigate(['/my_products'])
       })

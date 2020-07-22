@@ -4,7 +4,7 @@ import {Category} from './category'
 
 export class Product {
     constructor(
-    public id:Number,
+    public id:number,
     public name:String,
     public description:String,
     public price:number,

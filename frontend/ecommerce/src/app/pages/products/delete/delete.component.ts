@@ -15,9 +15,9 @@ export class DeleteComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  eraseproduct(id) {
+  eraseproduct() {
     console.log("Actualizando")
-    this.dataService.deleteProduct(id)
+    this.dataService.deleteProduct(this.product.id)
       .subscribe((data: {}) => {
         this.router.navigate(['/my_products'])
       })

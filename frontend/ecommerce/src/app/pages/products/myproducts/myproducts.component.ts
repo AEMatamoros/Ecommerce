@@ -9,11 +9,9 @@ import { ProductsService } from 'src/app/services/products/products.service'
 })
 
 export class MyproductsComponent implements OnInit {
-  nombre_producto = 'Producto de Ejemplo';
-  descripcion_producto = 'Este es un Producto de Ejemplo';
+  
   imagen_producto = 'assets/img/example.jpg';
-  precio = '5';
-  moneda = 'Varas'
+  
   //Modelo
   products:Product[];
 
