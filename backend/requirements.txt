@@ -1,8 +1,0 @@
-Recuerden que algunas tablas se generan de forma automatica con la logica de Django al hacer relaciones.
-Si instalan requerimientos externos como de Github, areguenlos aqui.
-
-
-
-Requerimientos:
-pip install django
-pip install djangorestframework

@@ -271,11 +271,6 @@ class Shipping_method(models.Model):
     def __str__(self):
         return f"Shipping method: {self.method_description}"
 
-class Payment_method(models.Model):
-    description = models.CharField(max_length=100)
-    date_created = models.DateTimeField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True)
-
 
 class Order(models.Model):
     status_id = models.ForeignKey(Status, related_name='status_order', on_delete=models.CASCADE)
@@ -285,22 +280,12 @@ class Order(models.Model):
     total = models.DecimalField(max_digits=10, decimal_places=2)
     direction_id = models.ForeignKey(Direction, related_name='direction_order', on_delete= models.CASCADE)
     shipping_method_id = models.ForeignKey(Shipping_method, related_name='Shipping_method_order', on_delete= models.CASCADE)
-    payment_method_id = models.ForeignKey(Payment_method, related_name='Payment_method_order', on_delete=models.CASCADE)
 
 
 class Product_order(models.Model):
     product_id = models.ForeignKey(Product, related_name='products', on_delete=models.CASCADE)
     order_id = models.ForeignKey(Order, related_name='orders', on_delete=models.CASCADE)
 
-class Payment_data(models.Model):
-    username = models.CharField(max_length=200)
-    credit_card_number = models.BigIntegerField()
-    expiration_date = models.DateTimeField(auto_now=True)
-    cvv = models.IntegerField()
-    payment_method_id = models.ForeignKey(Payment_method, related_name='Payment_method', on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Account, related_name='user_payment_data', on_delete=models.CASCADE)
-    date_joined = models.DateTimeField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True)
 
 class Action(models.Model):
     crud_type = models.CharField(max_length=50)
