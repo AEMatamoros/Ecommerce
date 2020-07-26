@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, logout
 # Create your views here.
-from .models import Account, Direction,Image,Followers, Puntuation, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method,Order,Product_order,Log, Action
+from .models import Account, Direction,Image,Followers, Puntuation, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method, Payment_method ,Payment_data,Order,Product_order,Log, Action
 
 from rest_framework import serializers
 from rest_framework import viewsets
@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 
-from .serializer import RegistrationSerializer, DirectionSerializer, AccountSerializer, ImageSerializer, FollowersSerializar, PuntuationSerializer, ComplaintsSerializaer, CurrencySerializaer, CategorySerializer, ProductSerializer, Image_ProductSerializer, StatusSerializer, ShipingSerializer, OrderSerializer, ProductOrderSerializer, LogSerializer, ActionSerializer
+from .serializer import RegistrationSerializer, DirectionSerializer, AccountSerializer, ImageSerializer, FollowersSerializar, PuntuationSerializer, ComplaintsSerializaer, CurrencySerializaer, CategorySerializer, ProductSerializer, Image_ProductSerializer, StatusSerializer, ShipingSerializer, Payment_methodSerializer, Payment_dataSerializer, OrderSerializer, ProductOrderSerializer, LogSerializer, ActionSerializer
 
 
 class DirectionGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
@@ -330,6 +330,49 @@ class ShipingGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveMode
     def delete(self, request, id = None):
         return self.destroy(request, id)
 
+class Payment_MethodGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
+    serializer_class =  Payment_methodSerializer
+    queryset = Payment_method.objects.all()
+    lookup_field = "id"
+
+    def get(self, request, id=None):
+
+        if not (id):
+            return self.list(request)
+        else:
+            return self.retrieve(request)
+
+    def post(self, request,id=None):
+        return self.create(request)
+
+    def put(self, request, id= None):
+        return self.update(request, id)
+
+    def delete(self, request, id = None):
+        return self.destroy(request, id)
+
+
+
+class Payment_dataGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
+    serializer_class = Payment_dataSerializer
+    queryset = Payment_data.objects.all()
+    lookup_field = "id"
+
+    def get(self, request, id=None):
+
+        if not (id):
+            return self.list(request)
+        else:
+            return self.retrieve(request)
+
+    def post(self, request,id=None):
+        return self.create(request)
+
+    def put(self, request, id= None):
+        return self.update(request, id)
+
+    def delete(self, request, id = None):
+        return self.destroy(request, id)
 
 class OrderGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
     serializer_class = OrderSerializer

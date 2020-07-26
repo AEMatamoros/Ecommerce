@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Account, Direction,Image,Followers, Puntuation, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method,Order,Product_order,Log, Action
+from .models import Account, Direction,Image,Followers, Puntuation, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method, Payment_method ,Payment_data,Order,Product_order,Log, Action
 
 class DirectionSerializer(serializers.ModelSerializer):
     
@@ -96,6 +96,15 @@ class ShipingSerializer(serializers.ModelSerializer):
         model = Shipping_method
         fields='__all__'
 
+class Payment_methodSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = Payment_method
+        fields='__all__'
+
+class Payment_dataSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = Payment_data
+        fields='__all__'
 
 #Order,Product_order,Log
 class OrderSerializer(serializers.ModelSerializer):

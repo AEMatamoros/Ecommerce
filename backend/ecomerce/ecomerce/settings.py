@@ -25,7 +25,7 @@ SECRET_KEY = 'wamc8dpv4tb&gfz!565%xn9(##pxo7mpsxw9g-88sccm4y*35o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["api-commerce-store.herokuapp.com"]
+ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'api.Account'
 
@@ -61,7 +61,6 @@ REST_FRAMEWORK = {
 
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -162,15 +161,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #Media
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
-
-
-
