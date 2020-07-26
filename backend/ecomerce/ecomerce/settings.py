@@ -102,7 +102,7 @@ WSGI_APPLICATION = 'ecomerce.wsgi.application'
     }
 }"""
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'industria',
@@ -111,8 +111,8 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
-}
-"""
+} """
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -123,7 +123,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
