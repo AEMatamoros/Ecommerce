@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 /*Protección de rutas*/ 
@@ -17,8 +17,11 @@ import { UpdateComponent } from './pages/products/update/update.component'; // M
 import { MyproductsComponent } from './pages/products/myproducts/myproducts.component'; // Modal
 //Inicio
 import{ InicioComponent } from './inicio/inicio.component';
+import{CarruselComponent} from './inicio/carrusel/carrusel.component';
+import{CardsComponent} from './inicio/cards/cards.component';
 //Footer
 import{ FooterComponent } from './footer/footer.component';
+
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -26,6 +29,8 @@ const routes: Routes = [
   {path: 'perfil', component: PerfilComponent, canActivate: [ AuthGuard ]}, /*Si quieren probar la ruta quiten el canActivate*/ 
   {path: 'compras',  component: ComprasComponent },
   {path: 'inicio',component: InicioComponent},
+  {path:'carrusel',component:CarruselComponent},
+  {path:'cards',component:CardsComponent},
   {path: 'footer',component: FooterComponent},
   {path: 'update_product',  component: UpdateComponent },
   {path: 'my_products',  component: MyproductsComponent },
