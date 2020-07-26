@@ -15,14 +15,18 @@ import { DetalleProductoComponent } from './pages/detalle-producto/detalle-produ
 // Products
 import { UpdateComponent } from './pages/products/update/update.component'; // Modal
 import { MyproductsComponent } from './pages/products/myproducts/myproducts.component'; // Modal
-
-
+//Inicio
+import{ InicioComponent } from './inicio/inicio.component';
+//Footer
+import{ FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'registro', component: RegisterComponent},
   {path: 'perfil', component: PerfilComponent, canActivate: [ AuthGuard ]}, /*Si quieren probar la ruta quiten el canActivate*/ 
   {path: 'compras',  component: ComprasComponent },
+  {path: 'inicio',component: InicioComponent},
+  {path: 'footer',component: FooterComponent},
   {path: 'update_product',  component: UpdateComponent },
   {path: 'my_products',  component: MyproductsComponent },
   {path: 'detalle',  component: DetalleProductoComponent },

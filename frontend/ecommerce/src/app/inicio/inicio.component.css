@@ -1,0 +1,16 @@
+.barra{
+    font-size: 60px; 
+    background-color:#F05837;
+    text-align: center;
+    margin-top: auto;
+  }
+  
+  
+  .carousel-item{
+      width: 100%;
+      height: 900px;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
