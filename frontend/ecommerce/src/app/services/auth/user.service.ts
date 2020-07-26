@@ -17,7 +17,9 @@ export class UserService {
   userToken: string;
 
   constructor(private http: HttpClient) {
-    this.URL = 'http://localhost:8000/api/auth/';
+    /*this.URL = 'http://localhost:8000/api/auth/';: LOCAL*/
+    this.URL = 'https://api-commerce-store.herokuapp.com/api/auth/'; /*PRODUCCION*/ 
+    this.headers = new HttpHeaders().set('Content-Type','application/json');
     this.leerToken();
   }
 
