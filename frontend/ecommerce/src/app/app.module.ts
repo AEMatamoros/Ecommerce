@@ -23,6 +23,10 @@ import { MyproductsComponent } from './pages/products/myproducts/myproducts.comp
 import { DeleteComponent } from './pages/products/delete/delete.component';
 import { CreateComponent } from './pages/products/create/create.component';
 import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
+import { InicioComponent } from './inicio/inicio.component';
+import { FooterComponent } from './footer/footer.component';
+import { CarruselComponent } from './inicio/carrusel/carrusel.component';
+import { CardsComponent } from './inicio/cards/cards.component';
 
 
 @NgModule({
@@ -37,7 +41,11 @@ import { DetalleProductoComponent } from './pages/detalle-producto/detalle-produ
     DeleteComponent,
     CreateComponent,
     DetalleProductoComponent,
-    ComprasComponent
+    ComprasComponent,
+    InicioComponent,
+    FooterComponent,
+    CarruselComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,
