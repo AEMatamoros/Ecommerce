@@ -51,7 +51,7 @@
   -moz-transition: all .3s ease-out 0s;
   -ms-transition: all .3s ease-out 0s;
   -o-transition: all .3s ease-out 0s;
-  transition: all .3s ease-out 0s
+  transition: all .3s ease-out 0s;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .header-area .main-header .menu-wrapper .main-menu ul li a {

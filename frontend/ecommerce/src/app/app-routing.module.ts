@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 /*Protección de rutas*/ 
@@ -16,27 +16,28 @@ import { DetalleProductoComponent } from './pages/detalle-producto/detalle-produ
 import { UpdateComponent } from './pages/products/update/update.component'; // Modal
 import { MyproductsComponent } from './pages/products/myproducts/myproducts.component'; // Modal
 //Inicio
-import{ InicioComponent } from './inicio/inicio.component';
-import{CarruselComponent} from './inicio/carrusel/carrusel.component';
-import{CardsComponent} from './inicio/cards/cards.component';
-//Footer
-import{ FooterComponent } from './footer/footer.component';
+import{ HomeComponent } from './pages/home/home.component';
+import{CardsComponent} from './pages/home/cards/cards.component';
 
+import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent },
+  {path: 'home',component: HomeComponent},
+  {
+    path: 'admin', component: PanelAdminComponent
+  },
   {path: 'registro', component: RegisterComponent},
+  {path: 'login', component: LoginComponent },
   {path: 'perfil', component: PerfilComponent, canActivate: [ AuthGuard ]}, /*Si quieren probar la ruta quiten el canActivate*/ 
   {path: 'compras',  component: ComprasComponent },
-  {path: 'inicio',component: InicioComponent},
-  {path:'carrusel',component:CarruselComponent},
-  {path:'cards',component:CardsComponent},
-  {path: 'footer',component: FooterComponent},
   {path: 'update_product',  component: UpdateComponent },
   {path: 'my_products',  component: MyproductsComponent },
   {path: 'detalle',  component: DetalleProductoComponent },
-
+  {path:'cards',component:CardsComponent},
+  {path: '', redirectTo:'/home', pathMatch:'full'},
+  {path:'**', component: HomeComponent}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

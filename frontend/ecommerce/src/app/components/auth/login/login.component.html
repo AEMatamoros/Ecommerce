@@ -1,64 +1,50 @@
-
- <main>
- <div class="container login-container">
-            <div class="row">
-                <div class="col-md-6 login-form-1">
-                    <h3>¿Nuevo en nuestra tienda?</h3>
-                        <p>Quizas quieras crear una cuenta asi bien mamalona 
-                            para encontrar articulos que te puedan gustar UwU</p>
-                        <div class="form-group">
-                            <a routerLink="/registro" class="btnForgetPwd ">Registrarse</a>
-                        </div>
-                    
+<app-navbar></app-navbar>
+<main>
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-6 login-form-1">
+                <h3>¿Nuevo en nuestra tienda?</h3>
+                <p>Quizas quieras crear una cuenta asi bien mamalona
+                    para encontrar articulos que te puedan gustar UwU</p>
+                <div class="form-group">
+                    <a routerLink="/registro" class="btnForgetPwd ">Registrarse</a>
                 </div>
-                <div class="col-md-6 login-form-2">
-                    
-                    <h3>Inicia sessión</h3>
-                        <p>Ingresa para tener acceso al repertorio de nuestra tienda</p>
-                        <form (ngSubmit)="login(f)"
-                              #f="ngForm"
-                        >
-                            <div class="form-group">
-                                <input type="email" 
-                                       class="form-control"
-                                       placeholder="Usuario"
-                                       name="username" 
-                                       #username="ngModel"
-                                       [(ngModel)]="loginAuth.username"
-                                       required
-                                       email
-                                       />
-                                <small *ngIf="f.submitted && f.controls['username'].errors" class="text-info">
-                                    Correo no válido
-                                </small>
-                                
-                            </div>
-                            <div class="form-group">
-                                <input type="password"
-                                       class="form-control" 
-                                       placeholder="Contraseña *"
-                                       name="password" 
-                                       #password="ngModel"
-                                       [(ngModel)]="loginAuth.password"
-                                       required 
-                                       />
-                                <small *ngIf="f.submitted && f.controls['password'].errors" class="text-info">
-                                    Contraseña no válida
-                                </small>
-                                <small *ngIf="status=='Error'" class="text-info">
-                                    {{message}}
-                                </small>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btnSubmit" value="Ingresar" />
-                            </div>
-                            <div class="form-group">
 
-                                <a href="#" class="btnForgetPwd " value="Login">¿Olvidó la contraseña?</a>
-                            </div>
-                        </form>
-                </div>
+            </div>
+            <div class="col-md-6 login-form-2">
+
+                <h3>Inicia sessión</h3>
+                <p>Ingresa para tener acceso al repertorio de nuestra tienda</p>
+                <form (ngSubmit)="login(f)" #f="ngForm">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Usuario" name="username"
+                            #username="ngModel" [(ngModel)]="loginAuth.username" required email />
+                        <small *ngIf="f.submitted && f.controls['username'].errors" class="text-info">
+                            Correo no válido
+                        </small>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Contraseña *" name="password"
+                            #password="ngModel" [(ngModel)]="loginAuth.password" required />
+                        <small *ngIf="f.submitted && f.controls['password'].errors" class="text-info">
+                            Contraseña no válida
+                        </small>
+                        <small *ngIf="status=='Error'" class="text-info">
+                            {{message}}
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Ingresar" />
+                    </div>
+                    <div class="form-group">
+
+                        <a href="#" class="btnForgetPwd " value="Login">¿Olvidó la contraseña?</a>
+                    </div>
+                </form>
             </div>
         </div>
-    
-    </main>
+    </div>
+</main>
+
+<app-footer></app-footer>

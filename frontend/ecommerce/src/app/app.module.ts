@@ -23,16 +23,27 @@ import { MyproductsComponent } from './pages/products/myproducts/myproducts.comp
 import { DeleteComponent } from './pages/products/delete/delete.component';
 import { CreateComponent } from './pages/products/create/create.component';
 import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
-import { InicioComponent } from './inicio/inicio.component';
-import { FooterComponent } from './footer/footer.component';
-import { CarruselComponent } from './inicio/carrusel/carrusel.component';
-import { CardsComponent } from './inicio/cards/cards.component';
+import { HomeComponent } from './pages/home/home.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { CardsComponent } from './pages/home/cards/cards.component';
+import { CarouselComponent } from './components/shared/carousel/carousel.component';
+
+import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
+import { HeaderComponent } from './components/shared/panelAdmin/header/header.component';
+import { SidebarComponent } from './components/shared/panelAdmin/sidebar/sidebar.component';
+import { BreadcrumbsComponent } from './components/shared/panelAdmin/breadcrumbs/breadcrumbs.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    FooterComponent,
+    HomeComponent,
+    PanelAdminComponent,
+    HeaderComponent,
+    SidebarComponent,
+    BreadcrumbsComponent,
     LoginComponent,
     PerfilComponent,
     RegisterComponent,
@@ -42,10 +53,9 @@ import { CardsComponent } from './inicio/cards/cards.component';
     CreateComponent,
     DetalleProductoComponent,
     ComprasComponent,
-    InicioComponent,
-    FooterComponent,
-    CarruselComponent,
-    CardsComponent
+    
+    CardsComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
