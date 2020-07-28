@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Product } from 'src/app/models/product/product';
 import { ProductsService } from 'src/app/services/products/products.service'
-import { Router } from '@angular/router';
 import { Category } from 'src/app/models/product/category';
 
 @Component({

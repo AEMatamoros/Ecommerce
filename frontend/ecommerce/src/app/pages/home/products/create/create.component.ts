@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+
+
 import { ProductsService } from 'src/app/services/products/products.service'
 import { Router } from '@angular/router';
 import { Category } from 'src/app/models/product/category';
 import { Currency } from 'src/app/models/product/currency';
  
-
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
