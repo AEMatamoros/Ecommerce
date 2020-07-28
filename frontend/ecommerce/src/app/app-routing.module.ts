@@ -5,10 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 
+//Products
+import { MyproductsComponent } from './pages/home/products/myproducts/myproducts.component';
 //Componentes
 import { HomeComponent } from './pages/home/home.component';
 import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
-import{ InformacionComponent } from './pages/home/informacion/informacion.component';
+import{ InformacionComponent } from './pages/informacion/informacion.component';
 
 
 const routes: Routes = [

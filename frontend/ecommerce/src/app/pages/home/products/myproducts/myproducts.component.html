@@ -1,4 +1,10 @@
-<div class="container-fluid">
+<app-navbar></app-navbar>
+
+
+
+
+
+<div class="container-fluid pt-0">
 <section id="galeria" class="p-0 m-0">
   <div class="text-center ">
     <h1 class="p-0 m-0" >Mis Productos</h1>
@@ -46,6 +52,26 @@
       </div>
     </div>
     
+
+    <!---Example-->
+    <div class="card bg-dark text-white text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 16rem;  ">
+      <img class="card-img" src="{{imagen_producto}}" class="img-fluid" alt="Card image">
+      <div class="card-img-overlay ">
+        <p class="card-title pb-0">Nombre &nbsp; 
+          <app-update ></app-update>
+          <app-delete ></app-delete>
+        </p>
+
+      </div>
+      <div class="card-body">
+        <p class="m-0 pb-0">Descripcion</p>
+        <p class="m-0 pb-0"><strong>Datos extra </strong> </p>
+      </div>
+    </div>
+    <!--End Example-->
   </div>
 </div>
     
+
+
+<app-footer></app-footer>
