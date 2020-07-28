@@ -4,9 +4,11 @@
     color: #141517;
     background-color: #ff2020;
     display: flex;
-    height: 160px;
     width: 100%;
-    margin-bottom: 0px;
+    bottom: 0;
+    position: relative;
+    padding: 1em;
+    flex:0 0 auto;
 }
 
 .list-unstyled a{
