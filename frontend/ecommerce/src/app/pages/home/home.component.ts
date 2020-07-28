@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-declare function initPlugins();
-
 @Component({
   selector: 'app-inicio',
   templateUrl: './home.component.html',
@@ -12,7 +10,6 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    initPlugins();
   }
 
 }

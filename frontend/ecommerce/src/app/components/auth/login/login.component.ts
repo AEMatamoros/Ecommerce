@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { AuthLogin } from 'src/app/models/auth/auth-login';
 import { UserService } from 'src/app/services/auth/user.service';
 
-declare function initPlugins();
 
 @Component({
   selector: 'app-login',
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    initPlugins();
   }
 
   login(form: NgForm){
