@@ -18,7 +18,7 @@
                             placeholder="Descripcion"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="text"  class="form form-control"  name="price" placeholder="Precio" [(ngModel)]='productDetail.price'>
+                        <input type="number"  class="form form-control"  name="price" placeholder="Precio" [(ngModel)]='productDetail.price'>
                     </div>
                     <div class="form-group">
                         <select class="form-control form-control-sm" [(ngModel)]='productDetail.category_id' name="category_id">
@@ -27,16 +27,16 @@
                             </option>
                         </select>
                     </div>
-                    <input type="text" [(ngModel)]='productDetail.user_id' name="user_id">
+                   <!--  <input type="text" [(ngModel)]='productDetail.user_id' name="user_id">
                     <div class="file-field form-group">
                         <div class="btn btn-outline-primary btn-sm float-left form-control">
                             <span>Imagenes &nbsp;</span>
                             <input type="file" multiple>
                         </div>
-                    </div> <br>
+                    </div> <br> -->
                     <hr>
                     <div class="text-right">
-                        <button class="form form-control bg-primary text-white" (click)="addproduct()">Agregar</button>
+                        <button class="bg-primary text-white" (click)="addproduct()">Agregar</button>
                     </div>
                 </form>
             </div>

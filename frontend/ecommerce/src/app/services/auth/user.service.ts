@@ -12,20 +12,20 @@ import { AuthLogin } from 'src/app/models/auth/auth-login';
 })
 
 export class UserService {
-  public URL:string; 
+  public URL:string;
   public headers: HttpHeaders;
   userToken: string;
 
   constructor(private http: HttpClient) {
     /*this.URL = 'http://localhost:8000/api/auth/';: LOCAL*/
-    this.URL = 'https://api-commerce-store.herokuapp.com/api/auth/'; /*PRODUCCION*/ 
+    this.URL = 'http://52.201.212.27/api/auth/'; /*PRODUCCION*/
     this.headers = new HttpHeaders().set('Content-Type','application/json');
     this.leerToken();
   }
 
   RegisterUser(user: User): Observable<any>{
     let params = JSON.stringify(user);
-    
+
     return this.http.post(this.URL+'register', params, {headers:this.headers})
                     .pipe(
                       map(response =>{
@@ -37,7 +37,7 @@ export class UserService {
   }
 
   loginUser(authLogin: AuthLogin){
-    
+
     return this.http.post(this.URL+'login', authLogin, {headers: this.headers})
                     .pipe(
                         map(response =>{
@@ -84,6 +84,6 @@ export class UserService {
     }else{
       return false;
     }
-    
+
   }
 }
