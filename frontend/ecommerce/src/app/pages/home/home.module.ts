@@ -14,6 +14,11 @@ import { CreateComponent } from './products/create/create.component';
 import { UpdateComponent } from './products/update/update.component';
 import { DeleteComponent } from './products/delete/delete.component';
 import { MyproductsComponent } from './products/myproducts/myproducts.component';
+import { LandingComponent } from './landing/landing.component';
+import { CorouselImgComponent } from './landing/corousel-img/corousel-img.component';
+import { BoxCardsComponent } from './landing/box-cards/box-cards.component';
+import { CardsComponent } from './landing/cards/cards.component';
+import { CorouselCardsComponent } from './landing/corousel-cards/corousel-cards.component';
 
 
 @NgModule({
@@ -23,7 +28,12 @@ import { MyproductsComponent } from './products/myproducts/myproducts.component'
         CreateComponent,
         UpdateComponent,
         DeleteComponent,
-        MyproductsComponent
+        MyproductsComponent,
+        LandingComponent,
+        CorouselImgComponent,
+        BoxCardsComponent,
+        CardsComponent,
+        CorouselCardsComponent
     ],
     exports: [
         PerfilComponent,

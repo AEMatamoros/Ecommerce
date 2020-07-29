@@ -1,0 +1,44 @@
+.btn-carrito1 {
+    background-color: orange;
+    margin-top: 115%;
+    position: relative;
+    outline: none;
+    border: none;
+    color: white;
+
+}
+
+.btn-carrito {
+    background-color: orange;
+    margin-top: 71%;
+    position: relative;
+    color: white;
+    outline: none;
+    border: none;
+    
+}
+
+.card-columns {
+    z-index: 100;
+    margin-top: 35px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-block-end: 10px;
+    
+}
+
+.card {
+    border: groove;
+    cursor: pointer;
+    transition: width 2s, height 2s transform 2s;
+}
+
+.card:hover {
+    transform: scale(1.01);
+    /*-moz-transform : scale(1.01);     /*  Firefox */
+    /*-webkit-transform : scale(1.01);   /* Chrome - Safari */
+    /*-o-transform : scale(1.01);       /*Opera */
+}
+.card-img-overlay {
+    align-content: center;
+}
