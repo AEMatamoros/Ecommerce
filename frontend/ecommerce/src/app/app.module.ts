@@ -20,7 +20,7 @@ import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 //Modulos
 import { SharedHomeModule } from './components/shared/shared.module';
 import { SharedAdminModule } from './components/shared/panelAdmin/sharedAdmin.module';
-
+import { InformacionComponent } from './pages/home/informacion/informacion.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { SharedAdminModule } from './components/shared/panelAdmin/sharedAdmin.mo
     HomeComponent,
     PanelAdminComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    InformacionComponent
   ],
   imports: [
     BrowserModule,
