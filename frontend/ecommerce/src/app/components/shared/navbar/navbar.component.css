@@ -1,10 +1,9 @@
 .header-area .main-header {
-  padding: 0px 120px;
+  padding: 0px 120px
 }
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .header-area .main-header {
-      padding: 0px 10px;
-      
+      padding: 0px 10px
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -37,7 +36,7 @@
 .header-area .main-header .menu-wrapper .main-menu ul li {
   display: inline-block;
   position: relative;
-  z-index: 100
+  z-index: 1
 }
 .header-area .main-header .menu-wrapper .main-menu ul li a {
   font-size: 16px;
@@ -52,7 +51,7 @@
   -moz-transition: all .3s ease-out 0s;
   -ms-transition: all .3s ease-out 0s;
   -o-transition: all .3s ease-out 0s;
-  transition: all .3s ease-out 0s
+  transition: all .3s ease-out 0s;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .header-area .main-header .menu-wrapper .main-menu ul li a {
@@ -329,15 +328,4 @@
   margin-top: -10px;
   margin-left:-7%;
   margin-right:6%;
-}
-
-.logo {
-  width: 17%;
-  display: initial;
-  justify-content: space-between;
-  margin-top: -30px;
-}
-
-img {
-  max-width: 100%;
 }
