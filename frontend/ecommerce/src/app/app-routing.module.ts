@@ -8,14 +8,12 @@ import { RegisterComponent } from './components/auth/register/register.component
 //Componentes
 import { HomeComponent } from './pages/home/home.component';
 import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
-import{ InformacionComponent } from './pages/informacion/informacion.component';
 
 
 const routes: Routes = [
   {path: 'registro', component: RegisterComponent},
   {path: 'login', component: LoginComponent },
-  {path:'informacion',component:InformacionComponent},
-
+ 
   {
     path: '',
     component: HomeComponent,

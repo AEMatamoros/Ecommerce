@@ -4,7 +4,10 @@ import { RouterModule } from '@angular/router';
 
 //Home
 import { NavbarComponent } from './navbar/navbar.component';
-import { CarouselComponent } from './carousel/carousel.component';
+import { BoxCardsComponent } from './box-cards/box-cards.component';
+import { CardsComponent } from './cards/cards.component';
+import { CorouselCardsComponent } from './corousel-cards/corousel-cards.component';
+import { CorouselImgComponent } from './corousel-img/corousel-img.component';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -15,14 +18,20 @@ import { FooterComponent } from './footer/footer.component';
     declarations: [
         //home
         NavbarComponent,
-        CarouselComponent,
-        FooterComponent,
+        BoxCardsComponent,
+        CardsComponent,
+        CorouselCardsComponent,
+        CorouselImgComponent,     
+        FooterComponent
            
     ],
     exports: [
-       NavbarComponent,
-       CarouselComponent,
-       FooterComponent,
+        NavbarComponent,
+        BoxCardsComponent,
+        CardsComponent,
+        CorouselCardsComponent,
+        CorouselImgComponent, 
+        FooterComponent
     ]
 })
 export class SharedHomeModule { }
