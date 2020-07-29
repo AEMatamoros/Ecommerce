@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule} from '@angular/forms'; 
+import { FormsModule} from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 //rutas
 import { PAGES_HOME_ROUTES } from './home.routes';
 
-//Componentes globales 
+//Componentes globales
 import { SharedHomeModule } from '../../components/shared/shared.module';
 
 //Componentes
@@ -19,6 +20,7 @@ import { CorouselImgComponent } from './landing/corousel-img/corousel-img.compon
 import { BoxCardsComponent } from './landing/box-cards/box-cards.component';
 import { CardsComponent } from './landing/cards/cards.component';
 import { CorouselCardsComponent } from './landing/corousel-cards/corousel-cards.component';
+import { ComprasComponent } from './compras/compras.component';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { CorouselCardsComponent } from './landing/corousel-cards/corousel-cards.
         CorouselImgComponent,
         BoxCardsComponent,
         CardsComponent,
-        CorouselCardsComponent
+        CorouselCardsComponent,
+        ComprasComponent
     ],
     exports: [
         PerfilComponent,
@@ -42,8 +45,9 @@ import { CorouselCardsComponent } from './landing/corousel-cards/corousel-cards.
         DeleteComponent,
         MyproductsComponent
     ],
-    imports: [      
+    imports: [
         PAGES_HOME_ROUTES,
+        RouterModule,
         CommonModule,
         FormsModule,
         SharedHomeModule

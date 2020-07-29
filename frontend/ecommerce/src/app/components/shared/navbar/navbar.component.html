@@ -29,13 +29,19 @@
                                       <li><a href="blog-details.html">Blog Details</a></li>
                                   </ul>
                               </li>
-                              <li *ngIf="!auth.estaAutenticado()" ><a routerLink="/login">Registrarse / Acceder</a></li>
+                              <!-- <li *ngIf="!auth.estaAutenticado()" ><a routerLink="/login">Registrarse / Acceder</a></li> -->
                           </ul>
                       </nav>
                   </div>
-                  <!-- Header Right -->
-                  <div class="main-menu div-perfil" *ngIf="auth.estaAutenticado()">
 
+                  <!-- Header Right -->
+                  <div class="main-menu div-perfil" *ngIf="!auth.estaAutenticado()">
+                    <ul>
+                      <li><a routerLink="/login">Registrarse / Acceder</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="main-menu div-perfil" *ngIf="auth.estaAutenticado()">
                     <ul>
                       <li><a routerLink="/perfil"><img src="assets/icons/usuario.png" width="30px" alt=""></a>
                         <ul class="submenu">
