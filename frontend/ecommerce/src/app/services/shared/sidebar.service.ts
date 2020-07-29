@@ -13,16 +13,15 @@ export class SidebarService {
         { titulo: 'Dashboard', url: '/admin' }
       ]
     },
-     {
-       titulo: 'Mantenimientos',
-       icono: 'mdi mdi-folder-lock-open',
-       submenu: [
-         { titulo: 'Usuarios', url: '/usuarios' },
-         { titulo: 'Hospitales', url: '/hospitales' },
-         { titulo: 'Médicos', url: '/medicos' }
-       ]
-     }
-   ];
-
+    {
+      titulo: 'Mantenimientos',
+      icono: 'mdi mdi-folder-lock-open',
+      submenu: [
+         { titulo: 'Cuentas', url: '/cuentas' },
+         { titulo: 'Productos', url: '/productos' }   
+      ]
+    }
+  ];
+  
   constructor() { }
 }

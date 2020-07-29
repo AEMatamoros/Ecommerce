@@ -26,6 +26,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: PanelAdminComponent,
+    data: {titulo: ''},
     loadChildren: () => import('./pages/panel-admin/panel-admin.module').then(m => m.PagesAdminModule)
   }
 
