@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+//Servicios
+import { AccountService } from '../../../../services/panelAdmin/account.service';
+
 @Component({
   selector: 'app-crear-cuenta',
   templateUrl: './crear-cuenta.component.html',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearCuentaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private accountService: AccountService
+  ) { }
 
   ngOnInit(): void {
+   
   }
 
 }
