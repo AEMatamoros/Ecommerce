@@ -10,12 +10,16 @@ import { SharedAdminModule } from '../../components/shared/panelAdmin/sharedAdmi
 import { PanelAdminComponent } from './panel-admin.component';
 import { GestionCuentasComponent } from './gestion-cuentas/gestion-cuentas.component';
 import { GestionProductosComponent } from './gestion-productos/gestion-productos.component';
+import { CrearCuentaComponent } from './gestion-cuentas/crear-cuenta/crear-cuenta.component';
+import { CrearProductoComponent } from './gestion-productos/crear-producto/crear-producto.component';
 
 @NgModule({
     declarations: [
         PanelAdminComponent,
         GestionCuentasComponent,
-        GestionProductosComponent
+        GestionProductosComponent,
+        CrearCuentaComponent,
+        CrearProductoComponent
     ],
     exports: [
         PanelAdminComponent,
