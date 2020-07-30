@@ -1,11 +1,11 @@
 export class Category {
     constructor(
-        public id:Number,
-        public category_name:String,
-        public description:String,
-        public category_icon_class:String,
-        public date_created:String,
-        public date_updated:String){
+        public id:number,
+        public category_name:string,
+        public description:string,
+        public category_icon_class:string,
+        public date_created:string,
+        public date_updated:string){
             
         }
 }
