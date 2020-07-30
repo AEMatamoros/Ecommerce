@@ -15,8 +15,7 @@ export class BreadcrumbsComponent implements OnInit {
   public tituloSubs$: Subscription;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) { 
 
     this.tituloSubs$ = this.getArgumentosRutas()
