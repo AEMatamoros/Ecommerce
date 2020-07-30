@@ -5,33 +5,26 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 
+//Routing
+import { AdminRoutingModule } from './pages/panel-admin/panel-admin.routing';
+import { HomeRoutingModule } from './pages/home/home.routing';
+
 //Componentes
-import { HomeComponent } from './pages/home/home.component';
 import{ InformacionComponent } from './pages/home/informacion/informacion.component';
-import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 
 
 const routes: Routes = [
   {path: 'registro', component: RegisterComponent},
-  {path: 'login', component: LoginComponent },
-  {path:'informacion',component:InformacionComponent},
-  {
-    path: '',
-    component: HomeComponent,
-    loadChildren: () => import('./pages/home/home.module').then(m => m.PagesHomeModule)
-  },
-  {
-    path: 'admin',
-    component: PanelAdminComponent,
-    data: {titulo: ''},
-    loadChildren: () => import('./pages/panel-admin/panel-admin.module').then(m => m.PagesAdminModule)
-  },
-
+  {path: 'login', component: LoginComponent }
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    AdminRoutingModule,
+    HomeRoutingModule,
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

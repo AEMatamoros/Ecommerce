@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-//rutas
-import { PAGES_HOME_ROUTES } from './home.routes';
 
-//Componentes globales
+//Modulo
 import { SharedHomeModule } from '../../components/shared/shared.module';
 
 //Componentes
+import { HomeComponent } from './home.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { MyproductsComponent } from './products/myproducts/myproducts.component';
 import { CreateComponent } from './products/create/create.component';
@@ -23,6 +22,7 @@ import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
     declarations: [
+        HomeComponent,
         PerfilComponent,
         CreateComponent,
         UpdateComponent,
@@ -40,10 +40,10 @@ import { LandingComponent } from './landing/landing.component';
         ComprasComponent
     ],
     imports: [
-        PAGES_HOME_ROUTES,
         RouterModule,
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         SharedHomeModule
     ]
 })

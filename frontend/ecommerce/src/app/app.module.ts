@@ -14,30 +14,26 @@ import { environment } from '../environments/environment';
 //Componentes
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component'; 
-import { HomeComponent } from './pages/home/home.component';
-import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 
 //Modulos
+import { PagesAdminModule } from './pages/panel-admin/panel-admin.module';
+import { PagesHomeModule } from './pages/home/home.module';
 import { SharedHomeModule } from './components/shared/shared.module';
-import { SharedAdminModule } from './components/shared/panelAdmin/sharedAdmin.module';
-import { InformacionComponent } from './pages/home/informacion/informacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    PanelAdminComponent,
     LoginComponent,
-    RegisterComponent,
-    InformacionComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PagesAdminModule,
+    PagesHomeModule,
+    SharedHomeModule,
     RouterModule,
     HttpClientModule,
-    SharedHomeModule,
-    SharedAdminModule,
     FormsModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })

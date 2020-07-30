@@ -1,30 +1,33 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-//Rutas
-import { PAGES_ADMIN_ROUTES } from './panel-admin.routes';
+//Modulos
 import { SharedAdminModule } from '../../components/shared/panelAdmin/sharedAdmin.module';
 
 //Componentes
+import { PanelAdminComponent } from './panel-admin.component';
 import { GestionCuentasComponent } from './gestion-cuentas/gestion-cuentas.component';
 import { GestionProductosComponent } from './gestion-productos/gestion-productos.component';
 
 @NgModule({
     declarations: [
-        // PagesAdminComponent
+        PanelAdminComponent,
         GestionCuentasComponent,
         GestionProductosComponent
     ],
     exports: [
+        PanelAdminComponent,
         GestionCuentasComponent,
         GestionProductosComponent
     ],
-    imports: [      
-        PAGES_ADMIN_ROUTES,
-        SharedAdminModule,
+    imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        SharedAdminModule
     ]
 })
-export class PagesAdminModule { }
+export class PagesAdminModule{}
