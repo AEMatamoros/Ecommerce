@@ -12,6 +12,7 @@ const routes: Routes = [
         component: PanelAdminComponent,
         //canActivate: [ AuthGuard ],
         //canLoad: [ AuthGuard ],
+        data: {titulo: 'Ecommerce'},
         loadChildren: () => import('./child-routes.module').then( m => m.ChildAdminRoutesModule )
     },
 ];
