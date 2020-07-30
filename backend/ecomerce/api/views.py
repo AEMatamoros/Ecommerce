@@ -92,9 +92,13 @@ class LoginAuthToken(APIView):
     def post(self, request):
         data = {}
 
-        email = request.POST.get('username')
-        password = request.POST.get('password')
+        email = request.data['username']
+        password = request.data['password']
+        print(email)
+        print(password)
+        print(request.data)
         account = authenticate(email=email, password=password)
+        print(account)
         
         if account:
             try:

@@ -1,0 +1,60 @@
+.texto{
+    color:#FF003C;
+}
+
+#galeria img{
+    width: 100%;
+    height: 250px;
+
+}
+
+#galeria .col-md-4{
+    padding:20px ;
+    margin: 0 !important;
+}
+
+#galeria img:hover{
+    border :5px solid white;
+}
+.container-fuid{
+    margin-top: 10%;
+}
+.card{
+    position: relative;
+    overflow: hidden;
+}
+.card:before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 220%;
+    background: rgba(242, 60, 24, 0.6);
+    top:-25%;
+    left:-100%;
+    z-index: 1;
+    transform-origin: center top 0;
+    transition: .5s;
+}
+
+.card:hover:before{
+    left:10%
+}
+
+.card img{
+    width: 100%;
+    height: auto;
+}
+.card-text{
+   width: 100%;
+   padding: 0 20px;
+   position: absolute;
+   top:-100%;
+   color: #fff;
+   left:0;
+   z-index:2;
+   transition:1.1s;
+}
+
+.card:hover .card-text{
+    top:80px;
+}

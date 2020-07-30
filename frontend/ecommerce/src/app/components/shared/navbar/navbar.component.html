@@ -8,35 +8,42 @@
               <div class="menu-wrapper">
                   <!-- Logo -->
                   <div class="logo">
-                      <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                      <a routerLink="/landing"><img src="assets/img/Logo.jpg" alt=""></a>
                   </div>
                   <!-- Main-menu -->
                   <div class="main-menu d-none d-lg-block">
                       <nav>
                           <ul id="navigation">
-                              <li><a href="index.html">Inicio</a></li>
-                              <li><a routerLink="/compras" >Comprar</a></li>
-                              <li><a href="about.html">Conocenos</a></li>
+                              <li><a routerLinkActive="active" routerLink="/landing">Inicio</a></li>
+                              <li><a routerLinkActive="active" routerLink="/compras" >Comprar</a></li>
+                              <li><a routerLinkActive="active" routerLink="/about">Conocenos</a></li>
                               <li class="hot"><a href="#">Ofertas</a>
                                   <ul class="submenu">
-                                      <li><a href="shop.html"> Mas vendidos</a></li>
-                                      <li><a href="product_details.html"> Novedades</a></li>
+                                      <li><a routerLink="/landing"> Mas vendidos</a></li>
+                                      <li><a routerLink="/landing"> Novedades</a></li>
                                   </ul>
                               </li>
-                              <li><a href="blog.html">Blog</a>
+                              <li><a href="/landing">Blog</a>
                                   <ul class="submenu">
-                                      <li><a href="blog.html">Blog</a></li>
-                                      <li><a href="blog-details.html">Blog Details</a></li>
+                                      <li><a routerLink="/landing">Blog</a></li>
+                                      <li><a routerLink="/landing">Blog Details</a></li>
                                   </ul>
                               </li>
+                              <!-- <li *ngIf="!auth.estaAutenticado()" ><a routerLink="/login">Registrarse / Acceder</a></li> -->
                           </ul>
                       </nav>
                   </div>
-                  <!-- Header Right -->
-                  <div class="main-menu div-perfil" >
 
+                  <!-- Header Right -->
+                  <div class="main-menu div-perfil" *ngIf="!auth.estaAutenticado()">
                     <ul>
-                      <li><a href="#"><img src="assets/icons/usuario.png" width="30px" alt=""></a>
+                      <li><a routerLink="/login">Registrarse / Acceder</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="main-menu div-perfil" *ngIf="auth.estaAutenticado()">
+                    <ul>
+                      <li><a routerLink="/perfil"><img src="assets/icons/usuario.png" width="30px" alt=""></a>
                         <ul class="submenu">
                             <li><a routerLink="login">Inicia Sesion</a></li>
                             <li><a routerLink="usuario" >Usuario</a></li>
@@ -68,4 +75,4 @@
   </div>
   <!-- Header End -->
 </header>
-<router-outlet></router-outlet>
+

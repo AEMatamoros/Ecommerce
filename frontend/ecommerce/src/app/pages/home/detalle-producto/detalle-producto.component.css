@@ -1,0 +1,50 @@
+.labels {
+  color: #00A650;
+  font-weight: 600;
+}
+
+.btn-compra {
+  background-color: #00A650;
+  color: white;
+  display: block;
+  margin:auto;
+  font-weight: 600;
+}
+
+.btn-carrito {
+  background-color: orange;
+  color: white;
+  display: block;
+  margin: auto;
+  font-weight: 600;
+}
+
+a:hover{
+  transform: scale(1.1);
+}
+
+.contenedor-img {
+  border: 1px solid rgb(218, 210, 210);
+}
+
+th {
+  background-color: rgb(233, 229, 229);
+  border: 1px solid rgb(218, 210, 210);
+}
+td {
+  border: 1px solid rgb(218, 210, 210);
+  width: auto ;
+}
+
+
+table {
+  width: 400px;
+}
+
+@media (max-width:500px){
+
+  table {
+    width: 300px;
+  }
+
+}

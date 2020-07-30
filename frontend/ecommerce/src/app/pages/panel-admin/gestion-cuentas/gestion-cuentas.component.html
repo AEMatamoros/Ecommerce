@@ -1,0 +1,80 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <input type="text"
+                        class="form-control"
+                        placeholder="Buscar Cuenta..."
+                        #txtTermino
+                        />
+
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Cuentas ({{ cuentas.length }})</h4>
+                    </div>
+                    <div class="col mb-2">
+                        <div class="text-right">
+                            <a class="btn btn-primary" routerLink='cuenta'>
+                                Crear Cuenta
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="w100">Foto</th>
+                            <th>Nombre</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th class="w100 text-nowrap">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cuenta of cuentas">
+                            <td *ngFor="let img of image">
+                                <img [src]="img.img_route" class="w100 cursor" alt="userImg" style="width: 45px; height: 45px;">
+                            </td>
+                            <td>{{cuenta.first_name}} {{ cuenta.last_name }}</td>
+                            <td>{{cuenta.phone_number}}</td>
+                            <td>{{cuenta.email}}</td>
+                            <td *ngIf="cuenta.is_active">USER NORMAL</td>
+                            <td *ngIf="cuenta.is_admin">ADMIN</td>
+                            
+                            <td class="text-nowrap text-center">
+                                <a 
+                                    data-toggle="tooltip" 
+                                    class="cursor"
+                                    data-original-title="Editar"> 
+                                    <i class="fa fa-save text-inverse m-r-10"></i> 
+                                </a>
+
+                                <a  
+                                    data-toggle="tooltip" 
+                                    data-original-title="Borrar"
+                                    class="cursor"> 
+                                    <i class="fa fa-trash text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

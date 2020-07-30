@@ -1,8 +1,9 @@
-Recuerden que algunas tablas se generan de forma automatica con la logica de Django al hacer relaciones.
-Si instalan requerimientos externos como de Github, areguenlos aqui.
-
-
-
-Requerimientos:
-pip install django
-pip install djangorestframework
+asgiref==3.2.10
+Django==3.0.8
+django-cors-headers==3.4.0
+django-mysql==3.7.1
+djangorestframework==3.11.0
+mysqlclient==2.0.1
+Pillow==7.2.0
+pytz==2020.1
+sqlparse==0.3.1

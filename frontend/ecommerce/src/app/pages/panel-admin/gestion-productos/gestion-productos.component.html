@@ -1,0 +1,75 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <input type="text"
+                        class="form-control"
+                        placeholder="Buscar Producto..."
+                        #txtTermino
+                        />
+
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Productos (3)</h4>
+                    </div>
+                    <div class="col mb-2">
+                        <div class="text-right">
+                            <a class="btn btn-primary"
+                                routerLink="producto">
+                                Crear Producto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="w100">Foto</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Descripcion</th>
+                            <th class="w100 text-nowrap">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>Nombre</td>
+                            <td>Precio</td>
+                            <td>Descripcion</td>
+                            <td class="text-nowrap text-center">
+                                <a 
+                                    data-toggle="tooltip" 
+                                    class="cursor"
+                                    data-original-title="Editar"> 
+                                    <i class="fa fa-save text-inverse m-r-10"></i> 
+                                </a>
+
+                                <a  
+                                    data-toggle="tooltip" 
+                                    data-original-title="Borrar"
+                                    class="cursor"> 
+                                    <i class="fa fa-trash text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,6 +21,9 @@ class Image(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return str(self.img_route)
+
 class Direction(models.Model):
     direction = models.CharField(max_length=60, null=True, blank=True)
     relative = models.ForeignKey('self', on_delete=models.CASCADE, related_name="relative_direction", null=True, blank=True)
@@ -175,7 +178,7 @@ class Puntuation(models.Model):
     evaluator_user_id = models.ForeignKey(Account, related_name="evaluator_user_id", on_delete=models.CASCADE, verbose_name='Evaluador')
     points = models.IntegerField(verbose_name='Puntos')
     comment = models.TextField(null=True, verbose_name='Comentario')
-    follow_date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     class Meta():
         verbose_name= "Puntuation"
@@ -236,7 +239,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=255)
-    currency_id = models.ForeignKey(Currency, related_name='currency_product', on_delete=models.CASCADE)
+    price = models.FloatField(null=True, blank=True, default=0)
     category_id = models.ForeignKey(Category, related_name='category_product', on_delete=models.CASCADE)
     user_id = models.ForeignKey(Account, related_name='user_owner', on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -248,6 +251,9 @@ class Product(models.Model):
 class Image_Product(models.Model):
     images_id = models.ForeignKey(Image, related_name='image_route', on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, related_name='products_images', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.images_id)+ "    " + str(self.product_id)
 
 class Status(models.Model):
     description = models.CharField(max_length=50)
@@ -278,8 +284,6 @@ class Order(models.Model):
     isv = models.DecimalField(max_digits=10, decimal_places=2)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     direction_id = models.ForeignKey(Direction, related_name='direction_order', on_delete= models.CASCADE)
-    shipping_method_id = models.ForeignKey(Shipping_method, related_name='Shipping_method_order', on_delete= models.CASCADE)
-    payment_method_id = models.ForeignKey(Payment_method, related_name='Payment_method_order', on_delete=models.CASCADE)
 
 
 class Product_order(models.Model):
