@@ -178,7 +178,7 @@ class Puntuation(models.Model):
     evaluator_user_id = models.ForeignKey(Account, related_name="evaluator_user_id", on_delete=models.CASCADE, verbose_name='Evaluador')
     points = models.IntegerField(verbose_name='Puntos')
     comment = models.TextField(null=True, verbose_name='Comentario')
-    follow_date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     class Meta():
         verbose_name= "Puntuation"
@@ -284,8 +284,6 @@ class Order(models.Model):
     isv = models.DecimalField(max_digits=10, decimal_places=2)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     direction_id = models.ForeignKey(Direction, related_name='direction_order', on_delete= models.CASCADE)
-    shipping_method_id = models.ForeignKey(Shipping_method, related_name='Shipping_method_order', on_delete= models.CASCADE)
-    payment_method_id = models.ForeignKey(Payment_method, related_name='Payment_method_order', on_delete=models.CASCADE)
 
 
 class Product_order(models.Model):
