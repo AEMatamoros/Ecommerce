@@ -25,7 +25,7 @@ SECRET_KEY = 'wamc8dpv4tb&gfz!565%xn9(##pxo7mpsxw9g-88sccm4y*35o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['52.201.212.27', 'ec2-52-201-212-27.compute-1.amazonaws.com']
 
 AUTH_USER_MODEL = 'api.Account'
 
@@ -116,10 +116,10 @@ WSGI_APPLICATION = 'ecomerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'industria',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'bddindustria',
+        'USER': 'admin',
+        'PASSWORD': 'industria123',
+        'HOST': 'bddindustria.cfi64ratdk8q.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
@@ -162,6 +162,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #Media
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
