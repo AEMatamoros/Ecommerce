@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 //Modelo
 import { Account } from '../../models/account/account';
 import { Image } from '../../models/general/general-models';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -33,6 +34,17 @@ export class AccountService {
     return this.http.get(this.URL+'image/', {headers: this.headers})
                .pipe(
                  map((image: Image[]) => this.image = image)
+               );
+  }
+
+  crearCuenta(account: Account): Observable<any>{
+    let params = JSON.stringify(account);
+    return this.http.post(this.URL+'account/', params, {headers: this.headers})
+               .pipe(
+                 map( response => {
+                   console.log(response);
+                   return response;
+                 })
                );
   }
 }

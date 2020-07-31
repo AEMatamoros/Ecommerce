@@ -17,7 +17,6 @@ import { AccountService } from 'src/app/services/panelAdmin/account.service';
 export class GestionCuentasComponent implements OnInit {
   public cuentas: Account[] = [];
   public image: Image[] = [];
-  private imagen_id: number;
   public cuenta: any;
 
   constructor(
@@ -43,7 +42,6 @@ export class GestionCuentasComponent implements OnInit {
       this.image = image;
       console.log(this.image);
     })
-
   }
 
 

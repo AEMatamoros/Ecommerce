@@ -10,14 +10,12 @@ export class Account {
         public last_name: string,
         public phone_number: string,
         public birth_date: string,
-        public date_joined:string,
-        public last_login:string,
         public password: string,
         public is_admin:boolean,
         public is_staff:boolean,
         public is_superuser:boolean,
-        public user_img:Image[],
-        public cover_img:Image[],
+        public user_img: Image[] | string,
+        public cover_img: Image[] | string
     ){}
 }
 
