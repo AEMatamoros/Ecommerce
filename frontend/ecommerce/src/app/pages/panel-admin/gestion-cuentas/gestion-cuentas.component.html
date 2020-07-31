@@ -45,8 +45,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let cuenta of cuentas">
-                            <td *ngFor="let img of image">
-                                <img [src]="img.img_route" class="w100 cursor" alt="userImg" style="width: 45px; height: 45px;">
+                            <td>
+                                <img [src]="cuenta.user_img.img_route" class="w100 cursor" alt="userImg" style="width: 45px; height: 45px;">
                             </td>
                             <td>{{cuenta.first_name}} {{ cuenta.last_name }}</td>
                             <td>{{cuenta.phone_number}}</td>

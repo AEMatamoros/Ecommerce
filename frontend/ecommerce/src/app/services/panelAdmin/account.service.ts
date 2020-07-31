@@ -19,7 +19,10 @@ export class AccountService {
   constructor(
     private http: HttpClient
   ) {
-    this.URL = 'http://52.201.212.27/api/viewset/';
+    this.URL = 'http://localhost:8000/api/viewset/'; /*LOCAL*/
+    /*this.URL = 'http://52.201.212.27/api/viewset/'; PRODUCCION*/
+    this.headers = new HttpHeaders().set('Content-Type','application/json');
+    
   }
 
   obtenerCuentas(){
@@ -30,12 +33,14 @@ export class AccountService {
                );
   }
 
-  obtenerImagen(){
+  obtenerImagenes(){
     return this.http.get(this.URL+'image/', {headers: this.headers})
                .pipe(
                  map((image: Image[]) => this.image = image)
                );
   }
+
+  
 
   crearCuenta(account: Account): Observable<any>{
     let params = JSON.stringify(account);

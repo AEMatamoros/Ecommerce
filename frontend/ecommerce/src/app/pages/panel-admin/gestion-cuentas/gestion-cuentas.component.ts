@@ -17,32 +17,23 @@ import { AccountService } from 'src/app/services/panelAdmin/account.service';
 export class GestionCuentasComponent implements OnInit {
   public cuentas: Account[] = [];
   public image: Image[] = [];
-  public cuenta: any;
+  public cuenta: any[];
 
   constructor(
     public accountService: AccountService
-  ) { }
-
-  ngOnInit(): void {
-    this.obtenerCuentas();
-    this.obtenerImagenUser();
+  ) {
+    
     
   }
 
+  ngOnInit(): void {
+    this.obtenerCuentas();
+  }
+
   obtenerCuentas(){
-    this.accountService.obtenerCuentas().subscribe((cuentas: Account[])=>{
-      this.cuentas = cuentas;
-      console.log(this.cuentas);
-    });
+    this.accountService.obtenerCuentas().subscribe(response => this.cuentas = response);
+
   }
 
-  obtenerImagenUser(){
-
-    this.accountService.obtenerImagen().subscribe((image: Image[])=>{
-      this.image = image;
-      console.log(this.image);
-    })
-  }
-
-
+  
 }

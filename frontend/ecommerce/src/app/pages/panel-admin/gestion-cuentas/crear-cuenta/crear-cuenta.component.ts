@@ -48,7 +48,7 @@ export class CrearCuentaComponent implements OnInit {
   }
 
   obtenerImagenes(){
-    this.accountService.obtenerImagen().subscribe((images: Image[])=>{
+    this.accountService.obtenerImagenes().subscribe((images: Image[])=>{
       this.imagen = images;
       console.log(this.imagen);
     })
