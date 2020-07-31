@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-//Modelo
-import { Account } from '../../models/account/account';
-import { Image } from '../../models/general/general-models';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+//Interfaces
+import {CargarCuentas } from 'src/app/interfaces/cargar-cuentas';
+//Modelos
+import { Account } from 'src/app/models/account/account';
+import { Image } from 'src/app/models/general/general-models';
 
 
 @Injectable({
@@ -33,14 +36,33 @@ export class AccountService {
                );
   }
 
+  obtenerCuentasPaginadas(desde:number){
+    return this.http.get<CargarCuentas>(this.URL+'account/?page='+desde, {headers: this.headers})
+               .pipe(
+                 map( response => {
+                    const cuentas = response.results.map(
+                      account => new Account(account.id, account.direction, account.email, account.first_name, 
+                                            account.last_name, account.phone_number,account.birth_date,
+                                            account.phone_number,account.is_admin,account.is_staff,
+                                            account.is_superuser, account.user_img, account.cover_img)
+                    );
+                    return {
+                      total: response.count,
+                      next: response.next,
+                      previous: response.previous,
+                      cuentas
+              
+                    };
+                 })
+               )
+  }
+
   obtenerImagenes(){
     return this.http.get(this.URL+'image/', {headers: this.headers})
                .pipe(
                  map((image: Image[]) => this.image = image)
                );
   }
-
-  
 
   crearCuenta(account: Account): Observable<any>{
     let params = JSON.stringify(account);

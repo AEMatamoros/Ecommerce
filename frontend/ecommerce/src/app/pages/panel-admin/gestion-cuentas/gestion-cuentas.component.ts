@@ -7,8 +7,6 @@ import { Image } from 'src/app/models/general/general-models';
 //Servicio
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
 
-
-
 @Component({
   selector: 'app-gestion-cuentas',
   templateUrl: './gestion-cuentas.component.html',
@@ -17,7 +15,11 @@ import { AccountService } from 'src/app/services/panelAdmin/account.service';
 export class GestionCuentasComponent implements OnInit {
   public cuentas: Account[] = [];
   public image: Image[] = [];
-  public cuenta: any[];
+  public desde: number = 1;
+  public siguiente: string;
+  public anterior: string;
+  public txtTermino: any = 0;
+  public totalCuentas: number = 0;
 
   constructor(
     public accountService: AccountService
@@ -27,13 +29,36 @@ export class GestionCuentasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerCuentas();
+    this.obtenerCuentasPaginadas();
   }
 
   obtenerCuentas(){
     this.accountService.obtenerCuentas().subscribe(response => this.cuentas = response);
-
   }
+
+  obtenerCuentasPaginadas(){
+    this.accountService.obtenerCuentasPaginadas(this.desde)
+                       .subscribe(({total, cuentas, next, previous})=>{
+                         this.totalCuentas = total;
+                         this.cuentas = cuentas;
+                         this.siguiente = next;
+                         this.anterior = previous;
+                       });
+  }
+
+  cambiarPagina( valor: number ) {
+    this.desde += valor;
+    
+    if ( this.desde < 0 ) {
+      this.desde = 1;
+    } else if ( this.desde >= this.totalCuentas ) {
+      this.desde -= valor; 
+    }
+
+    this.obtenerCuentasPaginadas();
+  }
+
+  
 
   
 }

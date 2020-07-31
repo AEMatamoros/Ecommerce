@@ -20,6 +20,7 @@ export class CrearCuentaComponent implements OnInit {
   public formAccount: FormGroup;
   public account: Account;
   public imagen: Image[] = [];
+  public roles: string[] = ['ADMIN', 'USER'];
   public status: string = '';
   public message: string = '';
 

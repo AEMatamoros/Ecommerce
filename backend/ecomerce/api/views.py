@@ -10,6 +10,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 
 from .serializer import RegistrationSerializer, DirectionSerializer, AccountSerializer, ImageSerializer, FollowersSerializar, PuntuationSerializer, ComplaintsSerializaer, CurrencySerializaer, CategorySerializer, ProductSerializer, Image_ProductSerializer, StatusSerializer, ShipingSerializer, Payment_methodSerializer, Payment_dataSerializer, OrderSerializer, ProductOrderSerializer, LogSerializer, ActionSerializer
@@ -40,6 +41,7 @@ class DirectionGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveMo
 class AccountGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
     serializer_class = AccountSerializer
     queryset = Account.objects.all()
+    pagination_class = PageNumberPagination
     lookup_field = "id"
 
     def get(self, request, id=None):
@@ -94,11 +96,8 @@ class LoginAuthToken(APIView):
 
         email = request.data['username']
         password = request.data['password']
-        print(email)
-        print(password)
-        print(request.data)
+    
         account = authenticate(email=email, password=password)
-        print(account)
         
         if account:
             try:
@@ -109,6 +108,7 @@ class LoginAuthToken(APIView):
             data['response'] = 'Logeado con exito.'
             data['pk'] = account.pk
             data['email'] = email
+            #data['rol'] = account.is_admin
             data['token'] = token.key
         else:
             data['response'] = 'Error'
