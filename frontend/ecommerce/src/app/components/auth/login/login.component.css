@@ -1,6 +1,6 @@
 .login-container{
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-top: 0%;
+    margin-bottom: 10%;
 }
 .login-logo{
     position: relative;
@@ -15,22 +15,22 @@
     padding: 5%;
 }
 .login-form-1{
-    padding: 9%;
+    padding: 8%;
     background:#282726;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 .login-form-1 h3{
     text-align: center;
-    margin-bottom:12%;
+    margin-bottom:11%;
     color:#fff;
 }
 .login-form-1 p,.login-form-2 p {
     text-align: left ;
-    margin-bottom:12%;
+    margin-bottom:11%;
     color:rgb(224, 224, 224);
 }
 .login-form-2{
-    padding: 9%;
+    padding: 8%;
     background: #f05837;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
@@ -61,3 +61,7 @@
     text-align: center !important;
     margin-bottom:12%;
 }
+.form-control:focus {
+    border-color: #615d5a !important ;
+    box-shadow: 0 0 0 0.2rem rgba(68, 25, 9, 0.25);
+  }

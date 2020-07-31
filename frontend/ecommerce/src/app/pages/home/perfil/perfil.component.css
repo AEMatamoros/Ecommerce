@@ -1,0 +1,60 @@
+.col-sm-3 {
+    margin-bottom:3%;
+    background: #282726;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+h5 {
+    margin-bottom:5%;
+    color:rgb(224, 224, 224);
+    text-align: center;
+}
+h6{
+    color: rgb(91, 95, 102);
+    font-size: 1rem;
+    text-align: center !important;
+    margin-bottom: 12%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.botones,.nav-link {
+    background-color:#f05837;
+    color: #fff;
+    border-color: #970505;
+}
+
+.botones:hover {
+    background-color: #f23c18; /* Green */
+    color: white;
+  }
+  
+.nav-pills .nav-link.active, .nav-pills, .show>.nav-link {
+    color: #fff;
+    background-color: #f38168;
+    border-color: #970505;
+}
+.list-group-item:first-child {
+    text-align: center;
+}
+.pull-left{
+font-size: .9rem;
+}
+.modelo {
+    margin-bottom: 2%;  
+}
+
+.uno{
+    position: relative;
+   width: 100%;
+   padding-top: 100%;
+}
+
+.imag{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.form-control:focus {
+    border-color: #f3ab71 !important ;
+    box-shadow: 0 0 0 0.2rem rgba(255, 72, 0, 0.25);
+  }

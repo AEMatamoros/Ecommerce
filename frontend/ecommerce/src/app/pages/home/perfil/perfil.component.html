@@ -1,0 +1,147 @@
+
+<div class="container bootstrap snippet">
+    <div class="row">
+  	<div class="col-sm-3 " ><!--left col-->
+      <br>
+      <div class="text-center">
+        <div class="uno">
+            <!--left col<img src="{{imageportada}}" class="img-thumbnail imag" alt="avatar">-->
+            <a href="{{imageportada}}"></a>
+        </div>
+        <br>
+        <div class="col-sm-10"><h5> {{nombre +' '+ apellido}} </h5></div>
+             <button type="button" class="btn btn-primary btn-lx botones">Cambiar foto</button>
+        </div>
+        <hr>
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Actividad<i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-left"><span class="pull-left"><strong>Puntuación:</strong></span> 13</li>
+            <li class="list-group-item text-left"><span class="pull-left"><strong>Productos Vendidos:</strong></span> 37</li>
+            <li class="list-group-item text-left"><span class="pull-left"><strong>Seguidores:</strong></span> 78</li>
+          </ul> 
+         <br>
+        </div>
+    	<div class="col-sm-9">
+            <ul class="nav nav-pills">
+                <li class="nav-item botones"><a class="nav-link active" data-toggle="tab" href="#home">Editando</a></li>
+                <!--/col
+                <li class="nav-item botones"><a class="nav-link" data-toggle="tab" href="#messages">Menu 1</a></li>
+                <li class="nav-item botones"><a class="nav-link" data-toggle="tab" href="#settings">Menu 2</a></li>
+              -3-->
+              </ul>
+
+              
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                 <section>
+                    <img src="{{imageportada}}" class="img-fluid modelo" alt="Responsive image">
+                    <div class="col-md-6 mb-3">
+                    <button type="button" class="btn btn-primary btn-lx botones">Cambiar portada</button>
+                    </div>
+                  </section>
+              <form class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Apellido">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Correo">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <input type="email" class="form-control" placeholder="Telefono">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Pais" id="inputCity">
+                    </div>
+                    <div class="form-row col-md-6">
+                        <div class="form-group col-md-6">
+                            <input type="text" placeholder="Estado" class="form-control" id="inputCity">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control">
+                                <option selected>+504</option>
+                                <option>+502</option>
+                                <option>+507</option>
+                                <option>+506</option>
+                                <option>+52</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" placeholder="Correo">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="tel" class="form-control" placeholder="Telefono">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <textarea class="form-control" placeholder="Descripción" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="form-row col-md-6">
+                        <div class="form-group col-md-6">
+                            <h6>Fecha nacimiento</h6>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input class="form-control" type="date" name="fecha" min="1950-03-25" max="2002-01-01"  />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row col-md-6">
+                        <div class=" form-group col-md-6 mb-3">
+                            <button type="button" class="btn btn-primary btn-lx botones">Guardar Cambios</button>
+                            
+                        </div>
+                        <div class=" form-group col-md-6 mb-3">
+                            
+                            <button type="button" class="btn btn-primary btn-lx" routerLink='/usuario' > Cancelar</button>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </form>
+              <hr>
+              
+             </div>
+             <div class="tab-pane" id="messages">
+               
+               <h2></h2>
+               
+               <hr>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                     
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                                <br>
+                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            </div>
+                      </div>
+              	</form>
+               
+             </div><!--/tab-pane-->
+             <div class="tab-pane" id="settings">
+            		
+               	
+                  <hr>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                      
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                                <br>
+                              	<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                            </div>
+                      </div>
+              	</form>
+              </div>
+               
+            </div><!--/tab-pane-->
+        </div><!--/tab-content-->
+
+    </div><!--/col-9-->
+</div><!--/row-->
+
+                                                      

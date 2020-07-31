@@ -1,0 +1,120 @@
+<div class="container">
+<div class="row">
+      <div class="col-xs-12 col-sm-9">
+        <div class="panel panel-default contorno">
+          <div class="panel-body"><br>
+            <div class="profile__avatar">
+              <img src="{{imageportada}}" alt="...">
+            </div>
+            <div class="profile__header">
+              <h4>{{nombreU+' ' +apellidoU}}<small> Vendedor</small></h4>
+              <p >
+              Hola, soy un vendedor de aparatos electronicos bien chingones
+              </p>
+              <br>
+                
+            </div>
+          </div>
+        </div>
+
+        <!-- User info -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+          <h4 class="panel-title">Actividad</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table profile__table">
+              <tbody>
+                <tr>
+                  <th><strong>Puntuación</strong></th>
+                  <td>{{calidad}}</td>
+                </tr>
+                <tr>
+                  <th><strong>Productos en venta</strong></th>
+                  <td>{{articulosale}}</td>
+                </tr>
+                <tr>
+                  <th><strong>Seguidores</strong></th>
+                  <td>{{seguidores}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+         
+        <div class="panel panel-default">
+          <div class="panel-heading">
+          <h4 class="panel-title">Ultimos Comentarios</h4>
+          </div>
+          <div class="panel-body">
+            <div class="profile__comments">
+              
+              <div class="profile-comments__item" *ngFor="let item of comentarios">
+                <div class="profile-comments__controls">
+                  <a href="#"><i class="fa fa-share-square-o"></i></a>
+                  <a href="#"><i class="fa fa-edit"></i></a>
+                  <a href="#"><i class="fa fa-trash-o"></i></a>
+                </div>
+                <div class="profile-comments__avatar">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
+                </div>
+                <div class="profile-comments__body">
+                  <h5 class="profile-comments__sender">
+                    {{item.nombre}} <small>{{item.tiempo}}</small>
+                  </h5>
+                  <div class="profile-comments__content">
+                    {{item.comentario}}
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-xs-12 col-sm-3 virtualboy">
+        
+         
+        <p>
+        <br>
+          <a  class="profile__contact-btn btn btn-lg btn-block btn-info botones" routerLink='/perfil' data-toggle="modal" data-target="#profile__contact-form">
+            Editar Perfil
+          </a>
+        </p>
+        
+        <!-- Contact info -->
+        <div class="profile__contact-info">
+          <div class="profile__contact-info-item">
+            <div class="profile__contact-info-icon">
+              <i class="fa fa-phone"></i>
+            </div>
+            <div class="profile__contact-info-body">
+              <h5 class="profile__contact-info-heading">Numero de Telefono</h5>
+              {{telefonoU}}
+            </div>
+          </div>
+          <div class="profile__contact-info-item">
+            <div class="profile__contact-info-icon">
+              <i class="fa fa-envelope-square"></i>
+            </div>
+            <div class="profile__contact-info-body">
+              <h5 class="profile__contact-info-heading">Correo Electronico</h5>
+              <a href="mailto:{{correoU}}">{{nombreU+' '+apellidoU}}</a>
+            </div>
+          </div>
+          <div class="profile__contact-info-item">
+            <div class="profile__contact-info-icon">
+              <i class="fa fa-map-marker"></i>
+            </div>
+            <div class="profile__contact-info-body">
+              <h5 class="profile__contact-info-heading">Ubicación</h5>
+              {{direccionU}}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>

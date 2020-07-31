@@ -7,6 +7,7 @@ import { User } from 'src/app/models/auth/user';
 import { UserService } from 'src/app/services/auth/user.service';
 import { ValidadoresRegisterService } from 'src/app/services/auth/validadores-register.service';
 
+declare function initPlugins();
 
 @Component({
   selector: 'app-register',
@@ -31,6 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    initPlugins();
   }
   
   get nombreNoValido() {

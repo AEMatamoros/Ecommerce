@@ -2,13 +2,20 @@ from rest_framework import serializers
 from .models import Account, Direction,Image,Followers, Puntuation, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method, Payment_method ,Payment_data,Order,Product_order,Log, Action
 
 class DirectionSerializer(serializers.ModelSerializer):
-    
+    def to_representation(self,instance):
+        self.fields["relative"]= DirectionSerializer(read_only=True)
+        return super(DirectionSerializer,self).to_representation(instance)
+
     class Meta:
         model= Direction
         fields= '__all__'
 
 class AccountSerializer(serializers.ModelSerializer):
-    direction = serializers.PrimaryKeyRelatedField(read_only=True)
+    def to_representation(self,instance):
+        self.fields["direction"]= DirectionSerializer(read_only=True)
+        self.fields["user_img"]= ImageSerializer(read_only=True)
+        self.fields["cover_img"] = ImageSerializer(read_only=True)
+        return super(AccountSerializer,self).to_representation(instance)
     class Meta:
         model = Account
         fields= '__all__'
@@ -52,16 +59,29 @@ class ImageSerializer(serializers.ModelSerializer):
         fields= '__all__'
 
 class FollowersSerializar(serializers.ModelSerializer):
+    def to_representation(self,instance):
+        self.fields["follower_id"]= AccountSerializer(read_only=True)
+        self.fields["followed_id"]= AccountSerializer(read_only=True)
+        return super(FollowersSerializar,self).to_representation(instance)
+    
     class Meta():
         model = Followers
         fields='__all__'
 
 class PuntuationSerializer(serializers.ModelSerializer):
+    def to_representation(self,instance):
+        self.fields["evaluated_user_id"]= AccountSerializer(read_only=True)
+        self.fields["evaluator_user_id"]= AccountSerializer(read_only=True)
+        return super(PuntuationSerializer ,self).to_representation(instance)
     class Meta():
         model= Puntuation
         fields= '__all__'
 
 class ComplaintsSerializaer(serializers.ModelSerializer):
+    def to_representation(self,instance):
+        self.fields["accuser_user_id"]= AccountSerializer(read_only=True)
+        self.fields["denounced_user_id"]= AccountSerializer(read_only=True)
+        return super(ComplaintsSerializaer ,self).to_representation(instance)
     class Meta():
         model = Complaints
         fields='__all__'
@@ -77,11 +97,20 @@ class CategorySerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
+    def to_representation(self,instance):
+        self.fields["category_id"]= CategorySerializer(read_only=True)
+        self.fields["user_id"]= AccountSerializer(read_only=True)
+        return super(ProductSerializer ,self).to_representation(instance)
+    
     class Meta():
         model =Product
         fields='__all__'
 
 class Image_ProductSerializer(serializers.ModelSerializer):
+    def to_representation(self,instance):
+        self.fields["images_id"]= ImageSerializer(read_only=True)
+        self.fields["product_id"]= ProductSerializer(read_only=True)
+        return super(Image_ProductSerializer ,self).to_representation(instance)
     class Meta():
         model = Image_Product
         fields='__all__'
@@ -108,22 +137,35 @@ class Payment_dataSerializer(serializers.ModelSerializer):
 
 #Order,Product_order,Log
 class OrderSerializer(serializers.ModelSerializer):
+    def to_representation(self,instance):
+        self.fields["status_id"]= StatusSerializer(read_only=True)
+        self.fields["direction_id"]= DirectionSerializer(read_only=True)
+        return super(OrderSerializer ,self).to_representation(instance)
     class Meta():
         model = Order
         fields='__all__'
 
 class ProductOrderSerializer(serializers.ModelSerializer):
+    def to_representation(self,instance):
+        self.fields["product_id"]= ProductSerializer(read_only=True)
+        self.fields["order_id"]= OrderSerializer(read_only=True)
+        return super(ProductOrderSerializer ,self).to_representation(instance)
     class Meta():
         model = Product_order
         fields='__all__'
-
-class LogSerializer(serializers.ModelSerializer):
-    class Meta():
-        model = Log
-        fields='__all__'
-
 
 class ActionSerializer(serializers.ModelSerializer):
     class Meta():
         model = Action
         fields='__all__'
+
+class LogSerializer(serializers.ModelSerializer):
+    def to_representation(self,instance):
+        self.fields["user_id"]= AccountSerializer(read_only=True)
+        self.fields["action_id"]= ActionSerializer(read_only=True)
+        return super(LogSerializer ,self).to_representation(instance)
+    class Meta():
+        model = Log
+        fields='__all__'
+
+
