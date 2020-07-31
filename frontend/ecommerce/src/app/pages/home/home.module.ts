@@ -18,6 +18,7 @@ import { DeleteComponent } from './products/delete/delete.component';
 
 import { ComprasComponent } from './compras/compras.component';
 import { LandingComponent } from './landing/landing.component';
+import { OffersComponent } from './offers/offers.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LandingComponent } from './landing/landing.component';
         DeleteComponent,
         MyproductsComponent,
         ComprasComponent,
-        LandingComponent
+        LandingComponent,
+        OffersComponent
     ],
     exports: [
         PerfilComponent,

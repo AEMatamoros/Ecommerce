@@ -10,6 +10,7 @@ import { InformacionComponent } from './informacion/informacion.component';
 import { MyproductsComponent } from './products/myproducts/myproducts.component';
 import { ComprasComponent } from './compras/compras.component';
 import { LandingComponent } from './landing/landing.component';
+import { OffersComponent } from './offers/offers.component';
 
 const childHomeRoutes: Routes = [
     {
@@ -33,6 +34,10 @@ const childHomeRoutes: Routes = [
     {
         path: 'compras',
         component: ComprasComponent
+    },
+    {
+        path: 'offers',
+        component: OffersComponent
     }
 ];
 
