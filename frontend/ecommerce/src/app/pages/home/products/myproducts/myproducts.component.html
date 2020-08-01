@@ -23,30 +23,39 @@
     </div>
   </div>
  
-</section></div--> 
+</section></div-->
 
 
 <div class="container-fluid">
   <div class="row">
     <h1 class="text-left pb-3 texto col-md-10 pl-5">Mis Productos</h1>
-    <div class="col-md-2"><app-create></app-create></div> 
-    
-    <div class="card bg-dark text-white text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 16rem;" *ngFor="let product of products ">
-      <div *ngFor="let image of products_images ">
-          <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" class="img-fluid" alt="Card image" >
+    <div class="col-md-2">
+      <app-create></app-create>
+    </div>
+
+    <div class="card bg-dark text-white text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 16rem;"
+      *ngFor="let product of products; let i = index ">
+      Index {{i}}
+      <div id="slider">
+        <figure>
+          <div *ngFor="let image of products_images ">
+            <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" class="img-fluid"
+              alt="Card image">
+          </div>
+          <div *ngFor="let image of products_images ">
+            <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" class="img-fluid"
+              alt="Card image">
+          </div>
+          
+          
+        </figure>
       </div>
 
-      
-        <div *ngFor="let image of products_images;">
-            <img *ngIf="product.id==image.product_id.id && i==0" src="{{image.images_id.img_route}}" alt="" class="img-fluid" alt="Card image" >
-          
-        </div>
 
 
 
-      
       <div class="card-img-overlay ">
-        <p class="card-title pb-0">{{product.name}} &nbsp; 
+        <p class="card-title pb-0">{{product.name}} &nbsp;
           <app-update [product]="product"></app-update>
           <app-delete [product]="product"></app-delete>
         </p>
@@ -57,7 +66,6 @@
         <p class="m-0 pb-0"><strong>{{product.price}} {{product.sign}} </strong> </p>
       </div>
     </div>
-    
+
   </div>
 </div>
-    

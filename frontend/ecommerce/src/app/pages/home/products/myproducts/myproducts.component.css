@@ -60,6 +60,7 @@
     top:80px;
 }
 */
+
 #slider {
 	overflow: hidden;
 }
@@ -71,8 +72,8 @@
 	animation: 20s slider infinite;
 }
 #slider figure img {
-	float: left;
 	width: 20%;
+	float: left;
 }
 
 @keyframes slider {
