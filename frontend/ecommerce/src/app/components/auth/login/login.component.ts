@@ -39,13 +39,16 @@ export class LoginComponent implements OnInit {
             this.message = response['error_message'];
             console.log(response);
             if(response['token']){
-              /*
-                Despues tiene que rediriguir a home 
-                this.router.navigateByUrl('/home');
-              */
+              
               form.reset();
-              console.log(response['token']);
-              this.router.navigateByUrl('/perfil');
+              //console.log(response['token']);
+              console.log(response['user_admin'])
+              if(response['user_admin']){
+                this.router.navigateByUrl('/admin');
+              }else{
+                this.router.navigateByUrl('/home');
+              }
+              
             }
           },
           error =>{

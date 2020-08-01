@@ -22,7 +22,7 @@ export class CreateComponent implements OnInit {
 
 
   ngOnInit(){
-    return this.dataService.getCategories()
+    return this.dataService.getCategory()
       .subscribe(data =>this.categories=data);
   }
 

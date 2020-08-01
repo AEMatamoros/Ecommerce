@@ -19,7 +19,7 @@ export class UpdateComponent implements OnInit {
 
   ngOnInit() {
     this.productDetail.id= this.product.id
-    return this.dataService.getCategories()
+    return this.dataService.getCategory()
       .subscribe(data =>this.categories=data) 
   }
 

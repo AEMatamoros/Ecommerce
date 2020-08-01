@@ -99,8 +99,10 @@ class LoginAuthToken(APIView):
     
         account = authenticate(email=email, password=password)
         
+        
         if account:
             try:
+                account_user = Account.objects.get(email=email)
                 token = Token.objects.get(user=account)
             except Token.DoesNotExist:
                 token = Token.objects.create(user=account)
@@ -108,7 +110,9 @@ class LoginAuthToken(APIView):
             data['response'] = 'Logeado con exito.'
             data['pk'] = account.pk
             data['email'] = email
-            #data['rol'] = account.is_admin
+            data['user_normal'] = account_user.is_superuser
+            data['user_admin'] = account_user.is_admin
+            data['user_active'] = account_user.is_active
             data['token'] = token.key
         else:
             data['response'] = 'Error'
