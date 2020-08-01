@@ -32,3 +32,20 @@ python manage.py migrate
 python manage.py runserver
 
 ```
+
+5. Crear Componentes 
+>Para Home
+```
+ng g c pages/home/<nombre_componente> -m=pages/home/home
+
+Ir al archivo child-routes.module de home y crear la ruta
+
+```
+
+>Para Admin
+```
+ng g c pages/panel-admin/<nombre_componente> -m=pages/panel-admin/panel-admin
+
+Ir al archivo child-routes.module de panel-admin y crear la ruta
+
+```
