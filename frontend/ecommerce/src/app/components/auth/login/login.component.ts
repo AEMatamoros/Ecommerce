@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
               if(response['user_admin']){
                 this.router.navigateByUrl('/admin');
               }else{
-                this.router.navigateByUrl('/home');
+                this.router.navigateByUrl('/landing');
               }
               
             }
