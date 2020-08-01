@@ -33,7 +33,7 @@ python manage.py runserver
 
 ```
 
-5. Crear Componentes 
+6. Crear Componentes 
 >Para Home
 ```
 ng g c pages/home/<nombre_componente> -m=pages/home/home
