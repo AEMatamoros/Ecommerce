@@ -1,5 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import {Product} from 'src/app/models/product/product';
+import {ProductImages} from 'src/app/models/product/product-images'
 import { ProductsService } from 'src/app/services/products/products.service'
 
 @Component({
@@ -14,14 +15,18 @@ export class MyproductsComponent implements OnInit {
   
   //Modelo
   products:Product[];
+  products_images:ProductImages[];
 
   
   //Llamar al servicio
   constructor(private dataService:ProductsService ) { }
 
   ngOnInit(){
-    return this.dataService.getProducts()
-      .subscribe(data =>this.products=data) 
+    this.dataService.getProducts()
+    .subscribe(data =>this.products=data)
+    var product_images=this.dataService.getProductsImages()
+    .subscribe(data =>this.products_images=data)
+    return [this.products,this.products_images]
   }
 
 }

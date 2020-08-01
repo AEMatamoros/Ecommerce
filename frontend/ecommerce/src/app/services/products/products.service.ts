@@ -8,6 +8,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { Product } from 'src/app/models/product/product';
 import { Category } from 'src/app/models/product/category';
 import { Currency} from 'src/app/models/product/currency';
+import { ProductImages} from 'src/app/models/product/product-images';
 
 
 
@@ -24,7 +25,7 @@ export class ProductsService {
   API_Url_Products='http://52.201.212.27/api/viewset/product/'
   API_Url_Currency='http://52.201.212.27/api/viewset/currency/'
   API_Url_Category='http://52.201.212.27/api/viewset/category/'
-  
+  API_Url_Product_images="http://52.201.212.27/api/viewset/product_image/"
   //Productos
   getProducts(){
     return this.http.get<Product[]>(this.API_Url_Products)
@@ -39,6 +40,22 @@ export class ProductsService {
   }
   deleteProduct(id){
     return this.http.delete<Product[]>(this.API_Url_Products+''+id+'/',this.httpOptions)
+  }
+  //Product-Images
+  //Productos
+  getProductsImages(){
+    return this.http.get<ProductImages[]>(this.API_Url_Product_images)
+  }
+
+  postProductImages(ProductImages){
+    return this.http.post<ProductImages[]>(this.API_Url_Product_images, JSON.stringify(ProductImages),this.httpOptions)
+  }
+
+  putProductImages(id,ProductImages){
+    return this.http.put<ProductImages[]>(this.API_Url_Product_images+''+id+'/', JSON.stringify(ProductImages),this.httpOptions)
+  }
+  deleteProductImages(id){
+    return this.http.delete<ProductImages[]>(this.API_Url_Product_images+''+id+'/',this.httpOptions)
   }
   //Categorias
   getCategory(){
