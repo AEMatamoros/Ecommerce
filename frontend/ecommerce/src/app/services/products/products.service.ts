@@ -44,7 +44,7 @@ export class ProductsService {
   getCategory(){
     return this.http.get<Category[]>(this.API_Url_Category)
   }
-  postCategory(Category){
+  postCategories(Category){
     return this.http.post<Category[]>(this.API_Url_Category, JSON.stringify(Category),this.httpOptions)
   }
 
