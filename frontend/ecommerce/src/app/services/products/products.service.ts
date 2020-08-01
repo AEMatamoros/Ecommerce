@@ -15,20 +15,20 @@ import { Currency} from 'src/app/models/product/currency';
   providedIn: 'root'
 })
 export class ProductsService {
-  API_Url_Products='http://52.201.212.27/api/viewset/product/'
-  API_Url_Currency='http://52.201.212.27/api/viewset/currency/'
-  API_Url_Category='http://52.201.212.27/api/viewset/category/'
   constructor(private http: HttpClient) { }
-  //Productos
-  getProducts(){
-    return this.http.get<Product[]>(this.API_Url_Products)
-  }
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
     })
   };
+  API_Url_Products='http://52.201.212.27/api/viewset/product/'
+  API_Url_Currency='http://52.201.212.27/api/viewset/currency/'
+  API_Url_Category='http://52.201.212.27/api/viewset/category/'
+  
+  //Productos
+  getProducts(){
+    return this.http.get<Product[]>(this.API_Url_Products)
+  }
 
   postProduct(product){
     return this.http.post<Product[]>(this.API_Url_Products, JSON.stringify(product),this.httpOptions)
@@ -41,11 +41,31 @@ export class ProductsService {
     return this.http.delete<Product[]>(this.API_Url_Products+''+id+'/',this.httpOptions)
   }
   //Categorias
-  getCategories(){
+  getCategory(){
     return this.http.get<Category[]>(this.API_Url_Category)
+  }
+  postCategory(Category){
+    return this.http.post<Category[]>(this.API_Url_Category, JSON.stringify(Category),this.httpOptions)
+  }
+
+  putCategory(id,Category){
+    return this.http.put<Category[]>(this.API_Url_Category+''+id+'/', JSON.stringify(Category),this.httpOptions)
+  }
+  deleteCategory(id){
+    return this.http.delete<Category[]>(this.API_Url_Category+''+id+'/',this.httpOptions)
   }
   //Moneda
   getCurrency(){
     return this.http.get<Currency[]>(this.API_Url_Currency)
+  }
+  postCurrency(product){
+    return this.http.post<Currency[]>(this.API_Url_Currency, JSON.stringify(Currency),this.httpOptions)
+  }
+
+  putCurrency(id,product){
+    return this.http.put<Currency[]>(this.API_Url_Currency+''+id+'/', JSON.stringify(Currency),this.httpOptions)
+  }
+  deleteCurrency(id){
+    return this.http.delete<Currency[]>(this.API_Url_Currency+''+id+'/',this.httpOptions)
   }
 }
