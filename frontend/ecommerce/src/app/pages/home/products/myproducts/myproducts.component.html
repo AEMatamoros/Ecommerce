@@ -33,9 +33,14 @@
     
     <div class="card bg-dark text-white text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 16rem;" *ngFor="let product of products ">
       <div *ngFor="let image of products_images ">
+
         <div *ngIf="product.id==image.product_id.id">
           <img src="{{image.images_id.img_route}}" alt="" class="img-fluid" alt="Card image" >
         </div>
+        
+
+
+
       </div>
       <div class="card-img-overlay ">
         <p class="card-title pb-0">{{product.name}} &nbsp; 
