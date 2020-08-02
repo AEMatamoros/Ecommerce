@@ -32,7 +32,8 @@
   align-content: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  align-items: center
+  align-items: center;
+  margin-right: 5%;
 }
 .header-area .main-header .menu-wrapper .main-menu ul li {
   display: inline-block;
@@ -89,10 +90,10 @@
 .header-area .main-header .menu-wrapper .main-menu ul li:hover>ul.submenu {
   visibility: visible;
   opacity: 1;
-  top: 100%
+  top: 100%;
 }
 .header-area .main-header .menu-wrapper .main-menu ul li:hover>ul.submenu::before {
-  top: -8px
+  top: -8px;
 }
 .header-area .main-header .menu-wrapper .main-menu ul ul.submenu {
   position: absolute;
@@ -327,19 +328,22 @@
 
 .div-perfil {
   margin-top: -1px;
-  margin-left:-14%;
-  margin-right:6%;
+  margin-left: -2%;
+  margin-right: 2px;
 }
+
 .form-control:focus {
   border-color: #f3ab71 !important ;
   box-shadow: 0 0 0 0.2rem rgba(255, 72, 0, 0.25);
 }
+
 
 .logo{
   width: 17%;
   display: initial;
   justify-content: space-between;
   margin-top: -30px;
+ 
 }
 
 img {
