@@ -1,5 +1,3 @@
-
-
 <header>
   <!-- Header Start -->
   <div class="header-area">
@@ -17,10 +15,10 @@
                               <li><a routerLinkActive="active" routerLink="/landing">Inicio</a></li>
                               <li><a routerLinkActive="active" routerLink="/compras" >Comprar</a></li>
                               <li><a routerLinkActive="active" routerLink="/about">Conocenos</a></li>
-                              <li class="hot"><a href="">Novedades</a>
+                              <li class="hot"><a href="#">Ofertas</a>
                                   <ul class="submenu">
-                                      <li><a routerLinkActive="active" routerLink="/offers">Ofertas</a></li>
                                       <li><a routerLink="/landing"> Mas vendidos</a></li>
+                                      <li><a routerLink="/landing"> Novedades</a></li>
                                   </ul>
                               </li>
                               <li><a href="/landing">Blog</a>
@@ -29,22 +27,28 @@
                                       <li><a routerLink="/landing">Blog Details</a></li>
                                   </ul>
                               </li>
-                              <li  class="main-menu div-perfil" *ngIf="!auth.estaAutenticado()">
-                                <a routerLink="/login">Registrarse / Acceder</a>
-                              </li>
-                              <li class="main-menu div-perfil" *ngIf="auth.estaAutenticado()">
-                                <a class="perfil-log" routerLink="/perfil"><img src="assets/icons/user.png" width="30px" height="30" alt=""></a>
-                                <ul class="submenu">
-                                    <li><a routerLink="login">Inicia Sesion</a></li>
-                                    <li><a routerLink="usuario" >Usuario</a></li>
-                                    <li><a routerLink="my_products">Mis Productos</a></li>
-                                </ul>
-                              </li>
                               <!-- <li *ngIf="!auth.estaAutenticado()" ><a routerLink="/login">Registrarse / Acceder</a></li> -->
                           </ul>
                       </nav>
                   </div>
-                  
+
+                  <!-- Header Right -->
+                  <div class="main-menu div-perfil" *ngIf="!auth.estaAutenticado()">
+                    <ul>
+                      <li><a routerLink="/login">Registrarse / Acceder</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="main-menu div-perfil" *ngIf="auth.estaAutenticado()">
+                    <ul>
+                      <li><a routerLink="/perfil"><img src="assets/icons/usuario.png" style="width: 30px;" alt=""></a>
+                        <ul class="submenu">
+                            <li><a routerLink="/perfil">Perfil</a></li>
+                            <li><a routerLink="/misProductos">Mis Productos</a></li>
+                            <li><a class="btn btn-outline-danger" (click)="salir()">Cerrar Sesión</a></li>
+                        </ul>
+                      </li>
+                    </ul>
 
                      <!--  <span class="iconos-navbar">
                         <a href="index.html" ><img src="assets/icons/usuario.png" width="30px" alt="">
@@ -58,7 +62,7 @@
                         <a href="index.html"><img src="assets/icons/supermercado.png" width="30px" alt=""></a>
                       </span> -->
 
-                  
+                  </div>
               </div>
               <!-- Mobile Menu -->
               <div class="col-12">
@@ -69,4 +73,3 @@
   </div>
   <!-- Header End -->
 </header>
-
