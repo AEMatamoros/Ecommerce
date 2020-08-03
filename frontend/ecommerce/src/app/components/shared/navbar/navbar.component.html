@@ -5,7 +5,7 @@
           <div class="container-fluid">
               <div class="menu-wrapper">
                   <!-- Logo -->
-                  <div class="logo">
+                  <div class="logo d-none d-lg-block">
                       <a routerLink="/landing"><img src="assets/img/Logo.jpg" alt=""></a>
                   </div>
                   <!-- Main-menu -->
@@ -33,13 +33,13 @@
                   </div>
 
                   <!-- Header Right -->
-                  <div class="main-menu div-perfil" *ngIf="!auth.estaAutenticado()">
+                  <div class="main-menu div-perfil d-none d-lg-block" *ngIf="!auth.estaAutenticado()">
                     <ul>
                       <li><a routerLink="/login">Registrarse / Acceder</a></li>
                     </ul>
                   </div>
 
-                  <div class="main-menu div-perfil" *ngIf="auth.estaAutenticado()">
+                  <div class="main-menu div-perfil d-none d-lg-block" *ngIf="auth.estaAutenticado()">
                     <ul>
                       <li><a routerLink="/perfil"><img src="assets/icons/usuario.png" style="width: 30px;" alt=""></a>
                         <ul class="submenu">
@@ -61,13 +61,40 @@
                       <span class="iconos-navbar">
                         <a href="index.html"><img src="assets/icons/supermercado.png" width="30px" alt=""></a>
                       </span> -->
-
                   </div>
+
+                  <div class="row justify-content-between">
+                    <div class="col-5 col-md-5 d-block d-lg-none">
+                       <a routerLink="/landing"><img src="assets/img/Logo.jpg" class="img-fluid" height="50" alt=""></a>
+                    </div>
+                    <div class="col-3 col-md-2 d-block d-lg-none">
+                      <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                        aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="dark-blue-text">
+                          <img src="assets/icons/hamburguer4.png" style="width: 50px; height: 50px; " alt="">
+                        </span>
+                      </button>
+                    </div>
+
+                    <div class="col-12 d-block d-lg-none">
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                        <ul class="navbar-nav mr-auto menu-responsive" style="text-align: center;" >
+                          <li><a routerLinkActive="active"  routerLink="/compras" >Comprar</a></li>
+                          <li><a routerLink="/about">Conocenos</a></li>
+                          <li><a routerLink="/landing"> Mas vendidos</a></li>
+                          <li><a routerLink="/landing"> Novedades</a></li>
+                          <li><a routerLink="/blog"> Blog</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
               </div>
-              <!-- Mobile Menu -->
-              <div class="col-12">
-                  <div class="mobile_menu d-block d-lg-none"></div>
-              </div>
+
+
           </div>
       </div>
   </div>

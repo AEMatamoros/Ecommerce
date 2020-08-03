@@ -4,7 +4,7 @@
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .header-area .main-header {
       padding: 0px 10px;
-      
+
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -61,7 +61,7 @@
   }
 }
 .header-area .main-header .menu-wrapper .main-menu ul li:hover>a {
-  color: #ff2020
+  color: #ff8017;
 }
 .header-area .main-header .menu-wrapper .main-menu ul li.hot {
   position: relative
@@ -69,7 +69,7 @@
 .header-area .main-header .menu-wrapper .main-menu ul li.hot::before {
   position: absolute;
   content: "HOT";
-  background: #ff003c;
+  background: #ff8017;
   color: #fff;
   text-align: center;
   border-radius: 8px;
@@ -105,7 +105,7 @@
   opacity: 0;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.05);
   padding: 17px 0;
-  border-top: 3px solid #ff2020;
+  border-top: 3px solid #ff8017;
   border-radius: 7px 7px 3px 3px;
   -webkit-transition: all .2s ease-out 0s;
   -moz-transition: all .2s ease-out 0s;
@@ -124,7 +124,7 @@
   text-transform: capitalize
 }
 .header-area .main-header .menu-wrapper .main-menu ul ul.submenu>li>a:hover {
-  color: #ff2020;
+  color: #ff8017;
   background: none
 }
 .header-area .main-header .menu-wrapper .main-menu ul ul.submenu::before {
@@ -176,7 +176,7 @@
   padding: 31px 19px
 }
 .header-area .main-header .menu-wrapper .header-right span:hover {
-  color: #ff2020
+  color: #ff8017;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header-area .main-header .menu-wrapper .header-right span {
@@ -343,9 +343,19 @@
   display: initial;
   justify-content: space-between;
   margin-top: -30px;
- 
+
 }
 
 img {
   width: 100%;
 }
+
+
+ ul.menu-responsive>li>a {
+
+    font-weight: 700;
+    font-size: 16px;
+    color: #ff8017;
+    text-transform: capitalize;
+
+  }
