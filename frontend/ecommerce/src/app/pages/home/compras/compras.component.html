@@ -43,6 +43,7 @@
 
   </div>
 
+
   <div class="div-cuerpo">
 
     <div class="div-busqueda input-group md-form form-sm form-2 pl-0 ">
@@ -52,50 +53,10 @@
 
     <div class="row" style="margin-right: 1%;">
 
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="detalle">
-          <div class="contenedor-img text-center">
-            <img src="assets/img/alienware15.jpg" class="estilo-img img-fluid" alt="">
-          </div>
-        </a>
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
-            </div>
-            <div class="flip-card-back">
-              <a href="" class="btn btn-carrito">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="/detalle">
-          <div class="contenedor-img text-center">
-            <img src="assets/img/rel12.jpg" class="estilo-img" alt="">
-          </div>
-        </a>
-        <div class=" flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
-            </div>
-            <div class="flip-card-back">
-
-              <a href="" class="btn btn-carrito">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
       <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas" *ngFor="let producto of productos ; let i = index; ">
         <a routerLink="detalle">
           <div class="contenedor-img text-center">
-            <img [src]="producto.images_id.img_route" class="estilo-img img-fluid" alt="">
+            <img loading="lazy" [src]="producto.images_id.img_route" class="estilo-img img-fluid" alt="">
           </div>
         </a>
         <div class=" flip-card">
@@ -103,11 +64,9 @@
             <div class="flip-card-front" >
               <label for="" class="label-desc">
                 {{ producto.product_id.name }}
-
               </label><br/>
               <strong>
                 HNL. {{ producto.product_id.price }}
-
               </strong>
             </div>
             <div class="flip-card-back">
