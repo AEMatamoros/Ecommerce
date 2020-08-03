@@ -74,85 +74,6 @@
       <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
         <a routerLink="/detalle">
           <div class="contenedor-img text-center">
-            <img src="assets/img/alienware22.jpg" class="estilo-img" alt="">
-          </div>
-        </a>
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
-            </div>
-            <div class="flip-card-back">
-
-              <a href="" class="btn btn-carrito">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="/detalle">
-          <div class="contenedor-img text-center">
-            <img src="assets/img/alienware51.jpg" class="estilo-img" alt="">
-          </div>
-        </a>
-        <div class=" flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
-            </div>
-            <div class="flip-card-back">
-
-              <a href="" class="btn btn-carrito">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="/detalle">
-          <div class="contenedor-img text-center">
-            <img src="assets/img/asus-tuf.jpg" class="estilo-img" alt="">
-          </div>
-        </a>
-        <div class=" flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
-            </div>
-            <div class="flip-card-back">
-
-              <a href="" class="btn btn-carrito">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="/detalle">
-          <div class="contenedor-img text-center">
-            <img src="assets/img/laptop21.jpg" class="estilo-img" alt="">
-          </div>
-        </a>
-        <div class=" flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
-            </div>
-            <div class="flip-card-back">
-
-              <a href="" class="btn btn-carrito">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="/detalle">
-          <div class="contenedor-img text-center">
             <img src="assets/img/rel12.jpg" class="estilo-img" alt="">
           </div>
         </a>
@@ -170,57 +91,24 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="/detalle">
+
+      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas" *ngFor="let producto of productos ; let i = index; ">
+        <a routerLink="detalle">
           <div class="contenedor-img text-center">
-            <img src="assets/img/alienware22.jpg" class="estilo-img" alt="">
+            <img [src]="producto.images_id.img_route" class="estilo-img img-fluid" alt="">
           </div>
         </a>
         <div class=" flip-card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
-            </div>
-            <div class="flip-card-back">
+            <div class="flip-card-front" >
+              <label for="" class="label-desc">
+                {{ producto.product_id.name }}
 
-              <a href="" class="btn btn-carrito">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-      </div>
+              </label><br/>
+              <strong>
+                HNL. {{ producto.product_id.price }}
 
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="/detalle">
-          <div class="contenedor-img text-center">
-            <img src="assets/img/alienware51.jpg" class="estilo-img" alt="">
-          </div>
-        </a>
-        <div class=" flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
-            </div>
-            <div class="flip-card-back">
-
-              <a href="" class="btn btn-carrito">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas">
-        <a routerLink="/detalle">
-          <div class="contenedor-img text-center">
-            <img src="assets/img/alienware15.jpg" class="estilo-img img-fluid" alt="">
-          </div>
-        </a>
-        <div class=" flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <label for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</label>
-              <strong>HNL. 16,000</strong>
+              </strong>
             </div>
             <div class="flip-card-back">
 
