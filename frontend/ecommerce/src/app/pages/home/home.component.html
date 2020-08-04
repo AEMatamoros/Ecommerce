@@ -1,8 +1,36 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
-  <router-outlet></router-outlet>
+  <div class="row">
+    <!--For-->
+    <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-3">
+        <!--Inicio CArd-->
+        <div class="card shadow h-100 pb-2">
+            <a href="link"><img class="card-img-top no-border-top-left" src="imgurl" alt="Responsive image"></a>
+            <div class="card-body mb-0 pb-0">
+              <h5 class="card-title"><a href="linnk">Nombre</a> </h5>
+              <p class="my-0">Lugar: <a href="link">Direction</a></p>
+              <p class="mt-0">En Pa'Ya desde: Se unio</p>
+            </div>
+            <div class="card-footer bg-white mt-0">
+                <div class="row justify-content-end">
+                    <div class="btn-group mr-2" role="group" aria-label="Detail group">
+                        <a href="" class="btn btn-light bg-white text-secondary border-0" data-toggle="tooltip" data-placement="bottom" title="Ver Tienda">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <a href="#" ad="" ad-name = "" data-toggle="modal" data-target="#modalEliminarTienda" data-toggle="tooltip" data-placement="bottom" title="Eliminar tienda" class="btn btn-light bg-white text-secondary  border-0 btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fincard-->
+    </div>
+    <!--endfor-->
 </div>
+</div>
+
      
 <app-footer></app-footer>
 

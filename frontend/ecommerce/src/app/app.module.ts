@@ -19,12 +19,14 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { PagesAdminModule } from './pages/panel-admin/panel-admin.module';
 import { PagesHomeModule } from './pages/home/home.module';
 import { SharedHomeModule } from './components/shared/shared.module';
+import { VendedoresComponent } from './pages/home/vendedores/vendedores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    VendedoresComponent
   ],
   imports: [
     BrowserModule,
