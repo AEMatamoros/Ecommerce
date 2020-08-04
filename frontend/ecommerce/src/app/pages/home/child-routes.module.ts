@@ -12,6 +12,7 @@ import { ComprasComponent } from './compras/compras.component';
 import { LandingComponent } from './landing/landing.component';
 import { OffersComponent } from './offers/offers.component';
 import { VendedoresComponent } from './vendedores/vendedores.component';
+import { VendedorprofilesComponent } from './vendedorprofiles/vendedorprofiles.component';
 
 const childHomeRoutes: Routes = [
     {
@@ -43,6 +44,10 @@ const childHomeRoutes: Routes = [
     {
         path: 'vendedores',
         component: VendedoresComponent
+    },
+    {
+        path: 'vendedor/:id',
+        component: VendedorprofilesComponent
     }
 ];
 
