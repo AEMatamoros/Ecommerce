@@ -27,6 +27,7 @@ export class AccountService {
     return this.http.get<Account[]>(this.API_Url_Account,this.httpOptions)
   }
   getAccount(id){
-    return this.http.get<Account[]>(this.API_Url_Account+''+id+"/")
+    console.log(this.API_Url_Account+''+id+"/");
+    return this.http.get<Account[]>(this.API_Url_Account+''+id+"/",this.httpOptions)
   }
 }
