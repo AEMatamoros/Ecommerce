@@ -17,7 +17,8 @@ export class AccountService {
   public URL:string;
   public headers: HttpHeaders;
   public accounts: Account[] = [];
-  public image: Image[] = [];
+  public account: Account[];
+  public images: Image[] = [];
 
   constructor(
     private http: HttpClient
@@ -35,6 +36,20 @@ export class AccountService {
                  map((accounts: Account[]) => this.accounts = accounts)
                );
   }
+
+  obtenerCuenta(id:number){
+    return this.http.get<Account[]>(this.URL+'account/'+id+"/",{headers: this.headers})
+    .pipe(
+      map(response =>{
+
+        const account = response
+        
+        this.account = account;
+        return this.account;
+      })
+    )
+  }
+
 
   obtenerCuentasPaginadas(desde:number){
     return this.http.get<CargarCuentas>(this.URL+'account/?page='+desde, {headers: this.headers})
@@ -60,7 +75,7 @@ export class AccountService {
   obtenerImagenes(){
     return this.http.get(this.URL+'image/', {headers: this.headers})
                .pipe(
-                 map((image: Image[]) => this.image = image)
+                 map((image: Image[]) => this.images = image)
                );
   }
 

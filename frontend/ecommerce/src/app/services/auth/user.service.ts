@@ -14,11 +14,12 @@ import { AuthLogin } from 'src/app/models/auth/auth-login';
 export class UserService {
   public URL:string;
   public headers: HttpHeaders;
-  userToken: string;
+  public userToken: string;
+  public id: number;
 
   constructor(private http: HttpClient) {
-    /*this.URL = 'http://localhost:8000/api/auth/'; /*LOCAL*/
-    this.URL = 'http://52.201.212.27/api/auth/'; //PRODUCCION
+    this.URL = 'http://localhost:8000/api/auth/'; /*LOCAL*/
+    /*this.URL = 'http://52.201.212.27/api/auth/'; //PRODUCCION*/
     this.headers = new HttpHeaders().set('Content-Type','application/json');
     this.leerToken();
   }
@@ -42,12 +43,14 @@ export class UserService {
                     .pipe(
                         map(response =>{
                             this.guardarToken(response['token']);
+                            this.guardarID(response['pk']);
                             return response;
                         })
                     );
   }
 
   logoutUser(){
+    localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('expira');
   }
@@ -60,6 +63,11 @@ export class UserService {
     hoy.setSeconds(3600);
 
     localStorage.setItem('expira', hoy.getTime().toString());
+  }
+
+  public guardarID(id: number){
+    this.id = id;
+    localStorage.setItem('id', id.toString());
   }
 
   private leerToken(){
