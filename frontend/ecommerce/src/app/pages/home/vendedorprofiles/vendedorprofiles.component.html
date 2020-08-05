@@ -17,18 +17,22 @@
 <h1 class="text-center">Productos</h1>
 <div class="row">
   
+    
 
-<div *ngFor="let product of products" class="col-md-3 col-xl-4 col-sm-1">
-    <div *ngIf="product.user_id.id==cuenta_id " >
+<ng-container *ngFor="let product of products">
+    <div *ngIf="product.user_id.id==cuenta_id "class="col-md-4 col-xl-3 col-sm-1" >
         <div class="card">
             <div class="card-header">
                 {{product.name}}
             </div>
             <div class="card-body">
-                <div *ngFor="let image of products_images ">
-                    
-                    <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" class="img-fluid"
-                      alt="Card image">
+                <div id="slider">
+                    <figure>
+                      <div *ngFor="let image of products_images ">
+                        <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" class="img-fluid"
+                          alt="Card image">
+                      </div>
+                    </figure>
                   </div>
                 {{product.description}}
             </div>
@@ -37,7 +41,7 @@
             </div>
         </div>
     </div>
+</ng-container>
     
-    </div>
 </div>
 <!--FinPortada-->
