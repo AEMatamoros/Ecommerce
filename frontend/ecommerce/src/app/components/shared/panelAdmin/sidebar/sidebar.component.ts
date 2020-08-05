@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare function initPlugins();
+
 //Modelo
 import { Account } from 'src/app/models/account/account';
 
@@ -29,6 +31,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    initPlugins();
     this.getAccount();
   }
 

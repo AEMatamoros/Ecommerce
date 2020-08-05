@@ -9,8 +9,6 @@ import { Image } from 'src/app/models/general/general-models';
 //Servicios
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
 
-
-
 @Component({
   selector: 'app-crear-cuenta',
   templateUrl: './crear-cuenta.component.html',
