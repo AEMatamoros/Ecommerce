@@ -33,7 +33,7 @@ export class VendedorprofilesComponent implements OnInit {
 
   this.productService.getProducts()
     .subscribe(data =>this.products=data)
-
+  
     return [this.cuentas,this.products_images,this.products]
   }
 
