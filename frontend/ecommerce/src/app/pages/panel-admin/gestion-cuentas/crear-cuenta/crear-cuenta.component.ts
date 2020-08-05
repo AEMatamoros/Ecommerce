@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 //Modelos
 import { Account } from 'src/app/models/account/account';
@@ -18,7 +18,10 @@ export class CrearCuentaComponent implements OnInit {
   public formAccount: FormGroup;
   public account: Account;
   public imagen: Image[] = [];
-  public roles: string[] = ['ADMIN', 'USER'];
+  public roles: any = [
+    {name: 'USER_NORMAL', value: 0},
+    {name: 'ADMIN', value: 1}
+  ];
   public status: string = '';
   public message: string = '';
 
@@ -32,7 +35,8 @@ export class CrearCuentaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerImagenes()
+    
+    this.obtenerImagenes();
   }
 
   crearFormulario(){
@@ -40,7 +44,7 @@ export class CrearCuentaComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)] ],
       apellido: ['',[Validators.required, Validators.minLength(4)] ],
       telefono: ['', [Validators.required, Validators.minLength(8)]],
-      rol: ['', [Validators.required]],
+      rolesUser: new FormControl('', [Validators.required]),
       fecha_nac: ['', [Validators.required] ],
       correo: ['', [Validators.required, Validators.email] ]
     });
@@ -48,8 +52,7 @@ export class CrearCuentaComponent implements OnInit {
 
   obtenerImagenes(){
     this.accountService.obtenerImagenes().subscribe((images: Image[])=>{
-      this.imagen = images;
-      console.log(this.imagen);
+      this.imagen = images['results'][0];
     })
   }
 
@@ -66,13 +69,29 @@ export class CrearCuentaComponent implements OnInit {
       let phone = this.formAccount.controls.telefono.value;
       let birth_date = this.formAccount.controls.fecha_nac.value; 
       let password = 'user_default'; /*todos tendran la misma al inicio*/
-      let is_admin = false;
-      let is_staff = false;
-      let is_superuser = true;
-      let user_img = this.imagen[0].img_route;
-      let cover_img = this.imagen[0].img_route;
+      let rol = this.formAccount.value.rolesUser;
+      //console.log('rol: ', rol);
+      let is_superuser:boolean;
+      let is_admin:boolean;
+      let is_staff: boolean;
+      if(rol == 0){
+        is_superuser = true;
+        is_admin = false;
+        is_staff = false;
+      }
+      if(rol == 1){
+        is_superuser = false;
+        is_admin = true;
+        is_staff = false;
+      }
+      
+      let user_img = this.imagen['img_route'];
+      let cover_img = this.imagen['img_route'];
 
-      this.account = new Account(0, direccion, email, name, lastname, phone, birth_date, password, is_admin, is_staff, is_superuser, user_img, cover_img);
+      this.account = new Account(0, direccion, email, name, lastname, phone, birth_date, password,
+                                 is_admin, is_staff, is_superuser, user_img, cover_img);
+
+      
     }
 
   }

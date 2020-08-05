@@ -4,7 +4,7 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: js
 */
-function initPlugins() {
+const initPlugins = ()=> {
     $(function () {
         "use strict";
         $(function () {

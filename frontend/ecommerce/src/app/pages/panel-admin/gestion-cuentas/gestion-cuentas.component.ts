@@ -43,6 +43,7 @@ export class GestionCuentasComponent implements OnInit {
                          this.cuentas = cuentas;
                          this.siguiente = next;
                          this.anterior = previous;
+                         //console.log(this.cuentas);
                        });
   }
 

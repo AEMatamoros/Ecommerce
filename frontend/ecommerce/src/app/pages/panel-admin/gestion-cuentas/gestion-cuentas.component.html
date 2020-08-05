@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
-                        <h4 class="card-title">Cuentas ({{ cuentas.length }})</h4>
+                        <h4 class="card-title">Cuentas ({{ totalCuentas }})</h4>
                     </div>
                     <div class="col mb-2">
                         <div class="text-right">
@@ -51,7 +51,7 @@
                             <td>{{cuenta.first_name}} {{ cuenta.last_name }}</td>
                             <td>{{cuenta.phone_number}}</td>
                             <td>{{cuenta.email}}</td>
-                            <td *ngIf="cuenta.is_active">USER NORMAL</td>
+                            <td *ngIf="cuenta.is_superuser">USER NORMAL</td>
                             <td *ngIf="cuenta.is_admin">ADMIN</td>
                             
                             <td class="text-nowrap text-center">

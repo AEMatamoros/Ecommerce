@@ -81,10 +81,9 @@
                         <label class="col-sm-3 control-label">Rol de Usuario</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <select class="form-control" name="">
-                                    <option value="">Seleccione el rol</option>
-                                    <option *ngFor="rol of roles" [ngValue]="rol">{{rol}}</option>
-                                   
+                                <select class="form-control" formControlName="rolesUser">
+                                    <option disabled value="">Seleccione el rol</option>
+                                    <option *ngFor="let rol of roles" [ngValue]="rol.value">{{rol.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -121,11 +120,22 @@
             </div>
         </div>
     </div>
-    <div class="col animated fadeIn fast">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Imagen de Usuario</h4>
-                <img src="assets/images/users/1.jpg" alt="" class="img-thumbnail">
+                <div class="text-center">
+                    <img src="assets/images/users/1.jpg" alt="" class="img-thumbnail" width="250px" height="250px">
+                </div>
+                <br>
+                <input type="file">
+                <br>
+                <button type="button" 
+                        class="btn btn-success btn-block waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Cambiar Imagen
+                </button>
+                
             </div>
         </div>
     </div>
