@@ -102,5 +102,13 @@ export class AccountService {
                     )
   }
 
-  
+  borrarCuenta(id:number){
+    return this.http.delete(this.URL+'account/'+id, {headers: this.headers})
+                    .pipe(
+                      map(resp => {
+                        console.log(resp);
+                        return resp;
+                      })
+                    )
+  }
 }
