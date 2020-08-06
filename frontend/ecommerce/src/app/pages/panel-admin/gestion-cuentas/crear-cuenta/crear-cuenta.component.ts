@@ -36,6 +36,7 @@ export class CrearCuentaComponent implements OnInit {
   ];
   public status: string = '';
   public message: string = '';
+  public messageCuenta: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -66,7 +67,9 @@ export class CrearCuentaComponent implements OnInit {
     this.SubirArchivoService.subirFoto(this.imgFile)
         .subscribe(resp => {
           this.imagenSubida = resp;
-          console.log('imagen subida ',resp);
+          this.status = 'success';
+          this.message = 'Imagen subida con éxito!';
+          //console.log('imagen subida ',resp);
         }, 
           error=> console.log(error)
         );
@@ -86,13 +89,12 @@ export class CrearCuentaComponent implements OnInit {
   obtenerImagenes(){
     this.accountService.obtenerImagenes().subscribe((images: Image[])=>{
       this.imagen = images['results'][0];
-      console.log('imagen ',this.imagen);
+      //console.log('imagen ',this.imagen);
     })
   }
 
   onCrearCuenta(){
-    console.log(this.formAccount);
-
+    //console.log('formulario', this.formAccount);
     if(this.formAccount.invalid){
       return Object.values( this.formAccount.controls ).forEach( control => { control.markAsTouched(); });
     }else{
@@ -104,7 +106,6 @@ export class CrearCuentaComponent implements OnInit {
       let birth_date = this.formAccount.controls.fecha_nac.value; 
       let password = 'user_default'; /*todos tendran la misma al inicio*/
       let rol = this.formAccount.value.rolesUser;
-      //console.log('rol: ', rol);
       let is_superuser:boolean;
       let is_admin:boolean;
       let is_staff: boolean;
@@ -135,12 +136,14 @@ export class CrearCuentaComponent implements OnInit {
 
       this.accountService.crearCuenta(this.account)
           .subscribe(resp => {
-            this.message = 'Cuenta creada satisfactoriamente';
-            console.log(this.message);
-            console.log(resp);
+            this.messageCuenta = 'Cuenta creada satisfactoriamente';
+            //console.log(this.message);
+            //console.log(resp);
+            this.router.navigateByUrl('cuentas');
           }, error=>{
-            console.log(this.message);
-            this.message = 'No se podido crear la cuenta';
+            
+            this.messageCuenta = 'No se podido crear la cuenta';
+            //console.log(this.messageCuenta);
             console.log(error);
           });
     }

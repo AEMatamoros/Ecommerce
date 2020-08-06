@@ -90,4 +90,17 @@ export class AccountService {
                  })
                );
   }
+
+  actualizarCuenta(account: Admin_Account, id:number): Observable<any>{
+    let params = JSON.stringify(account);
+    return this.http.put(this.URL+'account/'+id+'/', params, {headers: this.headers})
+                    .pipe(
+                      map( resp => {
+                        console.log(resp);
+                        return resp;
+                      })
+                    )
+  }
+
+  
 }
