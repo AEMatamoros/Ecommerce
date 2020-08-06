@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import {CargarCuentas } from 'src/app/interfaces/cargar-cuentas';
 //Modelos
 import { Account } from 'src/app/models/account/account';
+import { Admin_Account } from 'src/app/models/account/crear_account';
 import { Image } from 'src/app/models/general/general-models';
 
 
@@ -79,7 +80,7 @@ export class AccountService {
                );
   }
 
-  crearCuenta(account: Account): Observable<any>{
+  crearCuenta(account: Admin_Account): Observable<any>{
     let params = JSON.stringify(account);
     return this.http.post(this.URL+'account/', params, {headers: this.headers})
                .pipe(
