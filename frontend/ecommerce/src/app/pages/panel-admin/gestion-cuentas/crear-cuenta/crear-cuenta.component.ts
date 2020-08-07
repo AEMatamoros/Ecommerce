@@ -6,6 +6,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { delay } from 'rxjs/operators';
 
 //Modelos
+import { Account } from 'src/app/models/account/account';
 import { Admin_Account } from 'src/app/models/account/crear_account';
 import { Image } from 'src/app/models/general/general-models';
 
@@ -31,6 +32,7 @@ export class CrearCuentaComponent implements OnInit {
   public imagenSubida: any;
   public formAccount: FormGroup;
   public account: Admin_Account;
+  public account_edit: Account[];
   public imagen: Image[] = [];
   public edit: boolean = false;
   public roles: any = [
@@ -39,8 +41,7 @@ export class CrearCuentaComponent implements OnInit {
   ];
   public status: string = '';
   public message: string = '';
-  public messageCuenta: string = '';
-
+  
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
@@ -55,8 +56,6 @@ export class CrearCuentaComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params
         .subscribe( ({id})=> this.cargarCuenta(id));
-
-    
 
     this.obtenerImagenes();
   }
@@ -79,7 +78,9 @@ export class CrearCuentaComponent implements OnInit {
             if(!account){
               this.router.navigateByUrl('admin/cuentas');
             }
-            console.log('account edit', account);
+            //console.log('account edit', account);
+            this.account_edit = account;
+            console.log(this.account_edit);
             const accountForm = {
               name: account['first_name'],
               apellido: account['last_name'],
@@ -142,6 +143,9 @@ export class CrearCuentaComponent implements OnInit {
       let is_superuser:boolean;
       let is_admin:boolean;
       let is_staff: boolean;
+      let user_img;
+      let cover_img;
+
       if(rol == 0){
         is_superuser = true;
         is_admin = false;
@@ -152,9 +156,6 @@ export class CrearCuentaComponent implements OnInit {
         is_admin = true;
         is_staff = false;
       }
-
-      let user_img;
-      let cover_img;
       
       if(this.imagenSubida){
         user_img = this.imagenSubida['id'];
@@ -171,7 +172,8 @@ export class CrearCuentaComponent implements OnInit {
       if(params.id){
         this.edit = true;
         let id = params.id;
-        console.log('cuenta actualizar', this.account);
+        password = this.account_edit['password'];
+        //console.log('cuenta actualizar', this.account);
         this.account = new Admin_Account(id, direccion, email, name, lastname, phone, birth_date, password,
           is_admin, is_staff, is_superuser, user_img, cover_img);
 
@@ -179,10 +181,11 @@ export class CrearCuentaComponent implements OnInit {
             .subscribe(resp => {
               this.status = 'success';
               this.message = 'Cuenta actualizada satisfactoriamente';
-              console.log(resp);
+              this.router.navigateByUrl('admin/cuentas');
+              //console.log(resp);
             },
             error=>{
-              this.messageCuenta = 'Cuenta no se pudo actualizar';
+              this.message = 'Cuenta no se pudo actualizar';
               console.log(error);
             });
       }else{
@@ -190,13 +193,13 @@ export class CrearCuentaComponent implements OnInit {
 
         this.accountService.crearCuenta(this.account)
           .subscribe(resp => {
-            this.messageCuenta = 'Cuenta creada satisfactoriamente';
+            this.message = 'Cuenta creada satisfactoriamente';
             //console.log(this.message);
             //console.log(resp);
             this.router.navigateByUrl('admin/cuentas');
           }, error=>{
             
-            this.messageCuenta = 'No se podido crear la cuenta';
+            this.message = 'No se podido crear la cuenta';
             //console.log(this.messageCuenta);
             console.log(error);
           });

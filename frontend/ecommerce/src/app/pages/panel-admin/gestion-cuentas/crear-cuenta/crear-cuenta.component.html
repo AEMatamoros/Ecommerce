@@ -125,10 +125,12 @@
             <div class="card-body">
                 <h4 class="card-title">Imagen de Usuario</h4>
                 <div class="text-center">
-                    <img *ngIf="!fotoSelected" [src]="imagen['img_route']" 
+                    
+                    <img *ngIf="account_edit" [src]="account_edit['user_img']['img_route']" 
                          alt="" class="img-thumbnail" 
                          width="250px" height="250px">
-                    <img *ngIf="fotoSelected" [src]="fotoSelected" 
+
+                    <img *ngIf="!account_edit " [src]="fotoSelected" 
                           alt="" class="img-thumbnail"
                           width="250px" height="250px">
                 </div>

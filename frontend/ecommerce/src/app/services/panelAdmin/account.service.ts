@@ -45,9 +45,7 @@ export class AccountService {
     return this.http.get<Account[]>(this.URL+'account/'+id+"/",{headers: this.headers})
     .pipe(
       map(response =>{
-
         const account = response
-        
         this.account = account;
         return this.account;
       })
