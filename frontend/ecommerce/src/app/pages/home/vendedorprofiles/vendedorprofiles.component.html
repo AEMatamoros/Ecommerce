@@ -1,6 +1,6 @@
 <!--Portada-->
 
-    <div *ngFor="let cuenta of cuentas">
+<div *ngFor="let cuenta of cuentas">
         
     <div class="col-md-12 " *ngIf="cuenta.id==cuenta_id" style="background-image: url('{{cuenta.cover_img.img_route}}');background-repeat: no-repeat;background-size: cover;background-size: 100% 100%">
         
@@ -19,7 +19,7 @@
   
     
 
-<ng-container *ngFor="let product of products">
+<!--ng-container *ngFor="let product of products">
     <div *ngIf="product.user_id.id==cuenta_id "class="col-md-4 col-xl-3 col-sm-1" >
         <div class="card">
             <div class="card-header">
@@ -41,7 +41,43 @@
             </div>
         </div>
     </div>
+</ng-container-->
+
+<ng-container *ngFor="let product of products; let i = index;">
+<div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas mb-0" >
+    <a routerLink="detalle">
+      <div class="contenedor-img text-center">
+        <div id="slider">
+            <figure>
+              <div *ngFor="let image of products_images ">
+                <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" class="img-fluid"
+                  alt="Card image" height="200px" width="200px">
+              </div>
+            </figure>
+          </div>
+      </div>
+    </a>
+
+
+      <div class=" flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" >
+            <label for="" class="label-desc">
+              {{ product.name }}
+
+            </label><br/>
+            <strong>
+              HNL. {{ product.price }}
+            </strong>
+          </div>
+          <div class="flip-card-back">
+
+            <a href="" class="btn btn-carrito">Agregar al carrito</a>
+          </div>
+        </div>
+      </div>
+
+  </div>
 </ng-container>
-    
 </div>
 <!--FinPortada-->

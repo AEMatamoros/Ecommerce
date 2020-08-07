@@ -33,7 +33,7 @@
       <app-create></app-create>
     </div>
 
-    <div class="card bg-dark text-white text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 16rem;"
+    <div class="card text-white text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 18rem; height: 300px; width: 400px;"
       *ngFor="let product of products; let i = index ">
       <div id="slider">
         <figure>
@@ -54,9 +54,20 @@
         </p>
 
       </div>
-      <div class="card-body">
-        <p class="m-0 pb-0">{{product.description}}</p>
-        <p class="m-0 pb-0"><strong>{{product.price}} {{product.sign}} </strong> </p>
+      
+      <div class=" flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" >
+            <label for="" class="label-desc">
+              {{ product.name }}
+
+            </label><br/>
+            <strong>
+              HNL. {{ product.price }}
+            </strong>
+          </div>
+          
+        </div>
       </div>
     </div>
 
