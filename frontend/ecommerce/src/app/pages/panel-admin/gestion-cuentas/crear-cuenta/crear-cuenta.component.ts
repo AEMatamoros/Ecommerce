@@ -22,8 +22,7 @@ interface HtmlInputEvent extends Event{
 
 @Component({
   selector: 'app-crear-cuenta',
-  templateUrl: './crear-cuenta.component.html',
-  styleUrls: ['./crear-cuenta.component.css']
+  templateUrl: './crear-cuenta.component.html'
 })
 export class CrearCuentaComponent implements OnInit {
   

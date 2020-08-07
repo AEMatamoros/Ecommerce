@@ -9,8 +9,7 @@ import { AccountService } from 'src/app/services/panelAdmin/account.service';
 
 @Component({
   selector: 'app-gestion-cuentas',
-  templateUrl: './gestion-cuentas.component.html',
-  styleUrls: ['./gestion-cuentas.component.css']
+  templateUrl: './gestion-cuentas.component.html'
 })
 export class GestionCuentasComponent implements OnInit {
   public cuentas: Account[] = [];

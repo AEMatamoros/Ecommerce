@@ -37,10 +37,16 @@ const childAdminRoutes: Routes = [
         data: {titulo: 'Gestion de productos'}
     },
     {
-        path: 'productos/producto',
+        path: 'productos/add',
         component: CrearProductoComponent,
         canActivate: [ AdminGuard ],
         data: {titulo: 'Crear nuevo producto'}
+    },
+    {
+        path: 'productos/edit/:id',
+        component: CrearProductoComponent,
+        canActivate: [AdminGuard],
+        data: {titulo: 'Editar producto'}
     }
 ];
 

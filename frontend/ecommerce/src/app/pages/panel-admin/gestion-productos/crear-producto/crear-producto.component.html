@@ -4,7 +4,10 @@
             <div class="card-body">
                 <h4 class="card-title">Producto</h4>
                 <hr>
-                <h6 class="card-subtitle">Crear producto</h6>
+                <div class="alert alert-success" *ngIf="status=='success'">
+                    <span>{{ message }}, Llena los datos</span>
+                </div>
+                
                 <form action="" class="form-horizontal p-t-20">
                     <div class="form-group row">
                         <label for="" class=" col-sm-3 control-label">Nombre</label>
@@ -18,7 +21,7 @@
                         <label for="" class=" col-sm-3 control-label">Precio</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Precio">
+                                <input type="number" class="form-control" placeholder="Precio">
                             </div>
                         </div>
                     </div>
@@ -38,7 +41,8 @@
                             <div class="input-group">
                                 <select class="form-control" name="">
                                     <option value="">Seleccione la Categoria</option>
-                                    <option value="">1</option>
+                                    <option *ngFor="let category of categories"
+                                            [ngValue]="category.id">{{category.category_name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -58,11 +62,35 @@
             </div>
         </div>
     </div>
-    <div class="col animated fadeIn fast">
+    
+    <div class="col-md-6">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Imagen de Producto</h4>
-                <img src="assets/img/alienware15.jpg" alt="" class="img-thumbnail">
+                <div class="text-center">
+                    
+                    <img *ngIf="!fotoSelected"
+                         
+                         alt="nophoto" class="img-thumbnail" 
+                         width="250px" height="250px">
+
+                    <img  *ngIf="fotoSelected"
+                          [src]="fotoSelected"
+                          alt="" class="img-thumbnail"
+                          width="250px" height="250px">
+                </div>
+                <br>
+                <input  type="file"
+                        (change)="fotoSeleccionada($event)">
+                <br>
+                <button type="button" 
+                        class="btn btn-success btn-block waves-effect waves-light m-r-10"
+                        (click)="subirFoto()"
+                        >
+                        <i class="fa fa-save"></i>
+                        Subir Foto de Producto
+                </button>
+                
             </div>
         </div>
     </div>

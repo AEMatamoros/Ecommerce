@@ -20,12 +20,15 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
-                        <h4 class="card-title">Productos (3)</h4>
+                        <h4 class="card-title">Productos (<span *ngIf="cargado">{{products.length}}</span>)</h4>
+                        <div class="alert alert-danger" *ngIf="status">
+                            <span>{{ message }}</span>
+                        </div>
                     </div>
                     <div class="col mb-2">
                         <div class="text-right">
                             <a class="btn btn-primary"
-                                routerLink="producto">
+                                routerLink="add">
                                 Crear Producto
                             </a>
                         </div>
@@ -44,18 +47,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td>Nombre</td>
-                            <td>Precio</td>
-                            <td>Descripcion</td>
+                        <tr *ngFor="let product of products">
+                            <td>
+                                <img [src]="product.images_id.img_route" alt="product" class="w100 cursor" width="60px" height="60px">
+                            </td>
+                            <td>{{product.product_id.name}}</td>
+                            <td>{{product.product_id.price}}</td>
+                            <td>{{product.product_id.description}}</td>
                             <td class="text-nowrap text-center">
                                 <a 
                                     data-toggle="tooltip" 
                                     class="btn btn-sm btn-warning"
                                     data-original-title="Editar"
-                                    
-                                    > 
+                                    [routerLink]="['edit', product.id]"> 
                                     <i class="fa fa-pencil"></i> 
                                 </a>
 
@@ -63,7 +67,7 @@
                                     data-toggle="tooltip" 
                                     data-original-title="Borrar"
                                     class="btn btn-sm btn-danger"
-                                    
+                                    (click)="borrarProducto(product)"
                                     > 
                                     <i class="fa fa-trash"></i>
                                 </a>
