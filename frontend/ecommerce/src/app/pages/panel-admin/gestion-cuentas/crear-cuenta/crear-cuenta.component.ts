@@ -3,11 +3,18 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 //Modelos
-import { Account } from 'src/app/models/account/account';
+import { Admin_Account } from 'src/app/models/account/crear_account';
 import { Image } from 'src/app/models/general/general-models';
 
 //Servicios
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
+import { SubirArchivoService } from 'src/app/services/panelAdmin/subir-archivo.service';
+
+//interfaz para imagen
+interface HtmlInputEvent extends Event{
+  target: HTMLInputElement & EventTarget
+}
+
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -15,19 +22,26 @@ import { AccountService } from 'src/app/services/panelAdmin/account.service';
   styleUrls: ['./crear-cuenta.component.css']
 })
 export class CrearCuentaComponent implements OnInit {
+  
+  public imgFile: File;
+  public fotoSelected: string | ArrayBuffer;
+  public imagenSubida: any;
   public formAccount: FormGroup;
-  public account: Account;
+  public account: Admin_Account;
   public imagen: Image[] = [];
+
   public roles: any = [
     {name: 'USER_NORMAL', value: 0},
     {name: 'ADMIN', value: 1}
   ];
   public status: string = '';
   public message: string = '';
+  public messageCuenta: string = '';
 
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
+    private SubirArchivoService: SubirArchivoService,
     private router: Router
   ) { 
 
@@ -35,8 +49,30 @@ export class CrearCuentaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     this.obtenerImagenes();
+  }
+
+  fotoSeleccionada(event: HtmlInputEvent){
+    if(event.target.files && event.target.files[0]){
+      this.imgFile = <File>event.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = e => this.fotoSelected = reader.result;
+      reader.readAsDataURL(this.imgFile);
+
+    }
+  }
+
+  subirFoto(){
+    this.SubirArchivoService.subirFoto(this.imgFile)
+        .subscribe(resp => {
+          this.imagenSubida = resp;
+          this.status = 'success';
+          this.message = 'Imagen subida con éxito!';
+          //console.log('imagen subida ',resp);
+        }, 
+          error=> console.log(error)
+        );
   }
 
   crearFormulario(){
@@ -53,12 +89,12 @@ export class CrearCuentaComponent implements OnInit {
   obtenerImagenes(){
     this.accountService.obtenerImagenes().subscribe((images: Image[])=>{
       this.imagen = images['results'][0];
+      //console.log('imagen ',this.imagen);
     })
   }
 
   onCrearCuenta(){
-    console.log(this.formAccount);
-
+    //console.log('formulario', this.formAccount);
     if(this.formAccount.invalid){
       return Object.values( this.formAccount.controls ).forEach( control => { control.markAsTouched(); });
     }else{
@@ -70,7 +106,6 @@ export class CrearCuentaComponent implements OnInit {
       let birth_date = this.formAccount.controls.fecha_nac.value; 
       let password = 'user_default'; /*todos tendran la misma al inicio*/
       let rol = this.formAccount.value.rolesUser;
-      //console.log('rol: ', rol);
       let is_superuser:boolean;
       let is_admin:boolean;
       let is_staff: boolean;
@@ -84,14 +119,33 @@ export class CrearCuentaComponent implements OnInit {
         is_admin = true;
         is_staff = false;
       }
-      
-      let user_img = this.imagen['img_route'];
-      let cover_img = this.imagen['img_route'];
 
-      this.account = new Account(0, direccion, email, name, lastname, phone, birth_date, password,
+      let user_img;
+      let cover_img;
+      
+      if(this.imagenSubida){
+        user_img = this.imagenSubida['id'];
+        cover_img = this.imagenSubida['id'];
+      }else{
+        user_img = this.imagen['id'];
+        cover_img = this.imagen['id'];
+      }
+      
+      this.account = new Admin_Account(0, direccion, email, name, lastname, phone, birth_date, password,
                                  is_admin, is_staff, is_superuser, user_img, cover_img);
 
-      
+      this.accountService.crearCuenta(this.account)
+          .subscribe(resp => {
+            this.messageCuenta = 'Cuenta creada satisfactoriamente';
+            //console.log(this.message);
+            //console.log(resp);
+            this.router.navigateByUrl('cuentas');
+          }, error=>{
+            
+            this.messageCuenta = 'No se podido crear la cuenta';
+            //console.log(this.messageCuenta);
+            console.log(error);
+          });
     }
 
   }

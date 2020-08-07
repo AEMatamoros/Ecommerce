@@ -32,6 +32,13 @@ export class GestionCuentasComponent implements OnInit {
     this.obtenerCuentasPaginadas();
   }
 
+  borrarCuenta(cuenta: Account){
+    this.accountService.borrarCuenta(cuenta.id)
+              .subscribe(response => console.log(response),
+                         error => console.log(error)
+              )
+  }
+
   obtenerCuentas(){
     this.accountService.obtenerCuentas().subscribe(response => this.cuentas = response);
   }

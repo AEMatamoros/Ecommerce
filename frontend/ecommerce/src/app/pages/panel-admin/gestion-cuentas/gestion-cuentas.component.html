@@ -58,14 +58,18 @@
                                 <a 
                                     data-toggle="tooltip" 
                                     class="cursor"
-                                    data-original-title="Editar"> 
+                                    data-original-title="Editar"
+                                    
+                                    > 
                                     <i class="fa fa-save text-inverse m-r-10"></i> 
                                 </a>
 
                                 <a  
                                     data-toggle="tooltip" 
                                     data-original-title="Borrar"
-                                    class="cursor"> 
+                                    class="cursor"
+                                    (click)="borrarCuenta(cuenta)"
+                                    > 
                                     <i class="fa fa-trash text-danger"></i>
                                 </a>
                             </td>
