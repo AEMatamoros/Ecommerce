@@ -125,7 +125,7 @@
             <div class="card-body">
                 <h4 class="card-title">Imagen de Usuario</h4>
                 <div class="text-center">
-                    <img *ngIf="!fotoSelected" src="assets/images/users/1.jpg" 
+                    <img *ngIf="!fotoSelected" [src]="imagen['img_route']" 
                          alt="" class="img-thumbnail" 
                          width="250px" height="250px">
                     <img *ngIf="fotoSelected" [src]="fotoSelected" 

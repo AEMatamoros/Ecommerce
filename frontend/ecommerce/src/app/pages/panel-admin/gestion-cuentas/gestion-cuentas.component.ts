@@ -16,8 +16,8 @@ export class GestionCuentasComponent implements OnInit {
   public cuentas: Account[] = [];
   public image: Image[] = [];
   public desde: number = 1;
-  public siguiente: string;
-  public anterior: string;
+  public status: boolean = false;
+  public message: string = '';
   public txtTermino: any = 0;
   public totalCuentas: number = 0;
 
@@ -34,9 +34,16 @@ export class GestionCuentasComponent implements OnInit {
 
   borrarCuenta(cuenta: Account){
     this.accountService.borrarCuenta(cuenta.id)
-              .subscribe(response => console.log(response),
-                         error => console.log(error)
-              )
+              .subscribe(response => {
+                this.obtenerCuentasPaginadas();
+                this.status = true;
+                this.message = 'Cuenta borrada exitosamente!'
+                console.log(response);
+              },
+                error => {
+                console.log(error);
+                this.message = error;
+              })
   }
 
   obtenerCuentas(){
@@ -45,11 +52,10 @@ export class GestionCuentasComponent implements OnInit {
 
   obtenerCuentasPaginadas(){
     this.accountService.obtenerCuentasPaginadas(this.desde)
-                       .subscribe(({total, cuentas, next, previous})=>{
+                       .subscribe(({total, cuentas})=>{
                          this.totalCuentas = total;
                          this.cuentas = cuentas;
-                         this.siguiente = next;
-                         this.anterior = previous;
+                         
                          //console.log(this.cuentas);
                        });
   }

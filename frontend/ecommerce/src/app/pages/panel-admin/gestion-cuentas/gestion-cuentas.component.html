@@ -21,6 +21,10 @@
                 <div class="row">
                     <div class="col-8">
                         <h4 class="card-title">Cuentas ({{ totalCuentas }})</h4>
+                        
+                        <div class="alert alert-danger" *ngIf="status">
+                            <span>{{ message }}</span>
+                        </div>
                     </div>
                     <div class="col mb-2">
                         <div class="text-right">
@@ -57,7 +61,7 @@
                             <td class="text-nowrap text-center">
                                 <a 
                                     data-toggle="tooltip" 
-                                    class="cursor"
+                                    class="btn btn-sm btn-warning"
                                     data-original-title="Editar"
                                     
                                     > 
@@ -67,10 +71,10 @@
                                 <a  
                                     data-toggle="tooltip" 
                                     data-original-title="Borrar"
-                                    class="cursor"
+                                    class="btn btn-sm btn-danger"
                                     (click)="borrarCuenta(cuenta)"
                                     > 
-                                    <i class="fa fa-trash text-danger"></i>
+                                    <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

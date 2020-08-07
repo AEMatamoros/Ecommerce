@@ -9,7 +9,8 @@ import {CargarCuentas } from 'src/app/interfaces/cargar-cuentas';
 import { Account } from 'src/app/models/account/account';
 import { Admin_Account } from 'src/app/models/account/crear_account';
 import { Image } from 'src/app/models/general/general-models';
-
+//Servicios
+import { UserService } from 'src/app/services/auth/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,13 @@ export class AccountService {
   public images: Image[] = [];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private auth: UserService
   ) {
     this.URL = 'http://localhost:8000/api/viewset/'; /*LOCAL*/
     /*this.URL = 'http://52.201.212.27/api/viewset/'; PRODUCCION*/
-    this.headers = new HttpHeaders().set('Content-Type','application/json');
+    this.headers = new HttpHeaders()
+    this.headers = this.headers.append('Content-Type','application/json');
     
   }
 
@@ -103,7 +106,12 @@ export class AccountService {
   }
 
   borrarCuenta(id:number){
-    return this.http.delete(this.URL+'account/'+id, {headers: this.headers})
+    
+    console.log('token ',this.auth.userToken);
+    this.headers = this.headers.append('Authorization', 'Token '+this.auth.userToken);
+    console.log(this.headers);
+
+    return this.http.delete(this.URL+'account/'+id+'/', {headers: this.headers})
                     .pipe(
                       map(resp => {
                         console.log(resp);

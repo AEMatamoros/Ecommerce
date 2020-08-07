@@ -139,7 +139,7 @@ export class CrearCuentaComponent implements OnInit {
             this.messageCuenta = 'Cuenta creada satisfactoriamente';
             //console.log(this.message);
             //console.log(resp);
-            this.router.navigateByUrl('cuentas');
+            this.router.navigateByUrl('admin/cuentas');
           }, error=>{
             
             this.messageCuenta = 'No se podido crear la cuenta';
