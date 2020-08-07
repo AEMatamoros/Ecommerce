@@ -54,26 +54,24 @@
     <div class="row" style="margin-right: 1%;">
 
 
+      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas" *ngFor="let producto of trueArray ; let i = index;">
+        <a routerLink="detalle">
+          <div class="contenedor-img text-center">
 
-        <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas" *ngFor="let producto of productos ; let i = index;">
-          <a routerLink="detalle">
-            <div class="contenedor-img text-center">
-              <ng-container  *ngFor="let image of productosImagenes">
-                <img *ngIf="image.product_id.id===producto.id" loading="lazy" [src]="image.images_id.img_route" class="estilo-img img-fluid" alt="">
-                <!-- <img loading="lazy" src="assets/img/alienware15.jpg" class="estilo-img img-fluid" alt=""> -->
-              </ng-container>
+            <img  loading="lazy" src="{{producto[1].images_id.img_route}}" class="estilo-img img-fluid" alt="">
+          </div>
+        </a>
 
-            </div>
-          </a>
+
           <div class=" flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front" >
                 <label for="" class="label-desc">
-                  {{ producto.name }}
+                  {{ producto[0].name }}
 
                 </label><br/>
                 <strong>
-                  HNL. {{ producto.price }}
+                  HNL. {{ producto[0].price }}
                 </strong>
               </div>
               <div class="flip-card-back">
@@ -82,7 +80,8 @@
               </div>
             </div>
           </div>
-        </div>
+
+      </div>
 
 
     </div>

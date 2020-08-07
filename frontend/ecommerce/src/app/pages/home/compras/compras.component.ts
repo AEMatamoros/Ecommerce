@@ -10,47 +10,46 @@ export class ComprasComponent implements OnInit {
 
   public productos;
   public productosImagenes;
+  public trueArray = [];
 
  /*  public producto; */
 
   constructor( private shopService:ShopService ) { }
 
   ngOnInit(): void {
-    this.getProducts();
-    this.getProductsImage();
+    /* this.getProducts();
+    this.getProductsImage(); */
+    this.getDatos();
   }
+
 
   ngAfterViewInit() {
 
   }
 
-  getProducts() {
+  getDatos() {
     this.shopService.getProducts()
       .subscribe(data => {
         this.productos = data;
-        console.log(this.productos[0]);
+        // console.log(this.productos);
+
+        this.shopService.getProductsImage()
+          .subscribe(data => {
+          this.productosImagenes = data;
+          // console.log(this.productosImagenes);
+          for (let prod of this.productos ) {
+            for (let prodImg of this.productosImagenes) {
+              if (prodImg.product_id.id === prod.id) {
+                this.trueArray.push([prod, prodImg]);
+                break;
+              }
+            }
+          }
+          // console.log(this.trueArray);
+
+          });
       });
-    }
 
-  getProductsImage() {
-    this.shopService.getProductsImage()
-      .subscribe(data => {
-        this.productosImagenes = data;
-        console.log(this.productosImagenes);
-        /* for (let key in this.productosImagenes) {
-          let mealName = this.productos[key];
-          console.log(mealName);
-        } */
-
-      });
-    }
-
-
-
-    /* for (let key of Object.keys(productos)) {
-      let mealName = this.productos[key];
-      // ... do something with mealName
-      console.log(mealName);
-    } */
+  }
 
 }
