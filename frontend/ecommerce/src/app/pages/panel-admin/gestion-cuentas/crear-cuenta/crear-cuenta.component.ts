@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
+//rxjs
+import { delay } from 'rxjs/operators';
 
 //Modelos
 import { Admin_Account } from 'src/app/models/account/crear_account';
@@ -29,7 +32,7 @@ export class CrearCuentaComponent implements OnInit {
   public formAccount: FormGroup;
   public account: Admin_Account;
   public imagen: Image[] = [];
-
+  public edit: boolean = false;
   public roles: any = [
     {name: 'USER_NORMAL', value: 0},
     {name: 'ADMIN', value: 1}
@@ -42,14 +45,52 @@ export class CrearCuentaComponent implements OnInit {
     private fb: FormBuilder,
     private accountService: AccountService,
     private SubirArchivoService: SubirArchivoService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { 
 
     this.crearFormulario();
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params
+        .subscribe( ({id})=> this.cargarCuenta(id));
+
+    
+
     this.obtenerImagenes();
+  }
+  
+  crearFormulario(){
+    this.formAccount = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)] ],
+      apellido: ['',[Validators.required, Validators.minLength(4)] ],
+      telefono: ['', [Validators.required, Validators.minLength(8)]],
+      rolesUser: new FormControl('', [Validators.required]),
+      fecha_nac: ['', [Validators.required] ],
+      correo: ['', [Validators.required, Validators.email] ]
+    });
+  }
+
+  cargarCuenta(id:number){
+    this.accountService.obtenerCuenta(id).pipe(delay(100))
+        .subscribe(
+          account => {
+            if(!account){
+              this.router.navigateByUrl('admin/cuentas');
+            }
+            console.log('account edit', account);
+            const accountForm = {
+              name: account['first_name'],
+              apellido: account['last_name'],
+              telefono: account['phone_number'],
+              rolesUser: account['is_admin'] ? 'ADMIN':'USER_NORMAL',
+              fecha_nac: account['birth_date'],
+              correo: account['email']
+            }
+            this.formAccount.setValue(accountForm);
+          }
+        )
   }
 
   fotoSeleccionada(event: HtmlInputEvent){
@@ -75,16 +116,6 @@ export class CrearCuentaComponent implements OnInit {
         );
   }
 
-  crearFormulario(){
-    this.formAccount = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)] ],
-      apellido: ['',[Validators.required, Validators.minLength(4)] ],
-      telefono: ['', [Validators.required, Validators.minLength(8)]],
-      rolesUser: new FormControl('', [Validators.required]),
-      fecha_nac: ['', [Validators.required] ],
-      correo: ['', [Validators.required, Validators.email] ]
-    });
-  }
 
   obtenerImagenes(){
     this.accountService.obtenerImagenes().subscribe((images: Image[])=>{
@@ -95,9 +126,11 @@ export class CrearCuentaComponent implements OnInit {
 
   onCrearCuenta(){
     //console.log('formulario', this.formAccount);
+    const params = this.activatedRoute.snapshot.params;
     if(this.formAccount.invalid){
       return Object.values( this.formAccount.controls ).forEach( control => { control.markAsTouched(); });
     }else{
+      
       let direccion = null;
       let email = this.formAccount.controls.correo.value;
       let name = this.formAccount.controls.name.value;
@@ -133,8 +166,29 @@ export class CrearCuentaComponent implements OnInit {
       
       this.account = new Admin_Account(0, direccion, email, name, lastname, phone, birth_date, password,
                                  is_admin, is_staff, is_superuser, user_img, cover_img);
+      
 
-      this.accountService.crearCuenta(this.account)
+      if(params.id){
+        this.edit = true;
+        let id = params.id;
+        console.log('cuenta actualizar', this.account);
+        this.account = new Admin_Account(id, direccion, email, name, lastname, phone, birth_date, password,
+          is_admin, is_staff, is_superuser, user_img, cover_img);
+
+        this.accountService.actualizarCuenta(this.account, id)
+            .subscribe(resp => {
+              this.status = 'success';
+              this.message = 'Cuenta actualizada satisfactoriamente';
+              console.log(resp);
+            },
+            error=>{
+              this.messageCuenta = 'Cuenta no se pudo actualizar';
+              console.log(error);
+            });
+      }else{
+        this.edit = false;
+
+        this.accountService.crearCuenta(this.account)
           .subscribe(resp => {
             this.messageCuenta = 'Cuenta creada satisfactoriamente';
             //console.log(this.message);
@@ -146,6 +200,9 @@ export class CrearCuentaComponent implements OnInit {
             //console.log(this.messageCuenta);
             console.log(error);
           });
+
+      }
+      
     }
 
   }

@@ -19,10 +19,16 @@ const childAdminRoutes: Routes = [
         data: {titulo: 'Gestion de Cuentas de usuario'}
     },
     {
-        path: 'cuentas/cuenta',
+        path: 'cuentas/add',
         component: CrearCuentaComponent,
         canActivate: [ AdminGuard ],
         data: {titulo: 'Crear Cuenta de Usuario'}
+    },
+    {
+        path: 'cuentas/edit/:id',
+        component: CrearCuentaComponent,
+        canActivate: [ AdminGuard ],
+        data: {titulo: 'Editar Cuenta de Usuario'}
     },
     {
         path: 'productos',
