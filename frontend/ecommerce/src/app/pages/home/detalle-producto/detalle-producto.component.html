@@ -12,7 +12,10 @@
 
         <h3 for="" class="label-desc">{{ detalleProducto?.product_id.name }}</h3>
         <hr>
-        <h5 style="color: rgb(92, 87, 87);">Vendedor: Bruce Wayne</h5>
+        <h5 style="color: rgb(92, 87, 87);">
+          Vendedor: {{ detalleProducto?.product_id.user_id.first_name}}
+                    {{ detalleProducto?.product_id.user_id.last_name}}
+        </h5>
         <h5 style="color: rgb(92, 87, 87);">En existencia</h5>
         <br>
         <br>
@@ -42,40 +45,21 @@
 
     <table class="tabla-caracteristicas">
       <tr>
-        <th>Marca</th>
-        <td>Asus</td>
+        <th>Categoria de Producto: </th>
+        <td>{{ detalleProducto?.product_id.category_id.category_name}} </td>
       </tr>
       <tr>
-        <th >Modelo</th>
-        <td> 7002A</td>
+        <th>Descripcion de Categoria: </th>
+        <td> {{ detalleProducto?.product_id.category_id.category_description}}  </td>
       </tr>
-      <tr>
-        <th >Marca</th>
-        <td> Asus</td>
-      </tr>
-      <tr>
-        <th >Modelo</th>
-        <td> 7002A</td>
-      </tr>
-      <tr>
-        <th >Marca</th>
-        <td> Asus</td>
-      </tr>
-      <tr>
-        <th >Modelo</th>
-        <td> 7002A</td>
-      </tr>
+
     </table>
   </div>
 
 
   <div style="margin-top: 50px;">
     <h3>DESCRIPCION</h3>
-    <p>Lorem ipsum dolor sit, amet consectetur
-      adipisicing elit. Eos odio veniam non, beatae fuga modi
-       quaerat adipisci sunt saepe, natus dolores.
-       Quaerat similique placeat sed, distinctio
-       recusandae quas maxime blanditiis!</p>
+    <p>{{ detalleProducto?.product_id.description}}</p>
   </div>
 
 </div>
