@@ -16,6 +16,11 @@
     </div>
 <h1 class="text-center">Productos</h1>
 <div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-danger float-right" type="button"  data-toggle="modal" data-target="#reportModal">Reportar Usuario</button>
+  </div>
+
+
   
     
 
@@ -81,3 +86,40 @@
 </ng-container>
 </div>
 <!--FinPortada-->
+
+<!--Modal-->
+<!-- Modal -->
+<div id="reportModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+          <form action="">
+          <div class="modal-header bg-danger">
+              <h4 class="modal-title text-center text-white">Reportar Usuario</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body text-danger">
+              <input type="text"  name="id" [(ngModel)]='cuenta_id' hidden>
+              <p>A continuación escriba el motivo de su reporte</p>
+              <div class="input-group">
+                <input type="text" [(ngModel)]='complaint.problem' name="problem" class="form form-control" placeholder="Problema:">
+              </div>
+              <hr>
+              <div class="input-group">
+                <textarea placeholder="Descripcion" name="" id="" cols="10" rows="10" class="form form-control" [(ngModel)]='complaint.comment' name="comment"></textarea>
+
+              </div>
+              <button class="btn btn-danger form-control text-white" (click)="report()" data-dismiss="modal">Reportar</button>
+          </div>
+      </form>
+          <div class="modal-footer text-right">
+              <button type="button" class="form form-control texto" data-dismiss="modal">Cancelar</button>
+          </div>
+      </div>
+
+  </div>
+</div>
+
+
+
