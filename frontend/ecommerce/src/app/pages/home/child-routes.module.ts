@@ -13,6 +13,7 @@ import { LandingComponent } from './landing/landing.component';
 import { OffersComponent } from './offers/offers.component';
 import { VendedoresComponent } from './vendedores/vendedores.component';
 import { VendedorprofilesComponent } from './vendedorprofiles/vendedorprofiles.component';
+import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 
 const childHomeRoutes: Routes = [
     {
@@ -20,7 +21,7 @@ const childHomeRoutes: Routes = [
         component: LandingComponent
     },
     {
-        path: 'perfil', 
+        path: 'perfil',
         component: PerfilComponent,
         canActivate: [ AuthGuard ]
     },
@@ -48,7 +49,11 @@ const childHomeRoutes: Routes = [
     {
         path: 'vendedor/:id',
         component: VendedorprofilesComponent
-    }
+    },
+    {
+      path: 'detalle/:id',
+      component: DetalleProductoComponent
+  }
 ];
 
 @NgModule({

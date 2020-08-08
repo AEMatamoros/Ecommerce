@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../../../services/shop/shop.service';
 
+
+
 @Component({
   selector: 'app-compras',
   templateUrl: './compras.component.html',
@@ -14,7 +16,9 @@ export class ComprasComponent implements OnInit {
 
  /*  public producto; */
 
-  constructor( private shopService:ShopService ) { }
+  constructor( private shopService:ShopService ) {
+
+  }
 
   ngOnInit(): void {
     /* this.getProducts();

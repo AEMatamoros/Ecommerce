@@ -17,8 +17,10 @@ import { DeleteComponent } from './products/delete/delete.component';
 
 
 import { ComprasComponent } from './compras/compras.component';
+import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { LandingComponent } from './landing/landing.component';
 import { OffersComponent } from './offers/offers.component';
+
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { OffersComponent } from './offers/offers.component';
         MyproductsComponent,
         ComprasComponent,
         LandingComponent,
-        OffersComponent
+        OffersComponent,
+        DetalleProductoComponent
     ],
     exports: [
         PerfilComponent,
@@ -39,7 +42,8 @@ import { OffersComponent } from './offers/offers.component';
         CreateComponent,
         UpdateComponent,
         DeleteComponent,
-        ComprasComponent
+        ComprasComponent,
+        DetalleProductoComponent
     ],
     imports: [
         RouterModule,

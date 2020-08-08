@@ -55,12 +55,13 @@
 
 
       <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas" *ngFor="let producto of trueArray ; let i = index;">
-        <a routerLink="detalle">
-          <div class="contenedor-img text-center">
 
-            <img  loading="lazy" src="{{producto[1].images_id.img_route}}" class="estilo-img img-fluid" alt="">
+          <div class="contenedor-img text-center">
+            <a [routerLink]="['/detalle',producto[0].id]">
+            <img src="{{producto[1].images_id.img_route}}" class="estilo-img img-fluid" alt="">
+            </a>
           </div>
-        </a>
+
 
 
           <div class=" flip-card">

@@ -4,18 +4,19 @@
 
     <div class="col-sm-7 col-md-7 col-lg-7 col-12" >
       <div class="contenedor-img">
-        <img src="assets/img/alienware15.jpg" class="estilo-img img-fluid" alt="">
+        <img src="{{ detalleProducto?.images_id.img_route }}" class="estilo-img img-fluid" alt="">
       </div>
     </div>
     <div class="col-sm-5 col-md-5 col-lg-5 col-12">
-      <div>
-        <h3 for="" class="label-desc">Computadora Gaming Core i7 Novena generacion</h3>
+      <div >
+
+        <h3 for="" class="label-desc">{{ detalleProducto?.product_id.name }}</h3>
         <hr>
         <h5 style="color: rgb(92, 87, 87);">Vendedor: Bruce Wayne</h5>
         <h5 style="color: rgb(92, 87, 87);">En existencia</h5>
         <br>
         <br>
-        <h3>HNL. 16,000</h3>
+        <h3> HNL. {{ detalleProducto?.product_id.price }}</h3>
         <label for="" class="labels">Formas de pago:</label><br/>
         <br>
         <div class="row">
