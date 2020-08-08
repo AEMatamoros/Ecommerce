@@ -15,7 +15,7 @@ export class CreateComponent implements OnInit {
   constructor(private dataService:ProductsService,public router:Router) { }
 
   //PostProductInputForm
-  @Input() productDetail =  {name:'', description:'', price:0, category_id:0,user_id:1}
+  @Input() productDetail =  {name:'', description:'', price:0, category_id:0,user_id:localStorage.getItem('id')}
   //Objetos
   categories:Category[];
   currencies:Currency[];

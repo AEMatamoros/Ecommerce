@@ -11,7 +11,7 @@ import { Category } from 'src/app/models/product/category';
 })
 export class UpdateComponent implements OnInit {
   @Input() product: Product
-  @Input() productDetail =  {id:0,name:'', description:'', price:0, category_id:0,user_id:0}
+  @Input() productDetail =  {id:0,name:'', description:'', price:0, category_id:0,user_id:localStorage.getItem('id')}
 
   categories: Category[];
 

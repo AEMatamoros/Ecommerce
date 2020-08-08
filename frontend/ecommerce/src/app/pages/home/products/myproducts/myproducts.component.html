@@ -32,9 +32,10 @@
     <div class="col-md-2">
       <app-create></app-create>
     </div>
-
+    <ng-container *ngFor="let product of products; let i = index ">
+      <ng-container *ngIf="product.user_id.id==cuenta_id">
     <div class="card text-white text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 18rem; height: 300px; width: 400px;"
-      *ngFor="let product of products; let i = index ">
+      >
       <div id="slider">
         <figure>
           <div *ngFor="let image of products_images ">
@@ -70,6 +71,7 @@
         </div>
       </div>
     </div>
-
+  </ng-container>
+  </ng-container>
   </div>
 </div>

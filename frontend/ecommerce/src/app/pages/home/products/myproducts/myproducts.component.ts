@@ -12,7 +12,7 @@ import { ProductsService } from 'src/app/services/products/products.service'
 export class MyproductsComponent implements OnInit {
   
   imagen_producto = 'assets/img/example.jpg';
-  
+  cuenta_id:number
   //Modelo
   products:Product[];
   products_images:ProductImages[];
@@ -26,6 +26,7 @@ export class MyproductsComponent implements OnInit {
     .subscribe(data =>this.products=data)
     var product_images=this.dataService.getProductsImages()
     .subscribe(data =>this.products_images=data)
+    this.cuenta_id= parseInt(localStorage.getItem('id')) 
     return [this.products,this.products_images]
   }
 

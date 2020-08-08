@@ -10,6 +10,8 @@ import { JsonPipe } from '@angular/common';
 })
 export class VendedoresComponent implements OnInit {
   cuentas:Account[];
+  cuenta_id:number
+  
   
   constructor(private dataService:AccountService ) { }
 
@@ -17,6 +19,7 @@ export class VendedoresComponent implements OnInit {
     this.dataService.getAccounts()
     .subscribe(data =>this.cuentas=data)
     //console.log(this.cuentas)
+    this.cuenta_id= parseInt(localStorage.getItem('id')) 
     return this.cuentas
   }
 
