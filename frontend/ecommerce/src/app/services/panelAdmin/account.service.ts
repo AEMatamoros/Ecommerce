@@ -52,7 +52,6 @@ export class AccountService {
     )
   }
 
-
   obtenerCuentasPaginadas(desde:number){
     return this.http.get<CargarCuentas>(this.URL+'account/?page='+desde, {headers: this.headers})
                .pipe(

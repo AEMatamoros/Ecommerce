@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 //Manejo de Errores
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { map, catchError, retry } from 'rxjs/operators';
 //Modelos
 import { Product } from 'src/app/models/product/product';
+import { AdminProduct } from 'src/app/models/product/AdminProduct';
 import { Category } from 'src/app/models/product/category';
 import { Currency} from 'src/app/models/product/currency';
 import { ProductImages} from 'src/app/models/product/product-images';
@@ -31,14 +32,29 @@ export class ProductsService {
     return this.http.get<Product[]>(this.API_Url_Products)
   }
 
+  getProduct(id:number){
+    return this.http.get<Product>(this.API_Url_Products+id+'/');
+  }
+
   postProduct(product){
     return this.http.post<Product[]>(this.API_Url_Products, JSON.stringify(product),this.httpOptions)
   }
 
-  putProduct(id,product){
-    return this.http.put<Product[]>(this.API_Url_Products+''+id+'/', JSON.stringify(product),this.httpOptions)
+  putProduct(id:number, product: AdminProduct|any){
+    return this.http.put<AdminProduct>(this.API_Url_Products+id+'/', JSON.stringify(product),this.httpOptions)
   }
-  deleteProduct(id){
+
+  updateProduct(product: AdminProduct, id:number):Observable<any>{
+    let params = JSON.stringify(product);
+    return this.http.put(this.API_Url_Products+id+'/', params, this.httpOptions)
+                    .pipe(
+                      map(
+                        resp=>{ return resp}
+                      )
+                    )
+  }
+
+  deleteProduct(id:number){
     return this.http.delete<Product[]>(this.API_Url_Products+''+id+'/',this.httpOptions)
   }
   //Product-Images

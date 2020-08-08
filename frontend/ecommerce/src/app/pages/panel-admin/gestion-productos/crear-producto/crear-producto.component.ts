@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
+//rxjs
+import { delay } from 'rxjs/operators';
+
 //Servicios
 import { SubirArchivoService } from 'src/app/services/panelAdmin/subir-archivo.service';
 import { ProductsService } from 'src/app/services/products/products.service';
-
+import { AccountService } from 'src/app/services/panelAdmin/account.service';
+import { AdminProduct } from 'src/app/models/product/AdminProduct';
 //interfaz para imagen
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget
@@ -17,12 +21,15 @@ interface HtmlInputEvent extends Event{
   templateUrl: './crear-producto.component.html'
 })
 export class CrearProductoComponent implements OnInit {
+  
   public cargado:boolean = false;
   public status:string = '';
   public message:string = '';
   public formProduct: FormGroup;
   public products: any;
+  public product_edit: any;
   public categories: any;
+  public usuarios: any;
   public productFile: File;
   public imagenSubida: any;
   public fotoSelected: string | ArrayBuffer;
@@ -32,13 +39,18 @@ export class CrearProductoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private subirArchivo: SubirArchivoService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private accountService: AccountService
   ) {
     this.crearFormulario();
    }
 
   ngOnInit(): void {
+    this.activatedRoute.params
+        .subscribe(({id})=> this.cargarProducto(id));
+
     this.obtenerCategorias();
+    this.obtenerUsuarios();
   }
 
   crearFormulario(){
@@ -46,8 +58,30 @@ export class CrearProductoComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)] ],
       precio: ['0',Validators.required],
       descripcion: ['',Validators.required],
-      categoria: new FormControl('', [Validators.required])
+      categoria: new FormControl('', Validators.required),
+      usuario: new FormControl('', Validators.required)
     });
+  }
+
+  cargarProducto(id:number){
+    this.productService.getProduct(id).pipe(delay(100))
+        .subscribe(
+          product=>{
+            if(!product){
+              this.router.navigateByUrl('admin/productos');
+            }
+            this.product_edit = product;
+            console.log('product_edit', this.product_edit);
+            const productForm = {
+              name: product.name,
+              precio: product.price,
+              descripcion: product.description,
+              categoria: product.category ? '': 0,
+              usuario: product.user ? '': 0
+            }
+            this.formProduct.setValue(productForm);
+          }
+        )
   }
 
   fotoSeleccionada(event: HtmlInputEvent){
@@ -86,15 +120,61 @@ export class CrearProductoComponent implements OnInit {
     )
   }
 
-  obtenerProductos(){
-    this.productService.getProductsImages().subscribe(
-      resp => {
+  obtenerUsuarios(){
+    this.accountService.obtenerCuentas().subscribe(
+      resp=>{
         this.cargado = true;
-        this.products = resp;
-        //console.log(resp);
+        this.usuarios = resp['results'];
+        console.log(this.usuarios);
       },
-      error => console.log(<any>error)
+      error=>{
+        console.log(<any>error);
+      }
     )
+  }
+
+  onFormProducto(){
+    const params = this.activatedRoute.snapshot.params;
+    if(this.formProduct.invalid){
+      return Object.values( this.formProduct.controls ).forEach( control => { control.markAsTouched(); });
+    }else{
+      console.log('form editado', this.formProduct);
+      
+      let name = this.formProduct.value.name;
+      let price = this.formProduct.value.precio;
+      let descripcion = this.formProduct.value.descripcion;
+      let categoria = this.formProduct.value.descripcion;
+      let usuario = this.formProduct.value.usuario;
+      const product = new AdminProduct(0,name,descripcion,price,usuario,categoria);
+
+      if(params.id){
+        let id = params.id;
+        this.productService.updateProduct(product, id).subscribe(
+          resp=>{
+            this.status='success';
+            this.message='Producto editado satisfactoriamente';
+            console.log(resp);
+            this.router.navigateByUrl('admin/productos');
+          },
+          error=>{
+            console.log(<any>error);
+          }
+        )
+
+      }else{
+        this.productService.postProduct(product).subscribe(
+          resp=>{
+            this.status = 'success';
+            this.message = 'Producto creado exitosamente!';
+            this.router.navigateByUrl('admin/productos');
+          },
+          error=>{
+
+          }
+        )
+      }
+      
+    }
   }
 
 }
