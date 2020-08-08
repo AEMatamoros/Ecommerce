@@ -44,16 +44,6 @@ export class ProductsService {
     return this.http.put<AdminProduct>(this.API_Url_Products+id+'/', JSON.stringify(product),this.httpOptions)
   }
 
-  updateProduct(product: AdminProduct, id:number):Observable<any>{
-    let params = JSON.stringify(product);
-    return this.http.put(this.API_Url_Products+id+'/', params, this.httpOptions)
-                    .pipe(
-                      map(
-                        resp=>{ return resp}
-                      )
-                    )
-  }
-
   deleteProduct(id:number){
     return this.http.delete<Product[]>(this.API_Url_Products+''+id+'/',this.httpOptions)
   }

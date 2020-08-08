@@ -143,13 +143,13 @@ export class CrearProductoComponent implements OnInit {
       let name = this.formProduct.value.name;
       let price = this.formProduct.value.precio;
       let descripcion = this.formProduct.value.descripcion;
-      let categoria = this.formProduct.value.descripcion;
+      let categoria = this.formProduct.value.categoria;
       let usuario = this.formProduct.value.usuario;
       const product = new AdminProduct(0,name,descripcion,price,usuario,categoria);
 
       if(params.id){
         let id = params.id;
-        this.productService.updateProduct(product, id).subscribe(
+        this.productService.putProduct(id, product).subscribe(
           resp=>{
             this.status='success';
             this.message='Producto editado satisfactoriamente';
@@ -169,7 +169,7 @@ export class CrearProductoComponent implements OnInit {
             this.router.navigateByUrl('admin/productos');
           },
           error=>{
-
+            console.log(<any>error);
           }
         )
       }
