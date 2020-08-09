@@ -1,0 +1,85 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <input type="text"
+                        class="form-control"
+                        placeholder="Buscar Orden..."
+                        #txtTermino
+                        />
+
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Ordenes (<span *ngIf="cargado">{{orders.length}}</span>)</h4>
+                        <div *ngIf="status=='success'" class="alert alert-danger">
+                            <span>{{message}}</span>
+                        </div>
+                    </div>
+                    <div class="col mb-2">
+                        <div class="text-right">
+                            <a class="btn btn-primary"
+                                routerLink="add">
+                                Ver Orden
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No. Orden</th>
+                            <th>Cantidad</th>
+                            <th>Sub-Total</th>
+                            <th>Total</th>
+                            <th>Estado de la Orden</th>
+                            <th>Dirección de envío</th>
+                            <th class="w100 text-nowrap">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let order of orders">
+                            <td>{{order.id}}</td>
+                            <td>{{order.quantity}}</td>
+                            <td>{{order.subtotal}} Lps.</td>
+                            <td>{{order.total}} Lps.</td>
+                            <td>{{order.status_id.description}}</td>
+                            <td>{{order.direction_id.direction}}</td>
+                            <td class="text-nowrap text-center">
+                                <a 
+                                    data-toggle="tooltip" 
+                                    class="btn btn-sm btn-warning"
+                                    data-original-title="Editar"
+                                    > 
+                                    <i class="fa fa-pencil"></i> 
+                                </a>
+
+                                <a  
+                                    data-toggle="tooltip" 
+                                    data-original-title="Borrar"
+                                    class="btn btn-sm btn-danger"
+                                    
+                                    > 
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

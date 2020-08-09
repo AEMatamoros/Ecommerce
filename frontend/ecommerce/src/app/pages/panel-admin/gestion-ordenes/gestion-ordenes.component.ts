@@ -1,0 +1,38 @@
+import { Component, OnInit } from '@angular/core';
+
+//Interfaces
+import { Ordenes } from 'src/app/interfaces/ordenes';
+
+//Servicios
+import { OrdenesService } from 'src/app/services/panelAdmin/ordenes.service';
+
+@Component({
+  selector: 'app-gestion-ordenes',
+  templateUrl: './gestion-ordenes.component.html',
+  styleUrls: ['./gestion-ordenes.component.css']
+})
+export class GestionOrdenesComponent implements OnInit {
+  public cargado:boolean;
+  public orders: Ordenes[] = [];
+  public status: string = '';
+  public message: string;
+
+  constructor(
+    private orderService: OrdenesService
+  ) { }
+
+  ngOnInit(): void {
+    this.getOrdenes();
+  }
+
+  getOrdenes(){
+    this.orderService.getOrdenes().subscribe(
+      resp=>{
+        this.cargado = true;
+        console.log(resp);
+        this.orders = resp;
+      }
+    )
+  }
+
+}

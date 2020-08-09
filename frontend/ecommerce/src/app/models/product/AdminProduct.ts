@@ -5,8 +5,9 @@ export class AdminProduct {
     public name:string,
     public description:string,
     public price:number,
-    public user:number,
-    public category:number
+    public category_id:number,
+    public user_id:number
+    
     ){
 
     }

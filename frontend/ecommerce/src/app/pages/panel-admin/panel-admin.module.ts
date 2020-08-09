@@ -12,6 +12,7 @@ import { GestionCuentasComponent } from './gestion-cuentas/gestion-cuentas.compo
 import { GestionProductosComponent } from './gestion-productos/gestion-productos.component';
 import { CrearCuentaComponent } from './gestion-cuentas/crear-cuenta/crear-cuenta.component';
 import { CrearProductoComponent } from './gestion-productos/crear-producto/crear-producto.component';
+import { GestionOrdenesComponent } from './gestion-ordenes/gestion-ordenes.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { CrearProductoComponent } from './gestion-productos/crear-producto/crear
         GestionCuentasComponent,
         GestionProductosComponent,
         CrearCuentaComponent,
-        CrearProductoComponent
+        CrearProductoComponent,
+        GestionOrdenesComponent
     ],
     exports: [
         PanelAdminComponent,

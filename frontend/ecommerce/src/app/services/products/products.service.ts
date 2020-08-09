@@ -40,6 +40,19 @@ export class ProductsService {
     return this.http.post<Product[]>(this.API_Url_Products, JSON.stringify(product),this.httpOptions)
   }
 
+  //Agregar producto (No me funciona postProduct, para no borrar lo de arriba hago esto)
+  addProducto(product: AdminProduct){
+    let params = JSON.stringify(product);
+    return this.http.post(this.API_Url_Products, params, this.httpOptions)
+                    .pipe(
+                      map(
+                        resp => {
+                          return resp;
+                        }
+                      )
+                    );
+  }
+
   putProduct(id:number, product: AdminProduct|any){
     return this.http.put<AdminProduct>(this.API_Url_Products+id+'/', JSON.stringify(product),this.httpOptions)
   }

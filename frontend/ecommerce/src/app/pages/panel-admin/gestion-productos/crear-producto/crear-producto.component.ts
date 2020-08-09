@@ -10,6 +10,7 @@ import { SubirArchivoService } from 'src/app/services/panelAdmin/subir-archivo.s
 import { ProductsService } from 'src/app/services/products/products.service';
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
 import { AdminProduct } from 'src/app/models/product/AdminProduct';
+import { ProductImages } from 'src/app/models/product/product-images';
 //interfaz para imagen
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget
@@ -138,15 +139,20 @@ export class CrearProductoComponent implements OnInit {
     if(this.formProduct.invalid){
       return Object.values( this.formProduct.controls ).forEach( control => { control.markAsTouched(); });
     }else{
-      console.log('form editado', this.formProduct);
+      //console.log('form editado', this.formProduct);
       
       let name = this.formProduct.value.name;
       let price = this.formProduct.value.precio;
       let descripcion = this.formProduct.value.descripcion;
       let categoria = this.formProduct.value.categoria;
       let usuario = this.formProduct.value.usuario;
-      const product = new AdminProduct(0,name,descripcion,price,usuario,categoria);
+      //let image = this.imagenSubida['id'];
 
+      //console.log('campos ', usuario, categoria);
+
+      const product = new AdminProduct(0,name,descripcion,price,categoria,usuario);
+      console.log(product);
+      
       if(params.id){
         let id = params.id;
         this.productService.putProduct(id, product).subscribe(
@@ -162,10 +168,11 @@ export class CrearProductoComponent implements OnInit {
         )
 
       }else{
-        this.productService.postProduct(product).subscribe(
+        this.productService.addProducto(product).subscribe(
           resp=>{
             this.status = 'success';
             this.message = 'Producto creado exitosamente!';
+            console.log(resp);
             this.router.navigateByUrl('admin/productos');
           },
           error=>{

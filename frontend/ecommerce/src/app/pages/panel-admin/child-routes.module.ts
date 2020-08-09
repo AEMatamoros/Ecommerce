@@ -11,6 +11,9 @@ import { CrearCuentaComponent } from './gestion-cuentas/crear-cuenta/crear-cuent
 import { GestionProductosComponent } from './gestion-productos/gestion-productos.component';
 import { CrearProductoComponent } from './gestion-productos/crear-producto/crear-producto.component';
 
+import { GestionOrdenesComponent } from './gestion-ordenes/gestion-ordenes.component';
+
+
 const childAdminRoutes: Routes = [
     {
         path: 'cuentas', 
@@ -47,6 +50,12 @@ const childAdminRoutes: Routes = [
         component: CrearProductoComponent,
         canActivate: [AdminGuard],
         data: {titulo: 'Editar producto'}
+    },
+    {
+        path:'ordenes',
+        component: GestionOrdenesComponent,
+        canActivate: [AdminGuard],
+        data: {titulo: 'Control de Ordenes de productos'}
     }
 ];
 
