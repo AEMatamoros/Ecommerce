@@ -14,6 +14,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { PaypalComponent } from './paypal/paypal.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
         ProductListComponent,
         ProductItemComponent,
         CartComponent,
-        CartItemComponent
+        CartItemComponent,
+        PaypalComponent
            
     ],
     exports: [
@@ -46,7 +48,9 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
         ProductListComponent,
         ProductItemComponent,
         CartComponent,
-        CartItemComponent
-    ]
+        CartItemComponent,
+        PaypalComponent
+    ],
+    
 })
 export class SharedHomeModule { }
