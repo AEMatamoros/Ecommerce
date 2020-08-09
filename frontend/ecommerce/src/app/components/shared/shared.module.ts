@@ -15,6 +15,7 @@ import { ProductItemComponent } from './product-list/product-item/product-item.c
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { PaypalComponent } from './paypal/paypal.component';
+import { BannerCartComponent } from './banner-cart/banner-cart.component';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { PaypalComponent } from './paypal/paypal.component';
         ProductItemComponent,
         CartComponent,
         CartItemComponent,
-        PaypalComponent
+        PaypalComponent,
+        BannerCartComponent
            
     ],
     exports: [
@@ -49,7 +51,8 @@ import { PaypalComponent } from './paypal/paypal.component';
         ProductItemComponent,
         CartComponent,
         CartItemComponent,
-        PaypalComponent
+        PaypalComponent,
+        BannerCartComponent
     ],
     
 })

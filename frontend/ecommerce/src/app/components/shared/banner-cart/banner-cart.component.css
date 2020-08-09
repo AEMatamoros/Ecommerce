@@ -1,0 +1,63 @@
+
+.container-banner {
+    width: 100%;
+    margin-top: -5%;
+    height: 150px;
+    
+}
+.container-banner1 {
+    border-radius: 2%;
+    background-color: rgb(243, 253, 246);
+    z-index: 100;
+}
+
+.offer1 {
+    height: 15%;
+    width: 15%;
+    margin-top: 10px;
+    margin-left: 85%;
+}
+
+.offer2 {
+    width: 18%;
+    height: 95px;
+    padding: 0%;
+    margin-top: -74px;
+    margin-left: 6%;
+}
+
+.offer3 {
+    width: 24%;
+    height: 44%;
+    padding: 0%;
+    margin-top: -16.5%;
+    margin-left: -6%;
+}
+
+.title2 {
+    display: block;
+    padding-left: 20%;
+    padding-right: 0%;
+    padding-top: 2%;
+    margin-bottom: 0;
+    width: 100%;
+    font-family: "Helvetica neue",Helvetica,Arial,"sans-serif";
+    font-size: 40px;
+    font-weight: 600;
+    text-size-adjust: 100%;
+    color: rgb(52, 138, 153);
+    position: absolute;
+    -ms-text-size-adjust: auto;
+    -moz-text-size-adjust: auto;
+    text-size-adjust: unset;
+}
+
+.subtitle2 {
+    padding-left: 6%;
+    padding-top: 2%;
+    color: rgb(209, 6, 6);
+    font-weight: bold;
+    -ms-text-size-adjust: auto;
+    -moz-text-size-adjust: auto;
+    text-size-adjust: unset;
+}
