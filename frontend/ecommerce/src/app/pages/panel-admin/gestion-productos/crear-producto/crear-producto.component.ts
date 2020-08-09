@@ -10,7 +10,7 @@ import { SubirArchivoService } from 'src/app/services/panelAdmin/subir-archivo.s
 import { ProductsService } from 'src/app/services/products/products.service';
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
 import { AdminProduct } from 'src/app/models/product/AdminProduct';
-import { ProductImages } from 'src/app/models/product/product-images';
+import { AdminProductImages } from 'src/app/models/product/AdminProductImage';
 //interfaz para imagen
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget
@@ -72,13 +72,13 @@ export class CrearProductoComponent implements OnInit {
               this.router.navigateByUrl('admin/productos');
             }
             this.product_edit = product;
-            console.log('product_edit', this.product_edit);
+            //console.log('product_edit', this.product_edit);
             const productForm = {
               name: product.name,
               precio: product.price,
               descripcion: product.description,
-              categoria: product.category ? '': 0,
-              usuario: product.user ? '': 0
+              categoria: product.category ? 'Seleccione la categoría': 0,
+              usuario: product.user ? 'Seleccione el usuario': 0
             }
             this.formProduct.setValue(productForm);
           }
@@ -112,7 +112,7 @@ export class CrearProductoComponent implements OnInit {
     this.productService.getCategory().subscribe(
       resp => {
         this.cargado = true;
-        this.categories = resp;
+        this.categories = resp['results'];
         //console.log(resp);
       },
       error => {
@@ -126,7 +126,7 @@ export class CrearProductoComponent implements OnInit {
       resp=>{
         this.cargado = true;
         this.usuarios = resp['results'];
-        console.log(this.usuarios);
+        //console.log(this.usuarios);
       },
       error=>{
         console.log(<any>error);
@@ -146,12 +146,17 @@ export class CrearProductoComponent implements OnInit {
       let descripcion = this.formProduct.value.descripcion;
       let categoria = this.formProduct.value.categoria;
       let usuario = this.formProduct.value.usuario;
-      //let image = this.imagenSubida['id'];
+      let image;
+
+      if(this.imagenSubida){
+        image = this.imagenSubida['id'];
+      }else{
+        image = null;
+      }
 
       //console.log('campos ', usuario, categoria);
 
       const product = new AdminProduct(0,name,descripcion,price,categoria,usuario);
-      console.log(product);
       
       if(params.id){
         let id = params.id;
@@ -159,7 +164,19 @@ export class CrearProductoComponent implements OnInit {
           resp=>{
             this.status='success';
             this.message='Producto editado satisfactoriamente';
-            console.log(resp);
+            //console.log(resp);
+            const productImage = new AdminProductImages(0, image, resp.id);
+
+            this.productService.putProductImages(id, productImage)
+                .subscribe(
+                  resp=>{
+                    this.status = 'success';
+                    //console.log(resp);
+                  },
+                  error =>{
+                    console.log(<any> error);
+                  }
+                );
             this.router.navigateByUrl('admin/productos');
           },
           error=>{
@@ -172,7 +189,19 @@ export class CrearProductoComponent implements OnInit {
           resp=>{
             this.status = 'success';
             this.message = 'Producto creado exitosamente!';
-            console.log(resp);
+            //console.log(resp);
+            const productImage = new AdminProductImages(0, image, resp['id']);
+
+            this.productService.postProductImages(productImage)
+                .subscribe(
+                  resp=>{
+                    this.status = 'success';
+                    //console.log(resp);
+                  },
+                  error =>{
+                    console.log(<any> error);
+                  }
+                );
             this.router.navigateByUrl('admin/productos');
           },
           error=>{

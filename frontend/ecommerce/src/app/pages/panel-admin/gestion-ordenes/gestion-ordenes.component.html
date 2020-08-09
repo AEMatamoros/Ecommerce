@@ -29,7 +29,7 @@
                         <div class="text-right">
                             <a class="btn btn-primary"
                                 routerLink="add">
-                                Ver Orden
+                                Crear Orden
                             </a>
                         </div>
                     </div>
@@ -41,6 +41,7 @@
                         <tr>
                             <th>No. Orden</th>
                             <th>Cantidad</th>
+                            <th>Producto</th>
                             <th>Sub-Total</th>
                             <th>Total</th>
                             <th>Estado de la Orden</th>
@@ -50,12 +51,13 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let order of orders">
-                            <td>{{order.id}}</td>
-                            <td>{{order.quantity}}</td>
-                            <td>{{order.subtotal}} Lps.</td>
-                            <td>{{order.total}} Lps.</td>
-                            <td>{{order.status_id.description}}</td>
-                            <td>{{order.direction_id.direction}}</td>
+                            <td>{{order.order_id.id}}</td>
+                            <td>{{order.order_id.quantity}}</td>
+                            <td>{{order.product_id.name}}</td>
+                            <td>{{order.order_id.subtotal}} Lps.</td>
+                            <td>{{order.order_id.total}} Lps.</td>
+                            <td>{{order.order_id.status_id.description}}</td>
+                            <td>{{order.order_id.direction_id.direction}}</td>
                             <td class="text-nowrap text-center">
                                 <a 
                                     data-toggle="tooltip" 

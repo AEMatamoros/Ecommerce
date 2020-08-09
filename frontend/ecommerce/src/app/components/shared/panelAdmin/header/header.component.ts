@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
       (account)=> { 
         this.dataAccount = account;
         this.cargando = false;
-        console.log(this.dataAccount);
+        //console.log(this.dataAccount);
       }
     )
     

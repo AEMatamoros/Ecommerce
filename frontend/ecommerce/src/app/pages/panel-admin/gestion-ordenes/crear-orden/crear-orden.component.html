@@ -2,15 +2,15 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Producto</h4>
+                <h4 class="card-title">Orden de producto</h4>
                 <hr>
                 <div class="alert alert-success" *ngIf="status=='success'">
                     <span>{{ message }}, Llena los datos</span>
                 </div>
                 
-                <form [formGroup]="formProduct" (ngSubmit)="onFormProducto()" class="form-horizontal p-t-20">
+                <form [formGroup]="formProduct" (ngSubmit)="onFormOrder()" class="form-horizontal p-t-20">
                     <div class="form-group row">
-                        <label for="" class=" col-sm-3 control-label">Nombre</label>
+                        <label for="" class="col-sm-3 control-label">Nombre</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <input type="text"
@@ -50,8 +50,8 @@
                             <div class="input-group">
                                 <select class="form-control" formControlName="categoria">
                                     <option value="">Seleccione la Categoria</option>
-                                    <option *ngFor="let category of categories"
-                                            [ngValue]="category.id">{{category.category_name}}</option>
+                                    <option 
+                                            ></option>
                                 </select>
                             </div>
                         </div>
@@ -63,8 +63,8 @@
                             <div class="input-group">
                                 <select class="form-control" formControlName="usuario">
                                     <option value="">Seleccione el usuario</option>
-                                    <option *ngFor="let usuario of usuarios"
-                                            [ngValue]="usuario.id">{{usuario.first_name}} {{usuario.last_name}}</option>
+                                    <option 
+                                            ></option>
                                 </select>
                             </div>
                         </div>
@@ -85,34 +85,5 @@
         </div>
     </div>
     
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Imagen de Producto</h4>
-                <div class="text-center">
-                    
-                    <img *ngIf="!fotoSelected"
-                         class="img-thumbnail" 
-                         width="250px" height="250px">
-
-                    <img  *ngIf="fotoSelected"
-                          [src]="fotoSelected"
-                          alt="" class="img-thumbnail"
-                          width="250px" height="250px">
-                </div>
-                <br>
-                <input  type="file"
-                        (change)="fotoSeleccionada($event)">
-                <br>
-                <button type="button" 
-                        class="btn btn-success btn-block waves-effect waves-light m-r-10"
-                        (click)="subirFoto()"
-                        >
-                        <i class="fa fa-save"></i>
-                        Subir Foto de Producto
-                </button>
-                
-            </div>
-        </div>
-    </div>
+    
 </div>

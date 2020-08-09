@@ -13,7 +13,7 @@ import { OrdenesService } from 'src/app/services/panelAdmin/ordenes.service';
 })
 export class GestionOrdenesComponent implements OnInit {
   public cargado:boolean;
-  public orders: Ordenes[] = [];
+  public orders: any;
   public status: string = '';
   public message: string;
 
@@ -29,8 +29,9 @@ export class GestionOrdenesComponent implements OnInit {
     this.orderService.getOrdenes().subscribe(
       resp=>{
         this.cargado = true;
-        console.log(resp);
-        this.orders = resp;
+        this.orders = resp['results'];
+        //console.log(this.orders);
+        
       }
     )
   }

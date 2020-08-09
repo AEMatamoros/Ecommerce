@@ -13,6 +13,7 @@ import { GestionProductosComponent } from './gestion-productos/gestion-productos
 import { CrearCuentaComponent } from './gestion-cuentas/crear-cuenta/crear-cuenta.component';
 import { CrearProductoComponent } from './gestion-productos/crear-producto/crear-producto.component';
 import { GestionOrdenesComponent } from './gestion-ordenes/gestion-ordenes.component';
+import { CrearOrdenComponent } from './gestion-ordenes/crear-orden/crear-orden.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { GestionOrdenesComponent } from './gestion-ordenes/gestion-ordenes.compo
         GestionProductosComponent,
         CrearCuentaComponent,
         CrearProductoComponent,
-        GestionOrdenesComponent
+        GestionOrdenesComponent,
+        CrearOrdenComponent
     ],
     exports: [
         PanelAdminComponent,

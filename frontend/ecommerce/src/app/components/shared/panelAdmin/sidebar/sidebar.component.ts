@@ -41,7 +41,7 @@ export class SidebarComponent implements OnInit {
       (account)=> { 
         this.data = account;
         this.cargando = false;
-        console.log(this.data);
+        //console.log(this.data);
       }
     )
   }

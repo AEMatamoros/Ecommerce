@@ -25,7 +25,7 @@ export class GestionProductosComponent implements OnInit {
     this.productService.getProductsImages().subscribe(
       resp => {
         this.cargado = true;
-        this.products = resp;
+        this.products = resp['results'];
         console.log(resp);
       },
       error => console.log(<any>error)

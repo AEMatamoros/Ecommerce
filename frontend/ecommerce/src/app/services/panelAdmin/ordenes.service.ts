@@ -14,21 +14,21 @@ export class OrdenesService {
   public URL: string;
   public headers: HttpHeaders;
   //ordenes
-  public orders:Ordenes[] = [];
+  public orders:any;
   
   constructor(
     private http: HttpClient
   ) { 
-    /*this.URL = 'http://localhost:8000/api/viewset/'; /*Local*/
-    this.URL= 'http://52.201.212.27/api/viewset/'; //PRODUCCION */
+    this.URL = 'http://localhost:8000/api/viewset/'; /*Local*/
+    /*this.URL= 'http://52.201.212.27/api/viewset/'; //PRODUCCION */
     this.headers = new HttpHeaders()
     this.headers = this.headers.append('Content-Type','application/json');
     
   }
 
   getOrdenes(){
-    return this.http.get(this.URL+'order/', {headers: this.headers})
-             .pipe(map((orders: Ordenes[])=> this.orders = orders));
+    return this.http.get(this.URL+'product_order/', {headers: this.headers})
+             .pipe(map((orders: Ordenes)=>this.orders = orders));
   }
 
   getOrden(id:number){
