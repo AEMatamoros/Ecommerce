@@ -21,6 +21,8 @@ import { PagesHomeModule } from './pages/home/home.module';
 import { SharedHomeModule } from './components/shared/shared.module';
 import { VendedoresComponent } from './pages/home/vendedores/vendedores.component';
 import { VendedorprofilesComponent } from './pages/home/vendedorprofiles/vendedorprofiles.component';
+import { FiltersComponent } from './components/filters/filters.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { VendedorprofilesComponent } from './pages/home/vendedorprofiles/vendedo
     LoginComponent,
     RegisterComponent,
     VendedoresComponent,
-    VendedorprofilesComponent
+    VendedorprofilesComponent,
+    FiltersComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,

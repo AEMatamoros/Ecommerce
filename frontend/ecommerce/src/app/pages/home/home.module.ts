@@ -20,6 +20,7 @@ import { ComprasComponent } from './compras/compras.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { LandingComponent } from './landing/landing.component';
 import { OffersComponent } from './offers/offers.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 
@@ -34,7 +35,8 @@ import { OffersComponent } from './offers/offers.component';
         ComprasComponent,
         LandingComponent,
         OffersComponent,
-        DetalleProductoComponent
+        DetalleProductoComponent,
+        ShoppingCartComponent
     ],
     exports: [
         PerfilComponent,
