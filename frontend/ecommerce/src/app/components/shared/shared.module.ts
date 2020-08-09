@@ -13,6 +13,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { FiltersComponent } from './filters/filters.component';
+import { BannerComponent } from './banner/banner.component';
 
 @NgModule({
     imports: [
@@ -26,7 +28,7 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
         CardsComponent,
         CorouselCardsComponent,
         CorouselImgComponent,     
-        FooterComponent, ProductListComponent, ProductItemComponent, CartComponent, CartItemComponent
+        FooterComponent, ProductListComponent, ProductItemComponent, CartComponent, CartItemComponent, FiltersComponent, BannerComponent
            
     ],
     exports: [
