@@ -7,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
+  /* Estatico por el momento */
   cartItems = [
-    { id: 1, productId: 1, productName: 'test 1', qty: 4, price: 100},
-    { id: 2, productId: 2, productName: 'test 3', qty: 3, price: 50},
-    { id: 3, productId: 3, productName: 'test 2', qty: 3, price: 200},
-    { id: 4, productId: 4, productName: 'test 4', qty: 2, price: 250},
+    { id: 1, productId: 1, productName: 'test 1', qty: 5, price: 100},
+    { id: 2, productId: 2, productName: 'test 2', qty: 2, price: 50},
+    { id: 3, productId: 3, productName: 'test 3', qty: 2, price: 200},
+    { id: 4, productId: 4, productName: 'test 4', qty: 1, price: 250},
+    { id: 5, productId: 5, productName: 'test 5', qty: 3, price: 250},
   ]
 
   cartTotal = 0

@@ -19,8 +19,15 @@ export class PaypalComponent implements OnInit {
 
   ngOnInit(){
 
-    paypal
-    .Buttons({
+  
+    paypal.Buttons({
+      style:{
+        shape: 'pill',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'pay',
+
+      },
       createOrder: (data, actions) => {
         return actions.order.create({
           purchase_units: [

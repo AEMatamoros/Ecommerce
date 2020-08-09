@@ -19,17 +19,20 @@
         <h5 style="color: rgb(92, 87, 87);">En existencia</h5>
         <br>
         <br>
-        <h3> HNL. {{ detalleProducto?.product_id.price }}</h3>
-        <label for="" class="labels">Formas de pago:</label><br/>
+        <h3> Precio de venta HNL. {{ detalleProducto?.product_id.price }}</h3>
+        <label for="" class="labels">Formas de pago</label><br/>
         <br>
         <div class="row">
-          <div class="col-6">
-            <a href="#" class="btn btn-compra">Comprar ahora</a>
+          <div class="">
+            <div class="paypal-panelDetalle mx-5">
+              <app-paypal></app-paypal>
+            </div>
           </div>
-          <div class="col-6">
-            <a href="#" class="btn btn-carrito">Agregar al carrito</a>
-          </div>
-
+          <div class="mx-4">
+            <a href="#" class="btn btn-carrito mx-3 lg-2">Agregar al carrito 
+              <a class="mx-2"><img src="assets/icons/carritoRojo.png" style="width: 20px;" alt=""></a>
+            </a>
+          </div> 
         </div>
       </div>
     </div>

@@ -7,3 +7,12 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+.paypal-panel {
+  width: fit-content;
+}
+
+.side-info {
+  width: fit-content;
+  height: fit-content;
+}

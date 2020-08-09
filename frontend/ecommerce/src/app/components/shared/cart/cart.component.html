@@ -1,5 +1,4 @@
 <div class="side-info">
-  <div class="alert alert-info">Your Cart is Full.</div>
     <div>
       <ul *ngIf="cartItems.length > 0" class="list-group">
         <li class="list-group-item" *ngFor="let item of cartItems">
@@ -11,8 +10,8 @@
         </li>
       </ul>
     </div>
-    <div>
-      
+    <br>
+    <div class="paypal-panel">
+       <app-paypal></app-paypal>
     </div>
-
 </div> 
