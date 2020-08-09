@@ -1,1 +1,5 @@
-<p>cart-item works!</p>
+<div class="cart-item">
+  <span>{{ cartItem.productName }}</span> x
+  <span>{{ cartItem }}</span>:
+  <strong>{{ (cartItem * cartItem.price) | currency:'USD' }}</strong>
+</div>

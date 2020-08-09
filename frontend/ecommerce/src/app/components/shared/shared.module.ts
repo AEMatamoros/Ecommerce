@@ -9,12 +9,11 @@ import { CardsComponent } from './cards/cards.component';
 import { CorouselCardsComponent } from './corousel-cards/corousel-cards.component';
 import { CorouselImgComponent } from './corousel-img/corousel-img.component';
 import { FooterComponent } from './footer/footer.component';
+import { FilterComponent } from './filter/filter.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
-import { FiltersComponent } from './filters/filters.component';
-import { BannerComponent } from './banner/banner.component';
 
 @NgModule({
     imports: [
@@ -28,7 +27,12 @@ import { BannerComponent } from './banner/banner.component';
         CardsComponent,
         CorouselCardsComponent,
         CorouselImgComponent,     
-        FooterComponent, ProductListComponent, ProductItemComponent, CartComponent, CartItemComponent, FiltersComponent, BannerComponent
+        FooterComponent,
+        FilterComponent,
+        ProductListComponent,
+        ProductItemComponent,
+        CartComponent,
+        CartItemComponent
            
     ],
     exports: [
@@ -37,7 +41,12 @@ import { BannerComponent } from './banner/banner.component';
         CardsComponent,
         CorouselCardsComponent,
         CorouselImgComponent, 
-        FooterComponent
+        FooterComponent,
+        FilterComponent,
+        ProductListComponent,
+        ProductItemComponent,
+        CartComponent,
+        CartItemComponent
     ]
 })
 export class SharedHomeModule { }
