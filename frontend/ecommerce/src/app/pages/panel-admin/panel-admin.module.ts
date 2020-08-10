@@ -14,6 +14,7 @@ import { CrearCuentaComponent } from './gestion-cuentas/crear-cuenta/crear-cuent
 import { CrearProductoComponent } from './gestion-productos/crear-producto/crear-producto.component';
 import { GestionOrdenesComponent } from './gestion-ordenes/gestion-ordenes.component';
 import { CrearOrdenComponent } from './gestion-ordenes/crear-orden/crear-orden.component';
+import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { CrearOrdenComponent } from './gestion-ordenes/crear-orden/crear-orden.c
         CrearCuentaComponent,
         CrearProductoComponent,
         GestionOrdenesComponent,
-        CrearOrdenComponent
+        CrearOrdenComponent,
+        PerfilAdminComponent
     ],
     exports: [
         PanelAdminComponent,

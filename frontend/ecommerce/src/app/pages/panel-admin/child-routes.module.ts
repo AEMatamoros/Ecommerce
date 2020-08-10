@@ -13,8 +13,16 @@ import { CrearProductoComponent } from './gestion-productos/crear-producto/crear
 
 import { GestionOrdenesComponent } from './gestion-ordenes/gestion-ordenes.component';
 
+import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
+
 
 const childAdminRoutes: Routes = [
+    {
+        path: 'perfil-admin',
+        component: PerfilAdminComponent,
+        canActivate: [AdminGuard],
+        data: {titulo: 'Perfil de Administrador'}
+    },
     {
         path: 'cuentas', 
         component: GestionCuentasComponent,

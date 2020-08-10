@@ -5,10 +5,11 @@ import { map } from 'rxjs/operators';
 
 //Interfaces
 import {CargarCuentas } from 'src/app/interfaces/cargar-cuentas';
+import { Direccion } from 'src/app/interfaces/direccion';
 //Modelos
 import { Account } from 'src/app/models/account/account';
 import { Admin_Account } from 'src/app/models/account/crear_account';
-import { Image } from 'src/app/models/general/general-models';
+import { Image, Direction } from 'src/app/models/general/general-models';
 //Servicios
 import { UserService } from 'src/app/services/auth/user.service';
 
@@ -78,6 +79,22 @@ export class AccountService {
                .pipe(
                  map((image: Image[]) => this.images = image)
                );
+  }
+
+  crearDireccion(direccion: Direccion){
+    let params = JSON.stringify(direccion);
+    return this.http.post(this.URL+'direction/', params, {headers: this.headers})
+               .pipe(map(resp =>{
+                 console.log(resp);
+                 return resp;
+               })
+               ); 
+  }
+
+  editarDireccion(direccion: Direccion){
+    let params = JSON.stringify(direccion);
+    return this.http.put(this.URL+'direction/', params, {headers: this.headers})
+                    .pipe(map(resp=>{console.log(resp); return resp;}));
   }
 
   crearCuenta(account: Admin_Account): Observable<any>{

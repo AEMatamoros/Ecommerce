@@ -1,10 +1,10 @@
-import { Direction } from '../general/general-models'
-import { Image } from '../general/general-models'
+
+import { Direccion } from 'src/app/interfaces/direccion'
 
 export class Admin_Account {
     constructor(
         public id: number,
-        public direction:Direction,
+        public direction:number,
         public email: string,
         public first_name: string,
         public last_name: string,

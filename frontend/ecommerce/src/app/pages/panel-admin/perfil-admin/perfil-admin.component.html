@@ -1,0 +1,169 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Perfil de Usuario</h4>
+                <hr>
+                
+                <div class="alert alert-success" *ngIf="status == 'success'">
+                    <span>{{ message }}</span>
+                </div>
+
+                <form [formGroup]="formPerfil" (ngSubmit)="onFormPerfil()" class="form-horizontal p-t-20">
+                    <div class="form-group row">
+                        <label for="" class=" col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input 
+                                    type="text" 
+                                    class="form-control"
+                                    placeholder="Nombre"
+                                    formControlName="nameAdmin"
+                                    [class.is-invalid]="nombreNoValidoAdmin">
+
+                                <small *ngIf="nombreNoValidoAdmin" class="text-danger">
+                                    Ingrese al menos 5 letras
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class=" col-sm-3 control-label">Apellido</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input 
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Apellido"
+                                    formControlName="apellidoAdmin"
+                                    [class.is-invalid]="apellidoNoValidoAdmin">
+                                <small *ngIf="apellidoNoValidoAdmin" class="text-danger">
+                                    Ingrese el apellido
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class=" col-sm-3 control-label">Correo</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input 
+                                    type="email" 
+                                    class="form-control" 
+                                    placeholder="Email"
+                                    formControlName="correoAdmin"
+                                    [class.is-invalid]="correoNoValidoAdmin">
+                                <small *ngIf="correoNoValidoAdmin" class="text-danger">
+                                    Ingrese el correo
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class=" col-sm-3 control-label">Telefono</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Telefono"
+                                    formControlName="telefonoAdmin"
+                                    [class.is-invalid]="telefonoNoValidoAdmin">
+                                <small *ngIf="telefonoNoValidoAdmin" class="text-danger">
+                                    Ingrese un número de telefono válido
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class=" col-sm-3 control-label">Dirección</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Direccion"
+                                    formControlName="direccionAdmin"
+                                    [class.is-invalid]="direccionNoValidaAdmin">
+                                <small *ngIf="direccionNoValidaAdmin" class="text-danger">
+                                    Ingrese una dirección válida
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label">Rol de Usuario</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select class="form-control" formControlName="rolesUserAdmin">
+                                    <option disabled value="">Seleccione el rol</option>
+                                    <option *ngFor="let rol of roles" [ngValue]="rol.value">{{rol.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 control-label">Fecha de Nacimiento</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input 
+                                    type="date" 
+                                    class="form-control"
+                                    placeholder=""
+                                    formControlName="fecha_nacAdmin"
+                                    [class.is-invalid]="fechaNoValidaAdmin">
+                                <small *ngIf="fechaNoValidaAdmin" class="text-danger">
+                                    Ingrese fecha válida
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit"
+                                    class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"></i>
+                                Editar datos
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Imagen de Usuario</h4>
+                <div class="text-center">
+                    
+                    <img *ngIf="Admin_edit" [src]="Admin_edit['user_img']['img_route']" 
+                         alt="" class="img-thumbnail" 
+                         width="250px" height="250px">
+
+                    <img *ngIf="!Admin_edit " [src]="fotoSelected" 
+                          alt="" class="img-thumbnail"
+                          width="250px" height="250px">
+                </div>
+                <br>
+                <input  type="file"
+                        (change)="fotoSeleccionada($event)">
+                <br>
+                <button type="button" 
+                        class="btn btn-success btn-block waves-effect waves-light m-r-10"
+                        (click)="subirFoto()">
+                        <i class="fa fa-save"></i>
+                        Cambiar Foto de Perfil
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>

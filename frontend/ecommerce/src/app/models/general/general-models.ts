@@ -1,9 +1,10 @@
 import {Account} from '../account/account'
+import { Direccion } from 'src/app/interfaces/direccion';
 
 export class Direction {
     constructor(
         public id:number,
-        public direction:String,
+        public direction:Direccion[],
         public relative:Direction[],
         public date_created:string,
         public date_updated:string){    
