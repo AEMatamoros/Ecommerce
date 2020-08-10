@@ -20,6 +20,8 @@ pip install django
 pip install djangorestframework
 pip install Pillow
 pip install django-cors-headers
+pip install -U drf-yasg
+pip install -U drf-yasg[validation]
 ```
 4. Ejecutar las migraciones
 ```
