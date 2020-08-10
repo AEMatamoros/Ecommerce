@@ -109,6 +109,7 @@ export class PerfilAdminComponent implements OnInit {
     this.SubirArchivoService.subirFoto(this.imgFile)
         .subscribe(resp => {
           this.imagenSubida = resp;
+          console.log(this.imagenSubida);
           this.status = 'success';
           this.message = 'Imagen subida con éxito!';
           //console.log('imagen subida ',resp);
@@ -149,7 +150,11 @@ export class PerfilAdminComponent implements OnInit {
         is_admin = true;
         is_staff = false;
       }
+
+      console.log('form antes ',this.imagenSubida);
+
       if(this.imagenSubida){
+        console.log('form ',this.imagenSubida);
         user_img = this.imagenSubida['id'];
         cover_img = this.imagenSubida['id'];
       }else{
@@ -165,22 +170,25 @@ export class PerfilAdminComponent implements OnInit {
         resp=>{
           console.log('direccion', resp);
           this.direction_id = resp['id'];
-        }
-      )
-      this.account = new Admin_Account(id, this.direction_id, email, name, lastname, phone, birth_date, password,
-        is_admin, is_staff, is_superuser, user_img, cover_img);
-      this.accountService.actualizarCuenta(this.account, id)
+          this.account = new Admin_Account(id, this.direction_id, email, name, lastname, phone, birth_date, password,
+            is_admin, is_staff, is_superuser, user_img, cover_img);
+
+            this.accountService.actualizarCuenta(this.account, id)
           .subscribe(resp => {
             this.status = 'success';
             this.message = 'Cuenta actualizada satisfactoriamente';
-            //this.router.navigateByUrl('admin/cuentas');
-            console.log(resp);
+            this.router.navigateByUrl('admin/perfil-admin');
+            //console.log(resp);
           },
           error=>{
             this.message = 'Cuenta no se pudo actualizar';
             console.log(error);
           });
 
+        }
+      )
+      
+      
     }
   }
 
