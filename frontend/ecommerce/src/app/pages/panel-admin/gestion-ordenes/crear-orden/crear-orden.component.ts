@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-orden',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CrearOrdenComponent implements OnInit {
   public status:string;
   public message:string;
-  
+  public formOrder: FormGroup
   constructor() { }
 
   ngOnInit(): void {
