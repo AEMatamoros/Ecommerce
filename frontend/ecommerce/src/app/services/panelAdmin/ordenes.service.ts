@@ -6,14 +6,15 @@ import { map } from 'rxjs/operators';
 
 //Interfaces
 import { Ordenes } from '../../interfaces/ordenes';
-
-//Modelos
 import { CargarStatus } from 'src/app/interfaces/cargar-status';
 import { CargarProductos } from 'src/app/interfaces/cargar-product';
+import { CargarCuentas } from 'src/app/interfaces/cargar-cuentas';
+
+//Modelos
 import { Status } from 'src/app/models/general/general-models';
 import { Product } from 'src/app/models/product/product';
-import { CargarCuentas } from 'src/app/interfaces/cargar-cuentas';
 import { Account } from 'src/app/models/account/account';
+import { Order } from 'src/app/models/order/order';
 
 @Injectable({
   providedIn: 'root'
@@ -97,6 +98,11 @@ export class OrdenesService {
                    }
                  })
                )
+  }
+
+  addOrden(order: Order){
+    let params = JSON.stringify(order);
+    this.http.post(this.URL+'order/', params, {headers: this.headers})
   }
 
 
