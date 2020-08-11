@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+
+//Modelos
+import { Status } from 'src/app/models/general/general-models';
+import { Product } from 'src/app/models/product/product';
+
+//Servicios
+import { OrdenesService } from 'src/app/services/panelAdmin/ordenes.service';
+import { AccountService } from 'src/app/services/panelAdmin/account.service';
+import { Account } from 'src/app/models/account/account';
 
 @Component({
   selector: 'app-crear-orden',
@@ -8,12 +17,75 @@ import { FormGroup } from '@angular/forms';
 export class CrearOrdenComponent implements OnInit {
   public status:string;
   public message:string;
-  public formOrder: FormGroup
-  constructor() { }
+  public cargado:boolean = false;
+  public formOrder: FormGroup;
+  public statusOrder: Status[];
+  public totalStatus: number;
+  public productos: Product[];
+  public totalProductos: number;
+  public usuarios: Account[];
+  public totalUsuarios: number;
 
-  ngOnInit(): void {
+  constructor(
+    private formBuilder: FormBuilder,
+    private orderService: OrdenesService
+    
+  ) {
+    this.crearFormulario();
   }
 
+  ngOnInit(): void {
+    this.obtenerStatus();
+    this.obtenerProducts();
+    this.obtenerUsuarios();
+  }
+
+  crearFormulario(){
+    this.formOrder = this.formBuilder.group({
+      producto: new FormControl('' ,Validators.required),
+      cantidad: ['0', [Validators.required, Validators.minLength(1)] ],
+      total: new FormControl({value:0, disabled:true}, [Validators.required, Validators.minLength(1)]),
+      status: new FormControl('', Validators.required),
+      usuario: new FormControl('', Validators.required)
+    });
+  }
+
+  obtenerStatus(){
+    this.orderService.getStatus().subscribe(
+      ({total, status})=>{
+        this.totalStatus = total;
+        this.statusOrder = status;
+        this.cargado = true;
+      }
+    )
+  }
+
+  obtenerProducts(){
+    this.orderService.getProducts().subscribe(
+      ({total, products})=>{
+        this.totalProductos = total;
+        this.productos = products;
+        this.cargado = true;
+        
+      }
+    )
+  }
+
+  obtenerUsuarios(){
+    this.orderService.getUsuarios().subscribe(
+      ({total, accounts})=>{
+        this.totalUsuarios = total;
+        this.usuarios = accounts;
+        this.cargado = true;
+      }
+    )
+  }
+
+  total_a_Pagar(){
+    let price = this.productos['price'];
+    console.log('price', price);
+    let total;
+  }
 
   onFormOrder(){
 

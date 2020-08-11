@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-//declare function initPlugins();
+declare function customInitFunctions();
 
 //Modelo
 import { Account } from 'src/app/models/account/account';
@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //initPlugins();
+    customInitFunctions();
     this.getAccount();
   }
 
@@ -44,6 +44,10 @@ export class SidebarComponent implements OnInit {
         //console.log(this.data);
       }
     )
+  }
+
+  logout(){
+    this.auth.logoutUser();
   }
 
 }

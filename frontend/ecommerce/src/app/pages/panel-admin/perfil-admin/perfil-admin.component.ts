@@ -146,9 +146,9 @@ export class PerfilAdminComponent implements OnInit {
         is_staff = false;
       }
       if(rol == 1){
-        is_superuser = false;
+        is_superuser = true;
         is_admin = true;
-        is_staff = false;
+        is_staff = true;
       }
 
       console.log('form antes ',this.imagenSubida);

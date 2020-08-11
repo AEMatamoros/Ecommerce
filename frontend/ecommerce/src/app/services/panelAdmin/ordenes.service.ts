@@ -7,6 +7,14 @@ import { map } from 'rxjs/operators';
 //Interfaces
 import { Ordenes } from '../../interfaces/ordenes';
 
+//Modelos
+import { CargarStatus } from 'src/app/interfaces/cargar-status';
+import { CargarProductos } from 'src/app/interfaces/cargar-product';
+import { Status } from 'src/app/models/general/general-models';
+import { Product } from 'src/app/models/product/product';
+import { CargarCuentas } from 'src/app/interfaces/cargar-cuentas';
+import { Account } from 'src/app/models/account/account';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +22,9 @@ export class OrdenesService {
   public URL: string;
   public headers: HttpHeaders;
   //ordenes
-  public orders:any;
+  public orders:Ordenes[];
+  public status: CargarStatus[];
+  public products: CargarProductos[];
   
   constructor(
     private http: HttpClient
@@ -28,12 +38,65 @@ export class OrdenesService {
 
   getOrdenes(){
     return this.http.get(this.URL+'product_order/', {headers: this.headers})
-             .pipe(map((orders: Ordenes)=>this.orders = orders));
+             .pipe(map((orders: Ordenes[])=>this.orders = orders));
   }
 
   getOrden(id:number){
-    this.http.get(this.URL+'order/'+id+'/', {headers: this.headers})
-             .pipe(map((order: Ordenes[])=> this.orders = order))
+    return this.http.get(this.URL+'order/'+id+'/', {headers: this.headers})
+             .pipe(map((order: Ordenes[])=> this.orders = order));
+  }
+
+  getStatus(){
+    return this.http.get<CargarStatus>(this.URL+'status/', {headers: this.headers})
+             .pipe(
+               map(resp=>{
+                 const status = resp.results.map(
+                   estado => new Status(estado.id, estado.description)
+                 );
+                 return {
+                   total: resp.count,
+                   next: resp.next,
+                   previous: resp.previous,
+                   status
+                 }
+               }));
+  }
+
+  getProducts(){
+    return this.http.get<CargarProductos>(this.URL+'product/', {headers: this.headers})
+             .pipe(
+               map(resp=>{
+                 const products = resp.results.map(
+                   product => new Product(product.id, product.name, product.description, product.price,
+                                          product.user, product.category,product.date_created, product.date_updated)
+                 );
+                 return {
+                   total: resp.count,
+                   next: resp.next,
+                   previous: resp.previous,
+                   products
+                 }
+               }));
+  }
+
+  getUsuarios(){
+    return this.http.get<CargarCuentas>(this.URL+'account/', {headers: this.headers})
+               .pipe(
+                 map(resp=>{
+                   const accounts = resp.results.map(
+                     account => new Account(account.id, account.direction, account.email, account.first_name,
+                                            account.last_name, account.phone_number, account.birth_date, account.password,
+                                            account.is_admin, account.is_staff, account.is_superuser, account.user_img, 
+                                            account.cover_img)
+                   );
+                   return {
+                     total: resp.count,
+                     next: resp.next,
+                     previous: resp.previous,
+                     accounts
+                   }
+                 })
+               )
   }
 
 

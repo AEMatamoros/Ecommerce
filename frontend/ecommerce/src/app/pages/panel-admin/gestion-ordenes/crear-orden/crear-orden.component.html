@@ -1,7 +1,7 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-9">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" *ngIf="cargado">
                 <h4 class="card-title">Orden de producto</h4>
                 <hr>
                 <div class="alert alert-success" *ngIf="status=='success'">
@@ -10,48 +10,39 @@
                 
                 <form [formGroup]="formOrder" (ngSubmit)="onFormOrder()" class="form-horizontal p-t-20">
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 control-label">Nombre</label>
+                        <label class="col-sm-3 control-label">Producto</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <input type="text"
-                                       class="form-control" 
-                                       placeholder="Nombre"
-                                       formControlName="name">
+                                <select class="form-control" formControlName="producto">
+                                    <option value="">Seleccione el producto</option>
+                                    <option *ngFor="let product of productos" 
+                                            [ngValue]="product.id">{{product.name}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="form-group row">
-                        <label for="" class=" col-sm-3 control-label">Precio</label>
+                        <label for="" class="col-sm-3 control-label">Cantidad</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <input  type="number"
-                                        class="form-control"
-                                        placeholder="Precio"
-                                        formControlName="precio">
+                                <input type="number"
+                                       class="form-control"
+                                        min="1"
+                                       placeholder="Cantidad"
+                                       formControlName="cantidad">
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="form-group row">
-                        <label for="" class=" col-sm-3 control-label">Descripción</label>
+                        <label class="col-sm-3 control-label">Estado de la Orden</label>
                         <div class="col-sm-9">
-                            <div class="input-group">
-                                <input  type="text"
-                                        class="form-control"
-                                        placeholder="Descripción"
-                                        formControlName="descripcion">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 control-label">Categoría</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                <select class="form-control" formControlName="categoria">
-                                    <option value="">Seleccione la Categoria</option>
-                                    <option 
-                                            ></option>
+                            <div class="input-group" *ngIf="cargado">
+                                <select class="form-control" formControlName="status">
+                                    <option value="">Seleccione el estado de la Orden</option>
+                                    <option *ngFor="let status of statusOrder"
+                                           [ngValue]="status.id" >{{status.description}}</option>
                                 </select>
                             </div>
                         </div>
@@ -63,9 +54,21 @@
                             <div class="input-group">
                                 <select class="form-control" formControlName="usuario">
                                     <option value="">Seleccione el usuario</option>
-                                    <option 
-                                            ></option>
+                                    <option *ngFor="let user of usuarios"
+                                            [ngValue]="user.id">{{user.first_name}}</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class=" col-sm-3 control-label">Total a Pagar</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input  type="number"
+                                        class="form-control"
+                                        placeholder="Total a Pagar"
+                                        formControlName="total">
                             </div>
                         </div>
                     </div>
@@ -75,7 +78,7 @@
                             <button type="submit"
                                     class="btn btn-success waves-effect waves-light">
                                 <i class="fa fa-save"></i>
-                                Guardar
+                                Guardar Orden 
                             </button>
                         </div>
 

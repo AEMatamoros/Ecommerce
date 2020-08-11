@@ -5,6 +5,8 @@ import { Account } from 'src/app/models/account/account';
 
 //Servicios
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
+import { UserService } from 'src/app/services/auth/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +19,9 @@ export class HeaderComponent implements OnInit {
   public dataAccount: Account[];
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private auth: UserService,
+    private router: Router
   ){ 
     this.idUser = parseInt(localStorage.getItem('id'));
   }
@@ -35,7 +39,10 @@ export class HeaderComponent implements OnInit {
         //console.log(this.dataAccount);
       }
     )
-    
+  }
+
+  logout(){
+    this.auth.logoutUser();
   }
 
 }

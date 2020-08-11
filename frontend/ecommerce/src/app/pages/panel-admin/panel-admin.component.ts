@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-declare function initPlugins();
+declare function customInitFunctions();
 
 @Component({
   selector: 'app-panel-admin',
   templateUrl: './panel-admin.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class PanelAdminComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
-    initPlugins();
+    customInitFunctions();
   }
 
 }

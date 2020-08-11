@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { Router } from '@angular/router';
+
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -17,7 +19,9 @@ export class UserService {
   public userToken: string;
   public id: number;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router) {
     this.URL = 'http://localhost:8000/api/auth/'; /*LOCAL*/
     /*this.URL = 'http://52.201.212.27/api/auth/'; /*PRODUCCION*/
     this.headers = new HttpHeaders().set('Content-Type','application/json');
@@ -53,6 +57,7 @@ export class UserService {
     localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('expira');
+    this.router.navigateByUrl('/login');
   }
 
   private guardarToken(token: string){

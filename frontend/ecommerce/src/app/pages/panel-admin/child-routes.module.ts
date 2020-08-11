@@ -12,8 +12,10 @@ import { GestionProductosComponent } from './gestion-productos/gestion-productos
 import { CrearProductoComponent } from './gestion-productos/crear-producto/crear-producto.component';
 
 import { GestionOrdenesComponent } from './gestion-ordenes/gestion-ordenes.component';
+import { CrearOrdenComponent } from './gestion-ordenes/crear-orden/crear-orden.component';
 
 import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
+
 
 
 const childAdminRoutes: Routes = [
@@ -64,6 +66,12 @@ const childAdminRoutes: Routes = [
         component: GestionOrdenesComponent,
         canActivate: [AdminGuard],
         data: {titulo: 'Control de Ordenes de productos'}
+    },
+    {
+        path:'ordenes/add',
+        component: CrearOrdenComponent,
+        canActivate: [AdminGuard],
+        data: {titulo:'Crear nueva orden'}
     }
 ];
 
