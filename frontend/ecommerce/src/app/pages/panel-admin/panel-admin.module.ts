@@ -15,6 +15,7 @@ import { CrearProductoComponent } from './gestion-productos/crear-producto/crear
 import { GestionOrdenesComponent } from './gestion-ordenes/gestion-ordenes.component';
 import { CrearOrdenComponent } from './gestion-ordenes/crear-orden/crear-orden.component';
 import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
         CrearProductoComponent,
         GestionOrdenesComponent,
         CrearOrdenComponent,
-        PerfilAdminComponent
+        PerfilAdminComponent,
+        DashboardComponent
     ],
     exports: [
         PanelAdminComponent,

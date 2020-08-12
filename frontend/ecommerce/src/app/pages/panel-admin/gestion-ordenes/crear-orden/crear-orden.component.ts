@@ -38,6 +38,7 @@ export class CrearOrdenComponent implements OnInit {
     this.obtenerStatus();
     this.obtenerProducts();
     this.obtenerUsuarios();
+    this.total_a_Pagar();
   }
 
   crearFormulario(){
@@ -63,10 +64,11 @@ export class CrearOrdenComponent implements OnInit {
   obtenerProducts(){
     this.orderService.getProducts().subscribe(
       ({total, products})=>{
+        this.cargado = true;
         this.totalProductos = total;
         this.productos = products;
-        this.cargado = true;
         
+        //console.log(this.productos);
       }
     )
   }
@@ -82,9 +84,15 @@ export class CrearOrdenComponent implements OnInit {
   }
 
   total_a_Pagar(){
-    let price = this.productos['price'];
-    console.log('price', price);
-    let total;
+    let price;
+    if(this.cargado){
+      price = this.productos['price'];
+    }
+    
+    console.log('form', this.formOrder);
+    let cantidad = this.formOrder.value.cantidad;
+    let total = price * cantidad;
+    console.log('total', total);
   }
 
   onFormOrder(){

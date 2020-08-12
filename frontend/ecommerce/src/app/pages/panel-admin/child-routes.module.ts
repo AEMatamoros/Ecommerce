@@ -16,9 +16,17 @@ import { CrearOrdenComponent } from './gestion-ordenes/crear-orden/crear-orden.c
 
 import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 
 const childAdminRoutes: Routes = [
+    {
+        path: 'datos',
+        component: DashboardComponent,
+        canActivate: [AdminGuard],
+        data: {titulo: 'Dashboard'}
+    },
     {
         path: 'perfil-admin',
         component: PerfilAdminComponent,
