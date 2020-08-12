@@ -13,6 +13,8 @@ export class ComprasComponent implements OnInit {
   public productos;
   public productosImagenes;
   public trueArray = [];
+  public busquedaArray = [];
+  public encontrados = [];
 
  /*  public producto; */
 
@@ -21,9 +23,23 @@ export class ComprasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /* this.getProducts();
-    this.getProductsImage(); */
+
     this.getDatos();
+  }
+
+  buscarProducto( termino:string) {
+    termino = termino.toLowerCase();
+    this.encontrados = [];
+    for (let producto of this.busquedaArray) {
+      let prodName = producto.product_id.name.toLowerCase();
+      let prodDesc = producto.product_id.description.toLowerCase();
+      if (prodName.indexOf(termino) >= 0 || prodDesc.indexOf(termino) >= 0 ) {
+        this.encontrados.push(producto);
+      }
+    }
+    console.log(this.encontrados);
+    this.trueArray = [];
+
   }
 
 
@@ -44,11 +60,12 @@ export class ComprasComponent implements OnInit {
           for (let prod of this.productos ) {
             for (let prodImg of this.productosImagenes) {
               if (prodImg.product_id.id === prod.id) {
-                this.trueArray.push([prod, prodImg]);
+                this.trueArray.push(prodImg);
                 break;
               }
             }
           }
+          this.busquedaArray = this.trueArray;
           // console.log(this.trueArray);
 
           });

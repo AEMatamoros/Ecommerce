@@ -47,8 +47,8 @@
   <div class="div-cuerpo">
 
     <div class="div-busqueda input-group md-form form-sm form-2 pl-0 ">
-      <input class="form-control barra-busqueda" type="text" placeholder="Buscar..." aria-label="Search">
-      <a href="#"><img class="icono-buscar" src="assets/icons/buscar.png" height="38" alt=""></a>
+      <input #buscarTexto (keyup)="buscarProducto(buscarTexto.value)" class="form-control barra-busqueda" type="text" placeholder="Buscar..." aria-label="Search">
+      <a (click)="buscarProducto(buscarTexto.value)" ><img class="icono-buscar" src="assets/icons/buscar.png" height="38" alt=""></a>
     </div>
 
     <div class="row" style="margin-right: 1%;">
@@ -57,26 +57,21 @@
       <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas" *ngFor="let producto of trueArray ; let i = index;">
 
           <div class="contenedor-img text-center">
-            <a [routerLink]="['/detalle',producto[0].id]">
-            <img src="{{producto[1].images_id.img_route}}" class="estilo-img img-fluid" alt="">
+            <a [routerLink]="['/detalle',producto.product_id.id]">
+            <img src="{{producto.images_id.img_route}}" class="estilo-img img-fluid" alt="">
             </a>
           </div>
-
-
-
           <div class=" flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front" >
                 <label for="" class="label-desc">
-                  {{ producto[0].name }}
-
+                  {{ producto.id }}
                 </label><br/>
                 <strong>
-                  HNL. {{ producto[0].price }}
+                  HNL. {{ producto.product_id.price }}
                 </strong>
               </div>
               <div class="flip-card-back">
-
                 <a href="" class="btn btn-carrito">Agregar al carrito</a>
               </div>
             </div>
@@ -85,7 +80,32 @@
       </div>
 
 
+      <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas" *ngFor="let pro of encontrados ; let i = index;">
+        <div class="contenedor-img text-center">
+          <a [routerLink]="['/detalle',pro.product_id.id]">
+          <img src="{{pro.images_id.img_route}}" class="estilo-img img-fluid" alt="">
+          </a>
+        </div>
+        <div class=" flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front" >
+              <label for="" class="label-desc">
+                {{ pro.id }}
+              </label><br/>
+              <strong>
+                HNL. {{ pro.product_id.price }}
+              </strong>
+            </div>
+            <div class="flip-card-back">
+              <a href="" class="btn btn-carrito">Agregar al carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+
   </div>
 
   <router-outlet></router-outlet>
