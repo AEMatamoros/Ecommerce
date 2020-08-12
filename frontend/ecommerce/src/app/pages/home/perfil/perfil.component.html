@@ -1,16 +1,19 @@
 
-<div class="container bootstrap snippet">
+<ng-container *ngFor="let cuenta of cuentas">
+<div class="container bootstrap  " *ngIf="cuenta.id==cuenta_id" >
+    <form action="">
     <div class="row">
   	<div class="col-sm-3 " ><!--left col-->
       <br>
       <div class="text-center">
         <div class="uno">
-            <!--left col<img src="{{imageportada}}" class="img-thumbnail imag" alt="avatar">-->
-            <a href="{{imageportada}}"></a>
+            <img src="{{cuenta.user_img.img_route}}" class="img-thumbnail imag" alt="avatar">
+            <a href="{{cuenta.user_img.img_route}}"></a>
         </div>
         <br>
-        <div class="col-sm-10"><h5> {{nombre +' '+ apellido}} </h5></div>
-             <button type="button" class="btn btn-primary btn-lx botones">Cambiar foto</button>
+        <div class="col-sm-10 text-center"><h5> {{cuenta.first_name +' '+ cuenta.last_name}} </h5></div>
+             <input type="file" id="selectedFile" style="display: none;" />
+             <input type="button" class="btn btn-primary btn-lx botones" value="Nueva imagen de perfil" onclick="document.getElementById('selectedFile').click();" />
         </div>
         <hr>
           <ul class="list-group">
@@ -35,51 +38,32 @@
             <div class="tab-pane active" id="home">
                 <hr>
                  <section>
-                    <img src="{{imageportada}}" class="img-fluid modelo" alt="Responsive image">
+                    <img src="{{cuenta.cover_img.img_route}}" class=" modelo" alt="Responsive image" width="100%" height="300px">
                     <div class="col-md-6 mb-3">
-                    <button type="button" class="btn btn-primary btn-lx botones">Cambiar portada</button>
+                        <input type="file" id="selectedFile2" style="display: none;" />
+                        <input type="button" class="btn btn-primary btn-lx botones" value="Nuevo fondo de usuario" onclick="document.getElementById('selectedFile2').click();" />
                     </div>
                   </section>
               <form class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Nombre">
+                    <input type="text" class="form-control" placeholder="{{cuenta.first_name}}">
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Apellido">
+                    <input type="text" class="form-control" placeholder="{{cuenta.last_name}}">
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Correo">
+                    <input type="text" class="form-control" placeholder="{{cuenta.email}}">
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="email" class="form-control" placeholder="Telefono">
+                    <input type="email" class="form-control" placeholder="{{cuenta.phone_number}}">
                     </div>
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Pais" id="inputCity">
-                    </div>
-                    <div class="form-row col-md-6">
-                        <div class="form-group col-md-6">
-                            <input type="text" placeholder="Estado" class="form-control" id="inputCity">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <select id="inputState" class="form-control">
-                                <option selected>+504</option>
-                                <option>+502</option>
-                                <option>+507</option>
-                                <option>+506</option>
-                                <option>+52</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <input type="text" class="form-control" placeholder="Correo">
-                    </div>
+                    
+                    
                     <div class="col-md-6 mb-3">
                         <input type="tel" class="form-control" placeholder="Telefono">
                     </div>
-                    <div class="col-md-6 mb-3">
-                    <textarea class="form-control" placeholder="Descripción" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
+                    
                     <div class="form-row col-md-6">
                         <div class="form-group col-md-6">
                             <h6>Fecha nacimiento</h6>
@@ -142,6 +126,9 @@
         </div><!--/tab-content-->
 
     </div><!--/col-9-->
+</form>
 </div><!--/row-->
 
+</ng-container>
+    
                                                       

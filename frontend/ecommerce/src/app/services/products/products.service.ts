@@ -23,15 +23,15 @@ export class ProductsService {
       'Content-Type':  'application/json',
     })
   };
-  /*API_Url_Products='http://52.201.212.27/api/viewset/product/'
+  API_Url_Products='http://52.201.212.27/api/viewset/product/'
   API_Url_Currency='http://52.201.212.27/api/viewset/currency/'
   API_Url_Category='http://52.201.212.27/api/viewset/category/'
-  API_Url_Product_images="http://52.201.212.27/api/viewset/product_image/"*/
+  API_Url_Product_images="http://52.201.212.27/api/viewset/product_image/"
 
-  API_Url_Products='http://localhost:8000/api/viewset/product/';
+  /*API_Url_Products='http://localhost:8000/api/viewset/product/';
   API_Url_Currency='http://localhost:8000/api/viewset/currency/';
   API_Url_Category='http://localhost:8000/api/viewset/category/';
-  API_Url_Product_images="http://localhost:8000/api/viewset/product_image/";
+  API_Url_Product_images="http://localhost:8000/api/viewset/product_image/";*/
   
   //Productos
   getProducts(){
