@@ -55,7 +55,7 @@
                             <td>{{cuenta.first_name}} {{ cuenta.last_name }}</td>
                             <td>{{cuenta.phone_number}}</td>
                             <td>{{cuenta.email}}</td>
-                            <td *ngIf="cuenta.is_superuser">USER NORMAL</td>
+                            <td *ngIf="!cuenta.is_admin">USER NORMAL</td>
                             <td *ngIf="cuenta.is_admin">ADMIN</td>
                             
                             <td class="text-nowrap text-center">

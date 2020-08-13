@@ -72,7 +72,4 @@ export class GestionCuentasComponent implements OnInit {
     this.obtenerCuentasPaginadas();
   }
 
-  
-
-  
 }
