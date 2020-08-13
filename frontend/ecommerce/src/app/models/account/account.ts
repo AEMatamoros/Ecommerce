@@ -4,6 +4,7 @@ import {Image} from '../general/general-models'
 export class Account {
     constructor(
         public id: number,
+        public direction:Direction[],
         public email: string,
         public first_name: string,
         public last_name: string,
