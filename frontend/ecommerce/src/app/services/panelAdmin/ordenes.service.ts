@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpHeaders, HttpClient} from '@angular/common/http';
 
 //rxjs
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 //Interfaces
 import { Ordenes } from '../../interfaces/ordenes';
@@ -15,6 +15,7 @@ import { Status } from 'src/app/models/general/general-models';
 import { Product } from 'src/app/models/product/product';
 import { Account } from 'src/app/models/account/account';
 import { Order } from 'src/app/models/order/order';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,12 +40,18 @@ export class OrdenesService {
 
   getOrdenes(){
     return this.http.get(this.URL+'product_order/', {headers: this.headers})
-             .pipe(map((orders: Ordenes[])=>this.orders = orders));
+            .pipe(
+               map((orders: Ordenes[])=>this.orders = orders),
+               catchError(err=>{return throwError('ERROR PETICION GET ORDENES');})
+            );
   }
 
   getOrden(id:number){
     return this.http.get(this.URL+'order/'+id+'/', {headers: this.headers})
-             .pipe(map((order: Ordenes[])=> this.orders = order));
+             .pipe(
+               map((order: Ordenes[])=> this.orders = order),
+              catchError(err=>{return throwError('ERROR PETICION GET ORDEN');})
+             );
   }
 
   getStatus(){
@@ -60,6 +67,9 @@ export class OrdenesService {
                    previous: resp.previous,
                    status
                  }
+               }),
+               catchError(err=>{
+                 return throwError('ERROR PETICION GET STATUS');
                }));
   }
 
@@ -77,7 +87,11 @@ export class OrdenesService {
                    previous: resp.previous,
                    products
                  }
-               }));
+               }),
+               catchError(err=>{
+                 return throwError('ERROR PETICION GET PRODUCTOS');
+               })
+               );
   }
 
   getUsuarios(){
@@ -96,13 +110,20 @@ export class OrdenesService {
                      previous: resp.previous,
                      accounts
                    }
+                 }),
+                 catchError(err=>{
+                   return throwError('ERROR PETICION GET USUARIOS');
                  })
                )
   }
 
   addOrden(order: Order){
     let params = JSON.stringify(order);
-    this.http.post(this.URL+'order/', params, {headers: this.headers})
+    this.http.post(this.URL+'order/', params, {headers: this.headers}).pipe(
+      catchError(err=>{
+        return throwError('ERROR PETICION AGREGAR ORDEN');
+      })
+    )
   }
 
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import {Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 /*Modelo*/
 import { User } from 'src/app/models/auth/user';
@@ -36,6 +36,9 @@ export class UserService {
                       map(response =>{
                         this.guardarToken(response['token']);
                         return response;
+                      }),
+                      catchError( error=>{
+                        return throwError('ERROR')
                       })
                     );
 
@@ -49,6 +52,9 @@ export class UserService {
                             this.guardarToken(response['token']);
                             this.guardarID(response['pk']);
                             return response;
+                        }),
+                        catchError(error=>{
+                          return throwError('ERROR');
                         })
                     );
   }

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +19,21 @@ export class SubirArchivoService {
     const formData = new FormData();
     formData.append('img_route', imgFile);
 
-    return this.http.post(this.URL+'image/', formData);
+    return this.http.post(this.URL+'image/', formData).pipe(
+      catchError(err=>{
+        return throwError('ERROR PETICION SUBIR IMAGEN')
+      })
+    );
   }
 
   actualizarFoto(imgFileUpdate: File, id:number){
     const formData = new FormData();
     formData.append('img_route', imgFileUpdate);
     
-    return this.http.put(this.URL+'image/'+id+'/', formData);
+    return this.http.put(this.URL+'image/'+id+'/', formData).pipe(
+      catchError(err=>{
+        return throwError('ERROR PETICION ACTUALIZAR IMAGEN');
+      })
+    );
   }
 }

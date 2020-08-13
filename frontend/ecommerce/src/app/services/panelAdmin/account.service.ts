@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 //Interfaces
 import {CargarCuentas } from 'src/app/interfaces/cargar-cuentas';
@@ -38,7 +38,10 @@ export class AccountService {
     
     return this.http.get(this.URL+'account/', {headers: this.headers})
                .pipe(
-                 map((accounts: Account[]) => this.accounts = accounts)
+                 map((accounts: Account[]) => this.accounts = accounts),
+                 catchError(error=>{
+                   return throwError('ERROR, PETICION OBTENER CUENTAS');
+                 })
                );
   }
 
@@ -49,6 +52,9 @@ export class AccountService {
         const account = response
         this.account = account;
         return this.account;
+      }),
+      catchError(error=>{
+        return throwError('ERROR, PETICION OBTENER CUENTA');
       })
     )
   }
@@ -70,6 +76,9 @@ export class AccountService {
                       cuentas
               
                     };
+                 }),
+                 catchError(err=>{
+                   return throwError('ERROR PETICION CUENTAS PAGINADAS');
                  })
                )
   }
@@ -77,24 +86,30 @@ export class AccountService {
   obtenerImagenes(){
     return this.http.get(this.URL+'image/', {headers: this.headers})
                .pipe(
-                 map((image: Image[]) => this.images = image)
+                 map((image: Image[]) => this.images = image),
+                 catchError(err=>{
+                   return throwError('ERROR PETICION OBTENER IMAGENES');
+                 })
                );
   }
 
   crearDireccion(direccion: Direccion){
     let params = JSON.stringify(direccion);
     return this.http.post(this.URL+'direction/', params, {headers: this.headers})
-               .pipe(map(resp =>{
-                 console.log(resp);
-                 return resp;
-               })
+               .pipe(
+                 map(resp =>{ return resp; }),
+                 catchError(err=>{
+                   return throwError('ERROR PETICION CREAR DIRECCION');
+                 })
                ); 
   }
 
   editarDireccion(direccion: Direccion){
     let params = JSON.stringify(direccion);
     return this.http.put(this.URL+'direction/', params, {headers: this.headers})
-                    .pipe(map(resp=>{console.log(resp); return resp;}));
+                    .pipe(
+                      map(resp=>{ return resp;}),
+                      catchError(err=>{ return throwError('ERROR PETICION EDITAR DIRECCION')}));
   }
 
   crearCuenta(account: Admin_Account): Observable<any>{
@@ -102,8 +117,11 @@ export class AccountService {
     return this.http.post(this.URL+'account/', params, {headers: this.headers})
                .pipe(
                  map( response => {
-                   console.log(response);
+                   //console.log(response);
                    return response;
+                 }),
+                 catchError(err=>{
+                   return throwError('ERROR PETICION CREAR CUENTA');
                  })
                );
   }
@@ -113,23 +131,29 @@ export class AccountService {
     return this.http.put(this.URL+'account/'+id+'/', params, {headers: this.headers})
                     .pipe(
                       map( resp => {
-                        console.log(resp);
+                        //console.log(resp);
                         return resp;
+                      }),
+                      catchError(error=>{
+                        return throwError('ERROR PETICION ACTUALIZAR CUENTA');
                       })
                     )
   }
 
   borrarCuenta(id:number){
     
-    console.log('token ',this.auth.userToken);
+    //console.log('token ',this.auth.userToken);
     this.headers = this.headers.append('Authorization', 'Token '+this.auth.userToken);
-    console.log(this.headers);
+    //console.log(this.headers);
 
     return this.http.delete(this.URL+'account/'+id+'/', {headers: this.headers})
                     .pipe(
                       map(resp => {
-                        console.log(resp);
+                        //console.log(resp);
                         return resp;
+                      }),
+                      catchError(err=>{
+                        return throwError('ERROR PETICION BORRAR CUENTA');
                       })
                     )
   }

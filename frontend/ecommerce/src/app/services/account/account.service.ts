@@ -25,12 +25,21 @@ export class AccountService {
 
   getAccounts(){
     return this.http.get<Account[]>(this.API_Url_Account,this.httpOptions)
+               .pipe(
+                 catchError(err=>{return throwError('ERROR GET ACCOUNTS')})
+               );
   }
   getAccount(id){
-    console.log(this.API_Url_Account+''+id+"/");
+    //console.log(this.API_Url_Account+''+id+"/");
     return this.http.get<Account[]>(this.API_Url_Account+''+id+"/",this.httpOptions)
+               .pipe(
+                 catchError(err=>{return throwError('ERROR GET ACCOUNT')})
+               );
   }
   putAccount(id,account){
     return this.http.put<Account[]>(this.API_Url_Account+''+id+"/",JSON.stringify(account),this.httpOptions)
+               .pipe(
+                 catchError(err=>{return throwError('ERROR PUT ACCOUNT')})
+               );
   }
 }
