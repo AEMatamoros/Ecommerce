@@ -43,11 +43,9 @@ export class GestionProductosComponent implements OnInit {
       this.desde = 1;
     } else if ( this.desde >= paginas ) {
       this.desde -= paginas;
-      
     }
     
     this.obtenerProductos();
-    
     
   }
 

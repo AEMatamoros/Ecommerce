@@ -2,9 +2,9 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">Productos ( <span>22</span> )</h3>
+                <h3 class="card-title">Productos ( <span *ngIf="cargado">{{totalProductos}}</span> )</h3>
                 <hr>
-                <img src="assets/images/gallery/chair.jpg" alt="" class="w100 img-thumbnail" >
+                <img src="assets/images/ecommerce.jpg" alt="" class="w100 img-thumbnail" >
                
             </div>
             <div class="card-footer">
@@ -17,13 +17,13 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">Productos ( <span>22</span> )</h3>
+                <h3 class="card-title">Usuarios ( <span *ngIf="cargado">{{totalUsuarios}}</span> )</h3>
                 <hr>
-                <img src="assets/images/gallery/chair.jpg" alt="" class="w100 img-thumbnail" >
+                <img src="assets/images/usuarios.png" alt="" class="w100 img-thumbnail" >
                
             </div>
             <div class="card-footer">
-                <button (click)="redirigir('u')" class="btn-block btn-primary">Ver productos</button>
+                <button (click)="redirigir('u')" class="btn-block btn-primary">Ver Usuarios</button>
             </div>
 
         </div>
@@ -32,14 +32,14 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">Productos ( <span>22</span> )</h3>
+                <h3 class="card-title">Ordenes ( <span *ngIf="cargado">{{totalOrdenes}}</span> )</h3>
                 <hr>
-                <img src="assets/images/gallery/chair.jpg" alt="" class="w100 img-thumbnail" >
+                <img src="assets/images/delivery.jpg" alt="" class="w100 img-thumbnail" >
                
             </div>
             <div class="card-footer">
                 <button (click)="redirigir('o')" class="btn-block btn-primary">
-                    Ver productos
+                    Ver Ordenes
                 </button>
             </div>
 
