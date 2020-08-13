@@ -12,6 +12,8 @@ export class GestionProductosComponent implements OnInit {
   public status:boolean = false;
   public message:string = '';
   public products: any;
+  public totalProducts: number;
+  public desde:number = 1;
  
   constructor(
     private productService: ProductsService
@@ -22,14 +24,31 @@ export class GestionProductosComponent implements OnInit {
   }
 
   obtenerProductos(){
-    this.productService.getProductsImages().subscribe(
+    this.productService.getProductsImagesPages(this.desde).subscribe(
       resp => {
         this.cargado = true;
         this.products = resp['results'];
+        this.totalProducts = resp['count'];
         console.log(resp);
       },
       error => console.log(<any>error)
     )
+  }
+
+  cambiarPagina(valor: number){
+    this.desde += valor;
+    let paginas = Math.round(this.totalProducts / 5);
+    
+    if ( this.desde < 0 ) {
+      this.desde = 1;
+    } else if ( this.desde >= paginas ) {
+      this.desde -= paginas;
+      
+    }
+    
+    this.obtenerProductos();
+    
+    
   }
 
   borrarProducto(producto: any){

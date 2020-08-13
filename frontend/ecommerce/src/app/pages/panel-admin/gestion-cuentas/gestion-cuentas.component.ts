@@ -61,11 +61,12 @@ export class GestionCuentasComponent implements OnInit {
 
   cambiarPagina( valor: number ) {
     this.desde += valor;
+    let paginas = Math.round(this.totalCuentas / 5);
     
     if ( this.desde < 0 ) {
       this.desde = 1;
-    } else if ( this.desde >= this.totalCuentas ) {
-      this.desde -= valor; 
+    } else if ( this.desde >= paginas ) {
+      this.desde -= paginas; 
     }
 
     this.obtenerCuentasPaginadas();

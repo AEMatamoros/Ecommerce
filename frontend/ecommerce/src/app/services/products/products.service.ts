@@ -10,6 +10,7 @@ import { AdminProduct } from 'src/app/models/product/AdminProduct';
 import { Category } from 'src/app/models/product/category';
 import { Currency} from 'src/app/models/product/currency';
 import { ProductImages} from 'src/app/models/product/product-images';
+import { CargarProductos } from 'src/app/interfaces/cargar-product';
 
 
 
@@ -23,15 +24,15 @@ export class ProductsService {
       'Content-Type':  'application/json',
     })
   };
-  API_Url_Products='http://52.201.212.27/api/viewset/product/'
+  /*API_Url_Products='http://52.201.212.27/api/viewset/product/'
   API_Url_Currency='http://52.201.212.27/api/viewset/currency/'
   API_Url_Category='http://52.201.212.27/api/viewset/category/'
-  API_Url_Product_images="http://52.201.212.27/api/viewset/product_image/"
+  API_Url_Product_images="http://52.201.212.27/api/viewset/product_image/"*/
 
-  /*API_Url_Products='http://localhost:8000/api/viewset/product/';
+  API_Url_Products='http://localhost:8000/api/viewset/product/';
   API_Url_Currency='http://localhost:8000/api/viewset/currency/';
   API_Url_Category='http://localhost:8000/api/viewset/category/';
-  API_Url_Product_images="http://localhost:8000/api/viewset/product_image/";*/
+  API_Url_Product_images="http://localhost:8000/api/viewset/product_image/";
   
   //Productos
   getProducts(){
@@ -70,6 +71,10 @@ export class ProductsService {
   //Productos
   getProductsImages(){
     return this.http.get<ProductImages[]>(this.API_Url_Product_images)
+  }
+
+  getProductsImagesPages(desde: number){
+    return this.http.get<ProductImages[]>(this.API_Url_Product_images+'?page='+desde, this.httpOptions);
   }
 
   postProductImages(ProductImages){

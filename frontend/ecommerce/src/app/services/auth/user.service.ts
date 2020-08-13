@@ -22,8 +22,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private router: Router) {
-    /*this.URL = 'http://localhost:8000/api/auth/'; /*LOCAL*/
-    this.URL = 'http://52.201.212.27/api/auth/'; /*PRODUCCION*/
+    this.URL = 'http://localhost:8000/api/auth/'; /*LOCAL*/
+    //this.URL = 'http://52.201.212.27/api/auth/'; /*PRODUCCION*/
     this.headers = new HttpHeaders().set('Content-Type','application/json');
     this.leerToken();
   }

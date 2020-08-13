@@ -65,6 +65,10 @@ export class CrearProductoComponent implements OnInit {
   }
 
   cargarProducto(id:number){
+    if(id === undefined){
+      return false;
+    }
+
     this.productService.getProduct(id).pipe(delay(100))
         .subscribe(
           product=>{
@@ -102,7 +106,7 @@ export class CrearProductoComponent implements OnInit {
           this.imagenSubida = resp;
           this.status = 'success';
           this.message = 'Imagen subida con éxito!';
-          //console.log('imagen subida ',resp);
+          console.log('imagen subida ',resp);
         }, 
           error=> console.log(error)
         );
@@ -164,7 +168,7 @@ export class CrearProductoComponent implements OnInit {
           resp=>{
             this.status='success';
             this.message='Producto editado satisfactoriamente';
-            //console.log(resp);
+            console.log(image);
             const productImage = new AdminProductImages(0, image, resp.id);
 
             this.productService.putProductImages(id, productImage)
@@ -189,8 +193,8 @@ export class CrearProductoComponent implements OnInit {
           resp=>{
             this.status = 'success';
             this.message = 'Producto creado exitosamente!';
-            //console.log(resp);
-            const productImage = new AdminProductImages(0, image, resp['id']);
+            console.log(this.imagenSubida['id']);
+            const productImage = new AdminProductImages(0, this.imagenSubida['id'], resp['id']);
 
             this.productService.postProductImages(productImage)
                 .subscribe(
