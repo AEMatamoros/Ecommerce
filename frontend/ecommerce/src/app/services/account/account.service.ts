@@ -30,4 +30,7 @@ export class AccountService {
     console.log(this.API_Url_Account+''+id+"/");
     return this.http.get<Account[]>(this.API_Url_Account+''+id+"/",this.httpOptions)
   }
+  putAccount(id,account){
+    return this.http.put<Account[]>(this.API_Url_Account+''+id+"/",JSON.stringify(account),this.httpOptions)
+  }
 }

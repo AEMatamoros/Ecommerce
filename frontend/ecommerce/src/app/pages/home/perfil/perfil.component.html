@@ -47,21 +47,16 @@
               <form class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="{{cuenta.first_name}}">
+                    <input type="text" class="form-control" placeholder="{{cuenta.first_name}}" [(ngModel)]='accountDetail.first_name' name="first_name">
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="{{cuenta.last_name}}">
+                    <input type="text" class="form-control" placeholder="{{cuenta.last_name}}" [(ngModel)]='accountDetail.last_name' name="last_name">
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="{{cuenta.email}}">
+                    <input type="text" class="form-control" placeholder="{{cuenta.email}}" [(ngModel)]='accountDetail.email' name="email">
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="email" class="form-control" placeholder="{{cuenta.phone_number}}">
-                    </div>
-                    
-                    
-                    <div class="col-md-6 mb-3">
-                        <input type="tel" class="form-control" placeholder="Telefono">
+                    <input type="email" class="form-control" placeholder="{{cuenta.phone_number}}" [(ngModel)]='accountDetail.phone_number' name="phone_number">
                     </div>
                     
                     <div class="form-row col-md-6">
@@ -69,13 +64,14 @@
                             <h6>Fecha nacimiento</h6>
                         </div>
                         <div class="form-group col-md-6">
-                            <input class="form-control" type="date" name="fecha" min="1950-03-25" max="2002-01-01"  />
+                            <input class="form-control" type="date" name="fecha"  name="birth_day"/>
                         </div>
+                        <input class="form-control" type="text"   [(ngModel)]='accountDetail.password' name="password" value="{{cuenta.password}}" hidden />
                     </div>
                     
                     <div class="form-row col-md-6">
                         <div class=" form-group col-md-6 mb-3">
-                            <button type="button" class="btn btn-primary btn-lx botones">Guardar Cambios</button>
+                            <button type="button" class="btn btn-primary btn-lx botones" (click)="imprime()">Guardar Cambios</button>
                             
                         </div>
                         <div class=" form-group col-md-6 mb-3">
