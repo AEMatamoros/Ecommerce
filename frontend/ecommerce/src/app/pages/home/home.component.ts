@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare function initPlugins();
+declare function customInitFunctions();
 
 @Component({
   selector: 'app-inicio',
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    initPlugins();
+    customInitFunctions();
   }
 
 }
