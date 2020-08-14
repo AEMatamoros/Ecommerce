@@ -52,7 +52,6 @@ export class PerfilComponent implements OnInit {
 
     }
   }
- 
   fotoSeleccionada2(event: HtmlInputEvent){
     if(event.target.files && event.target.files[0]){
       this.imgFile2 = <File>event.target.files[0];
@@ -91,11 +90,11 @@ export class PerfilComponent implements OnInit {
 
         //Imagen 2
         this.uploadService.subirFoto(this.imgFile2)
-        .subscribe(resp => {
-          this.imagenSubida2 = resp;
+        .subscribe(resp2 => {
+          this.imagenSubida2 = resp2;
           this.status2 = 'success';
           this.message2 = 'Imagen subida con éxito!';
-          console.log('imagen subida ',resp);
+          console.log('imagen subida ',resp2);
               //SetPWD,SetDate
           this.cuentas.forEach(element => {
             if (element.id== parseInt(localStorage.getItem('id'))){

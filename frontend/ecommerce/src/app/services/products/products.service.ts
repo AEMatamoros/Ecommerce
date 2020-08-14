@@ -114,6 +114,7 @@ export class ProductsService {
   }
 
   postProductImages(ProductImages){
+    console.log(this.API_Url_Product_images)
     return this.http.post<ProductImages[]>(this.API_Url_Product_images, JSON.stringify(ProductImages),this.httpOptions)
                .pipe(
                  catchError(err=>{
@@ -121,6 +122,7 @@ export class ProductsService {
                  })
                )
   }
+  
 
   putProductImages(id,ProductImages){
     return this.http.put<ProductImages[]>(this.API_Url_Product_images+''+id+'/', JSON.stringify(ProductImages),this.httpOptions)
