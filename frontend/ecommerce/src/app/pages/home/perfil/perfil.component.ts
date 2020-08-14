@@ -116,9 +116,11 @@ export class PerfilComponent implements OnInit {
           });
           //PUT Request
           this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
-          .subscribe(data => this.accountDetail)
+          .subscribe(data => {this.accountDetail
+            alert("Se han actualizado los datos")
+            location.reload();})
           console.log("Actualizado")
-          alert("Se han actualizado los datos")
+          
               }, 
           error=> {console.log(error)
             alert("Debe seleccioar una imagen de perfil")}

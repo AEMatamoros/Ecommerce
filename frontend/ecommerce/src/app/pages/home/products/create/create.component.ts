@@ -69,7 +69,8 @@ export class CreateComponent implements OnInit {
           console.log(this.productImage)
           this.dataService.postProductImages(this.productImage)
           .subscribe(data=>{this.productImage
-          console.log("Finalizado")})
+          console.log("Finalizado")
+          location.reload();})
           
           }, 
           error=> console.log(error)

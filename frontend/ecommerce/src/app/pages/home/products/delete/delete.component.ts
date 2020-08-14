@@ -20,6 +20,7 @@ export class DeleteComponent implements OnInit {
     console.log("Actualizando")
     this.dataService.deleteProduct(this.product.id)
       .subscribe((data: {}) => {
+        location.reload();
         this.router.navigate(['/my_products'])
       })
 }
