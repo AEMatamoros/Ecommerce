@@ -17,7 +17,7 @@ interface HtmlInputEvent extends Event{
 export class PerfilComponent implements OnInit {
   constructor(private dataService:AccountService,private uploadService:SubirArchivoService,public router:Router) { }
 
-  @Input() accountDetail =  {first_name:'', last_name:'', email:'', phone_number:'',id:localStorage.getItem('id'),birth_date:'',password:''}
+  @Input() accountDetail =  {first_name:'', last_name:'', email:'', phone_number:'',id:localStorage.getItem('id'),birth_date:'',password:'',cover_img:'',user_img:''}
   cuentas:Account[]
   cuenta_id=localStorage.getItem('id')
   
@@ -26,6 +26,13 @@ export class PerfilComponent implements OnInit {
   public status: string = '';
   public message: string = '';
   public fotoSelected: string | ArrayBuffer;
+
+  public imgFile2: File;
+  public imagenSubida2: any;
+  public status2: string = '';
+  public message2: string = '';
+  public fotoSelected2: string | ArrayBuffer;
+  
   
   
   ngOnInit(){
@@ -45,30 +52,66 @@ export class PerfilComponent implements OnInit {
 
     }
   }
+ 
+  fotoSeleccionada2(event: HtmlInputEvent){
+    if(event.target.files && event.target.files[0]){
+      this.imgFile2 = <File>event.target.files[0];
 
+      const reader2 = new FileReader();
+      reader2.onload = e => this.fotoSelected2 = reader2.result;
+      reader2.readAsDataURL(this.imgFile2);
+
+    }
+  }
   //FIN
   update(){
     //Subir imagenes
+    console.log("Intentando Actualizar")
     this.uploadService.subirFoto(this.imgFile)
         .subscribe(resp => {
           this.imagenSubida = resp;
           this.status = 'success';
           this.message = 'Imagen subida con éxito!';
-          //console.log('imagen subida ',resp);
-        }, 
+          console.log('imagen subida ',resp);
+              //SetPWD,SetDate
+          this.cuentas.forEach(element => {
+            if (element.id== parseInt(localStorage.getItem('id'))){
+              this.accountDetail.password=element.password;
+              this.accountDetail.birth_date=element.birth_date.toString()
+              this.accountDetail.cover_img=this.imagenSubida.id
+            }
+          });
+          //PUT Request
+          this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
+          .subscribe(data => this.accountDetail)
+          console.log("Actualizado")
+              }, 
           error=> console.log(error)
         );
-    //SetPWD,SetDate
-    this.cuentas.forEach(element => {
-      if (element.id== parseInt(localStorage.getItem('id'))){
-        this.accountDetail.password=element.password;
-        this.accountDetail.birth_date=element.birth_date.toString()
-      }
-    });
-    //PUT Request
-    this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
-    .subscribe(data => this.accountDetail)
-    console.log("Actualizado")
+
+        //Imagen 2
+        this.uploadService.subirFoto(this.imgFile2)
+        .subscribe(resp => {
+          this.imagenSubida2 = resp;
+          this.status2 = 'success';
+          this.message2 = 'Imagen subida con éxito!';
+          console.log('imagen subida ',resp);
+              //SetPWD,SetDate
+          this.cuentas.forEach(element => {
+            if (element.id== parseInt(localStorage.getItem('id'))){
+              this.accountDetail.password=element.password;
+              this.accountDetail.birth_date=element.birth_date.toString()
+              this.accountDetail.user_img=this.imagenSubida2.id
+            }
+          });
+          //PUT Request
+          this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
+          .subscribe(data => this.accountDetail)
+          console.log("Actualizado")
+              }, 
+          error=> console.log(error)
+        );
+    
   }
 
 }
