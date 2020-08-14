@@ -65,6 +65,16 @@ export class PerfilComponent implements OnInit {
   //FIN
   update(){
     //Subir imagenes
+    try{
+    var firstname = (<HTMLInputElement>document.getElementById("first_name")).value;
+    var lastname = (<HTMLInputElement>document.getElementById("last_name")).value;
+    var phone = (<HTMLInputElement>document.getElementById("phone_number")).value;
+    var email = (<HTMLInputElement>document.getElementById("email")).value;
+    }catch{
+      alert("Todos los campos deben ser rellenados para actualizar la informacion")
+    }
+    setTimeout(function() { alert('Espere un momento antes de actualizar la pagina,se le notificara cuando el proceso haya terminado'); }, 1);
+    if(firstname!="" && lastname!="" && phone!="" && email!=""){
     console.log("Intentando Actualizar")
     this.uploadService.subirFoto(this.imgFile)
         .subscribe(resp => {
@@ -85,7 +95,8 @@ export class PerfilComponent implements OnInit {
           .subscribe(data => this.accountDetail)
           console.log("Actualizado")
               }, 
-          error=> console.log(error)
+          error=> {console.log(error)
+          alert("Debe seleccioar una imagen de portada")}
         );
 
         //Imagen 2
@@ -107,9 +118,14 @@ export class PerfilComponent implements OnInit {
           this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
           .subscribe(data => this.accountDetail)
           console.log("Actualizado")
+          alert("Se han actualizado los datos")
               }, 
-          error=> console.log(error)
+          error=> {console.log(error)
+            alert("Debe seleccioar una imagen de perfil")}
         );
+            }else{
+              alert("Debe rellear todos los campos")
+            }            
     
   }
 
