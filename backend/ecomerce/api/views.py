@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, logout
 # Create your views here.
-from .models import Account, Direction,Image,Followers, Puntuation, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method, Payment_method ,Payment_data,Order,Product_order,Log, Action
+from .models import Account, Direction,Image,Followers, Sells, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method, Payment_method ,Payment_data,Order,Product_order,Log, Action
 
 from rest_framework import serializers
 from rest_framework import viewsets
@@ -13,7 +13,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 
-from .serializer import RegistrationSerializer, DirectionSerializer, AccountSerializer, ImageSerializer, FollowersSerializar, PuntuationSerializer, ComplaintsSerializaer, CurrencySerializaer, CategorySerializer, ProductSerializer, Image_ProductSerializer, StatusSerializer, ShipingSerializer, Payment_methodSerializer, Payment_dataSerializer, OrderSerializer, ProductOrderSerializer, LogSerializer, ActionSerializer
+from .serializer import RegistrationSerializer, DirectionSerializer, AccountSerializer, ImageSerializer, FollowersSerializar, SellsSerializer, ComplaintsSerializaer, CurrencySerializaer, CategorySerializer, ProductSerializer, Image_ProductSerializer, StatusSerializer, ShipingSerializer, Payment_methodSerializer, Payment_dataSerializer, OrderSerializer, ProductOrderSerializer, LogSerializer, ActionSerializer
 
 
 class DirectionGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
@@ -162,9 +162,9 @@ class FollowGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModel
     def delete(self, request, id = None):
         return self.destroy(request, id)
 
-class PuntuationGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
-    serializer_class = PuntuationSerializer
-    queryset = Puntuation.objects.all()
+class SellsGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
+    serializer_class = SellsSerializer
+    queryset = Sells.objects.all()
     lookup_field = "id"
 
     def get(self, request, id=None):

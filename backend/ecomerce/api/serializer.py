@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Account, Direction,Image,Followers, Puntuation, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method, Payment_method ,Payment_data,Order,Product_order,Log, Action
+from .models import Account, Direction,Image,Followers, Sells, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method, Payment_method ,Payment_data,Order,Product_order,Log, Action
 
 class DirectionSerializer(serializers.ModelSerializer):
     def to_representation(self,instance):
@@ -68,13 +68,13 @@ class FollowersSerializar(serializers.ModelSerializer):
         model = Followers
         fields='__all__'
 
-class PuntuationSerializer(serializers.ModelSerializer):
+class SellsSerializer(serializers.ModelSerializer):
     def to_representation(self,instance):
-        self.fields["evaluated_user_id"]= AccountSerializer(read_only=True)
-        self.fields["evaluator_user_id"]= AccountSerializer(read_only=True)
-        return super(PuntuationSerializer ,self).to_representation(instance)
+        self.fields["seller_user_id"]= AccountSerializer(read_only=True)
+        self.fields["costumer_user_id"]= AccountSerializer(read_only=True)
+        return super(SellsSerializer ,self).to_representation(instance)
     class Meta():
-        model= Puntuation
+        model= Sells
         fields= '__all__'
 
 class ComplaintsSerializaer(serializers.ModelSerializer):

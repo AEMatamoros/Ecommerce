@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Account, Direction,Image,Followers, Puntuation, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method,Payment_data,Order,Product_order,Log
+from .models import Account, Direction,Image,Followers, Sells, Complaints, Currency, Category,Product,Image_Product, Status, Shipping_method,Payment_data,Order,Product_order,Log
 # Register your models here.
 admin.site.register(Account)
 admin.site.register(Direction)
 admin.site.register(Image)
 admin.site.register(Followers)
-admin.site.register(Puntuation)
+admin.site.register(Sells)
 admin.site.register(Complaints)
 admin.site.register(Currency)
 admin.site.register(Category)

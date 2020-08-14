@@ -173,25 +173,6 @@ class Followers(models.Model):
     class Meta():
         unique_together =['follower_id','followed_id']
 
-class Puntuation(models.Model):
-    evaluated_user_id = models.ForeignKey(Account, related_name="evaluated_user_id", null=True, on_delete=models.CASCADE, verbose_name='Evaluado')
-    evaluator_user_id = models.ForeignKey(Account, related_name="evaluator_user_id", on_delete=models.CASCADE, verbose_name='Evaluador')
-    points = models.IntegerField(verbose_name='Puntos')
-    comment = models.TextField(null=True, verbose_name='Comentario')
-    date = models.DateTimeField(auto_now_add=True)
-
-    class Meta():
-        verbose_name= "Puntuation"
-        verbose_name_plural= "Puntuations"
-        unique_together =['evaluated_user_id','evaluator_user_id']
-
-#muestra los usuarios que fueron evaluados 
-    def __str__(self):
-
-        if self.evaluated_user_id is None:
-            return self.evaluator_user_id.get_full_name()
-        else:
-            return self.evaluator_user_id.get_full_name()+' gave '+ str (self.points ) +' to '+ self.evaluated_user_id.get_full_name()
 
         
     
@@ -309,4 +290,23 @@ class Log(models.Model):
     description = models.CharField(max_length=250)
     user_id = models.ForeignKey(Account, related_name='user_log', on_delete=models.CASCADE)
     action_id = models.ForeignKey(Action, related_name='action_log', on_delete=models.CASCADE)
+
+
+class Sells(models.Model):
+    seller_user_id = models.ForeignKey(Account, related_name="evaluated_user_id", null=True, on_delete=models.CASCADE, verbose_name='Vendedor')
+    costumer_user_id = models.ForeignKey(Account, related_name="evaluator_user_id", on_delete=models.CASCADE, verbose_name='Comprador')
+    product_id = models.ForeignKey(Product,related_name="product", on_delete= models.CASCADE,verbose_name="Producto")
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta():
+        verbose_name= "sells"
+        verbose_name_plural= "sells"
+
+#muestra los usuarios que fueron evaluados 
+    def __str__(self):
+
+        if self.evaluated_user_id is None:
+            return self.seller_user_id.get_full_name()
+        else:
+            return self.seller_user_id.get_full_name()+' sell ' +' to '+ self.costumer_user_id.get_full_name()
 

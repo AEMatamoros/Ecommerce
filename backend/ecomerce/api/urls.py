@@ -3,14 +3,14 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
 
-from .views import registro_view, logout_view, LoginAuthToken, DirectionGenericView, AccountGenericView, ImageGenericView, FollowGenericView, PuntuationGenericView, ComplaintsGenericView, CurrencyGenericView, CategoryGenericView, ProductGenericView, Image_productGenericView, StatusGenericView, ShipingGenericView, Payment_MethodGenericView, Payment_dataGenericView, OrderGenericView, Product_orderGenericView, LogGenericView, ActionGenericView
+from .views import registro_view, logout_view, LoginAuthToken, DirectionGenericView, AccountGenericView, ImageGenericView, FollowGenericView, SellsGenericView, ComplaintsGenericView, CurrencyGenericView, CategoryGenericView, ProductGenericView, Image_productGenericView, StatusGenericView, ShipingGenericView, Payment_MethodGenericView, Payment_dataGenericView, OrderGenericView, Product_orderGenericView, LogGenericView, ActionGenericView
 
 router = DefaultRouter()
 router.register('direction', DirectionGenericView, basename='direction')
 router.register('account', AccountGenericView, basename='account')
 router.register('image', ImageGenericView, basename='image')
 router.register('followers', FollowGenericView, basename='follower')
-router.register('puntuation', PuntuationGenericView, basename='puntuation')
+router.register('sells', SellsGenericView, basename='sells')
 router.register('complaints', ComplaintsGenericView, basename='complaints')
 router.register('currency', CurrencyGenericView, basename='currency')
 router.register('category', CategoryGenericView, basename='category')
