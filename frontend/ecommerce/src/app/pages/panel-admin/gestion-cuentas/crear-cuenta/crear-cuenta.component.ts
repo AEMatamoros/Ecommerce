@@ -9,9 +9,12 @@ import { delay } from 'rxjs/operators';
 import { Account } from 'src/app/models/account/account';
 import { Admin_Account } from 'src/app/models/account/crear_account';
 import { Image } from 'src/app/models/general/general-models';
+import { Log } from 'src/app/models/log/log';
+import { Action } from 'src/app/models/log/log';
 
 //Servicios
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
+import { LogService } from 'src/app/services/log/log.service';
 import { SubirArchivoService } from 'src/app/services/panelAdmin/subir-archivo.service';
 
 //interfaz para imagen
@@ -31,6 +34,8 @@ export class CrearCuentaComponent implements OnInit {
   public imagenSubida: any;
   public formAccount: FormGroup;
   public account: Admin_Account;
+  public log_cuentas: Log;
+  public action_log: Action;
   public account_edit: Account[];
   public imagen: Image[] = [];
   public edit: boolean = false;
@@ -44,6 +49,7 @@ export class CrearCuentaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
+    private logService: LogService,
     private SubirArchivoService: SubirArchivoService,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -71,6 +77,10 @@ export class CrearCuentaComponent implements OnInit {
   }
 
   cargarCuenta(id:number){
+    if(id == undefined){
+      return false;
+    }
+
     this.accountService.obtenerCuenta(id).pipe(delay(100))
         .subscribe(
           account => {
@@ -180,8 +190,19 @@ export class CrearCuentaComponent implements OnInit {
             .subscribe(resp => {
               this.status = 'success';
               this.message = 'Cuenta actualizada satisfactoriamente';
-              this.router.navigateByUrl('admin/cuentas');
+              
               //console.log(resp);
+              
+              this.action_log = new Action(0, 'CRUD ACCOUNT DE '+this.account.email);
+              this.logService.postAction(this.action_log).subscribe(
+                resp=>{
+                  //console.log(resp);
+                  this.log_cuentas = new Log('EDITAR ACCOUNT DE'+this.account.email, id, resp['id'])
+                  this.logService.postLog(this.log_cuentas).subscribe( resp=>{ console.log(resp); } )
+                }, 
+                error=>{ console.log(<any> error); }
+              )
+              this.router.navigateByUrl('admin/cuentas');
             },
             error=>{
               this.message = 'Cuenta no se pudo actualizar';
@@ -195,9 +216,18 @@ export class CrearCuentaComponent implements OnInit {
             this.message = 'Cuenta creada satisfactoriamente';
             //console.log(this.message);
             //console.log(resp);
+            this.action_log = new Action(0, 'CRUD ACCOUNT DE '+this.account.email);
+              this.logService.postAction(this.action_log).subscribe(
+                resp=>{
+                  //console.log(resp);
+                  this.log_cuentas = new Log('CREAR ACCOUNT DE'+this.account.email, this.account.id, resp['id'])
+                  this.logService.postLog(this.log_cuentas).subscribe( resp=>{ console.log(resp); } )
+                }, 
+                error=>{ console.log(<any> error); }
+              )
+
             this.router.navigateByUrl('admin/cuentas');
           }, error=>{
-            
             this.message = 'No se podido crear la cuenta';
             //console.log(this.messageCuenta);
             console.log(error);

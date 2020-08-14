@@ -4,11 +4,10 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 //Modelos
 import { Status } from 'src/app/models/general/general-models';
 import { Product } from 'src/app/models/product/product';
+import { Account } from 'src/app/models/account/account';
 
 //Servicios
 import { OrdenesService } from 'src/app/services/panelAdmin/ordenes.service';
-import { AccountService } from 'src/app/services/panelAdmin/account.service';
-import { Account } from 'src/app/models/account/account';
 
 @Component({
   selector: 'app-crear-orden',
@@ -38,7 +37,6 @@ export class CrearOrdenComponent implements OnInit {
     this.obtenerStatus();
     this.obtenerProducts();
     this.obtenerUsuarios();
-    this.total_a_Pagar();
   }
 
   crearFormulario(){
@@ -96,6 +94,6 @@ export class CrearOrdenComponent implements OnInit {
   }
 
   onFormOrder(){
-
+    console.log(this.formOrder.value);
   }
 }

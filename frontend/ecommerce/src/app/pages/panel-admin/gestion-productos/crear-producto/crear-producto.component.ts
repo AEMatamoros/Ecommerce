@@ -5,12 +5,18 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 //rxjs
 import { delay } from 'rxjs/operators';
 
+//Modelos
+import { AdminProduct } from 'src/app/models/product/AdminProduct';
+import { AdminProductImages } from 'src/app/models/product/AdminProductImage';
+import { Log } from 'src/app/models/log/log';
+import { Action } from 'src/app/models/log/log';
+
 //Servicios
 import { SubirArchivoService } from 'src/app/services/panelAdmin/subir-archivo.service';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
-import { AdminProduct } from 'src/app/models/product/AdminProduct';
-import { AdminProductImages } from 'src/app/models/product/AdminProductImage';
+import { LogService } from 'src/app/services/log/log.service';
+
 //interfaz para imagen
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget
@@ -27,6 +33,8 @@ export class CrearProductoComponent implements OnInit {
   public status:string = '';
   public message:string = '';
   public formProduct: FormGroup;
+  public log_cuentas: Log;
+  public action_log: Action;
   public products: any;
   public product_edit: any;
   public categories: any;
@@ -40,6 +48,7 @@ export class CrearProductoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private subirArchivo: SubirArchivoService,
+    private logService: LogService,
     private productService: ProductsService,
     private accountService: AccountService
   ) {
@@ -106,7 +115,7 @@ export class CrearProductoComponent implements OnInit {
           this.imagenSubida = resp;
           this.status = 'success';
           this.message = 'Imagen subida con éxito!';
-          console.log('imagen subida ',resp);
+          //console.log('imagen subida ',resp);
         }, 
           error=> console.log(error)
         );
@@ -119,9 +128,7 @@ export class CrearProductoComponent implements OnInit {
         this.categories = resp['results'];
         //console.log(resp);
       },
-      error => {
-        console.log(<any> error);
-      }
+      error => { console.log(<any> error); }
     )
   }
 
@@ -176,16 +183,21 @@ export class CrearProductoComponent implements OnInit {
                   resp=>{
                     this.status = 'success';
                     //console.log(resp);
+                    this.action_log = new Action(0, 'CRUD PRUDUCT '+product.name);
+                    this.logService.postAction(this.action_log).subscribe(
+                          resp=>{
+                              //console.log(resp);
+                              this.log_cuentas = new Log('EDITAR ACCOUNT DE'+product.name, id, resp['id'])
+                              this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
+                          }, 
+                          error=>{console.log(<any> error);}
+                    )
                   },
-                  error =>{
-                    console.log(<any> error);
-                  }
+                  error =>{ console.log(<any> error); }
                 );
             this.router.navigateByUrl('admin/productos');
           },
-          error=>{
-            console.log(<any>error);
-          }
+          error=>{ console.log(<any>error); }
         )
 
       }else{
@@ -200,17 +212,22 @@ export class CrearProductoComponent implements OnInit {
                 .subscribe(
                   resp=>{
                     this.status = 'success';
+                    this.action_log = new Action(0, 'CRUD PRUDUCT '+product.name);
+                    this.logService.postAction(this.action_log).subscribe(
+                          resp=>{
+                              //console.log(resp);
+                              this.log_cuentas = new Log('AGREGAR PRODUCT DE'+product.name, productImage.product_id['id'], resp['id'])
+                              this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
+                          }, 
+                          error=>{console.log(<any> error);}
+                    )
                     //console.log(resp);
                   },
-                  error =>{
-                    console.log(<any> error);
-                  }
+                  error =>{ console.log(<any> error); }
                 );
             this.router.navigateByUrl('admin/productos');
           },
-          error=>{
-            console.log(<any>error);
-          }
+          error=>{ console.log(<any>error); }
         )
       }
       
