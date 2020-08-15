@@ -8,7 +8,7 @@
                     <span>{{ message }}, Llena los datos</span>
                 </div>
                 
-                <form [formGroup]="formOrder" (ngSubmit)="onFormOrder()" class="form-horizontal p-t-20">
+                <form #OrderForm="ngForm" (ngSubmit)="onFormOrder(OrderForm)" class="form-horizontal p-t-20">
                     <div class="form-group row">
                         <label class="col-sm-3 control-label">Producto</label>
                         <div class="col-sm-9">

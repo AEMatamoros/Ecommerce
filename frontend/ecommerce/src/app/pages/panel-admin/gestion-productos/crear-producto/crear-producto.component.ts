@@ -85,7 +85,7 @@ export class CrearProductoComponent implements OnInit {
               this.router.navigateByUrl('admin/productos');
             }
             this.product_edit = product;
-            //console.log('product_edit', this.product_edit);
+            console.log('product_edit', this.product_edit);
             const productForm = {
               name: product.name,
               precio: product.price,
@@ -157,7 +157,7 @@ export class CrearProductoComponent implements OnInit {
       let descripcion = this.formProduct.value.descripcion;
       let categoria = this.formProduct.value.categoria;
       let usuario = this.formProduct.value.usuario;
-      let image;
+      let image: number;
 
       if(this.imagenSubida){
         image = this.imagenSubida['id'];
@@ -174,8 +174,9 @@ export class CrearProductoComponent implements OnInit {
         this.productService.putProduct(id, product).subscribe(
           resp=>{
             this.status='success';
-            this.message='Producto editado satisfactoriamente';
-            console.log(image);
+            this.message='Producto editado satisfactoriamente!';
+            //console.log('imagen: ',image);
+            //console.log(resp);
             const productImage = new AdminProductImages(0, image, resp.id);
 
             this.productService.putProductImages(id, productImage)
@@ -187,7 +188,7 @@ export class CrearProductoComponent implements OnInit {
                     this.logService.postAction(this.action_log).subscribe(
                           resp=>{
                               //console.log(resp);
-                              this.log_cuentas = new Log('EDITAR ACCOUNT DE'+product.name, id, resp['id'])
+                              this.log_cuentas = new Log('EDITAR PRODUCT '+product.name, id, resp['id'])
                               this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
                           }, 
                           error=>{console.log(<any> error);}

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 //Modelos
 import { Status } from 'src/app/models/general/general-models';
@@ -17,7 +16,7 @@ export class CrearOrdenComponent implements OnInit {
   public status:string;
   public message:string;
   public cargado:boolean = false;
-  public formOrder: FormGroup;
+
   public statusOrder: Status[];
   public totalStatus: number;
   public productos: Product[];
@@ -26,11 +25,11 @@ export class CrearOrdenComponent implements OnInit {
   public totalUsuarios: number;
 
   constructor(
-    private formBuilder: FormBuilder,
+    
     private orderService: OrdenesService
     
   ) {
-    this.crearFormulario();
+    
   }
 
   ngOnInit(): void {
@@ -39,16 +38,7 @@ export class CrearOrdenComponent implements OnInit {
     this.obtenerUsuarios();
   }
 
-  crearFormulario(){
-    this.formOrder = this.formBuilder.group({
-      producto: new FormControl('' ,Validators.required),
-      cantidad: ['0', [Validators.required, Validators.minLength(1)] ],
-      total: new FormControl({value:0, disabled:true}, [Validators.required, Validators.minLength(1)]),
-      status: new FormControl('', Validators.required),
-      usuario: new FormControl('', Validators.required)
-    });
-  }
-
+  
   obtenerStatus(){
     this.orderService.getStatus().subscribe(
       ({total, status})=>{
@@ -81,19 +71,8 @@ export class CrearOrdenComponent implements OnInit {
     )
   }
 
-  total_a_Pagar(){
-    let price;
-    if(this.cargado){
-      price = this.productos['price'];
-    }
-    
-    console.log('form', this.formOrder);
-    let cantidad = this.formOrder.value.cantidad;
-    let total = price * cantidad;
-    console.log('total', total);
-  }
 
   onFormOrder(){
-    console.log(this.formOrder.value);
+    
   }
 }

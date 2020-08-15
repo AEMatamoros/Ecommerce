@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let venta of ventas.results">
+              <tr *ngFor="let venta of ventas['results']">
                 <td>{{venta.costumer_user_id.first_name +' ' +venta.costumer_user_id.last_name}}</td>
                 <td>{{venta.product_id.name}}</td>
                 <td>{{venta.product_id.price}}</td>

@@ -54,15 +54,14 @@ export class GestionCuentasComponent implements OnInit {
                        .subscribe(({total, cuentas})=>{
                          this.totalCuentas = total;
                          this.cuentas = cuentas;
-                         
                          //console.log(this.cuentas);
                        });
   }
 
   cambiarPagina( valor: number ) {
     this.desde += valor;
-    let paginas = Math.round(this.totalCuentas / 5);
-    
+    let paginas = Math.round(this.totalCuentas / 9);
+  
     if ( this.desde < 0 ) {
       this.desde = 1;
     } else if ( this.desde >= paginas ) {

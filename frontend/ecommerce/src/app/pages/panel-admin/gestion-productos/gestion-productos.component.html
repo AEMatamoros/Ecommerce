@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
-                        <h4 class="card-title">Productos (<span *ngIf="cargado">{{products.length}}</span>)</h4>
+                        <h4 class="card-title">Productos (<span *ngIf="cargado">{{totalProducts}}</span>)</h4>
                         <div class="alert alert-danger" *ngIf="status">
                             <span>{{ message }}</span>
                         </div>

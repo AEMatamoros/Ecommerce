@@ -29,7 +29,7 @@ export class GestionProductosComponent implements OnInit {
         this.cargado = true;
         this.products = resp['results'];
         this.totalProducts = resp['count'];
-        console.log(resp);
+        //console.log(resp);
       },
       error => console.log(<any>error)
     )
@@ -37,7 +37,7 @@ export class GestionProductosComponent implements OnInit {
 
   cambiarPagina(valor: number){
     this.desde += valor;
-    let paginas = Math.round(this.totalProducts / 5);
+    let paginas = Math.round(this.totalProducts / 9);
     
     if ( this.desde < 0 ) {
       this.desde = 1;

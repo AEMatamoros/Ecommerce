@@ -106,6 +106,12 @@ export class ProductsService {
                )
   }
 
+  getProductImage(id: number){
+
+    return this.http.get<ProductImages>(this.API_Url_Product_images+id+'/')
+               .pipe(catchError(err=> throwError('ERROR PETICION GET PRODUCTO-IMAGEN')))
+  }
+
   getProductsImagesPages(desde: number){
     return this.http.get<ProductImages[]>(this.API_Url_Product_images+'?page='+desde, this.httpOptions)
                .pipe(

@@ -197,7 +197,7 @@ export class CrearCuentaComponent implements OnInit {
               this.logService.postAction(this.action_log).subscribe(
                 resp=>{
                   //console.log(resp);
-                  this.log_cuentas = new Log('EDITAR ACCOUNT DE'+this.account.email, id, resp['id'])
+                  this.log_cuentas = new Log('EDITAR ACCOUNT DE '+this.account.email, id, resp['id'])
                   this.logService.postLog(this.log_cuentas).subscribe( resp=>{ console.log(resp); } )
                 }, 
                 error=>{ console.log(<any> error); }
@@ -220,7 +220,7 @@ export class CrearCuentaComponent implements OnInit {
               this.logService.postAction(this.action_log).subscribe(
                 resp=>{
                   //console.log(resp);
-                  this.log_cuentas = new Log('CREAR ACCOUNT DE'+this.account.email, this.account.id, resp['id'])
+                  this.log_cuentas = new Log('CREAR ACCOUNT DE '+this.account.email, this.account.id, resp['id'])
                   this.logService.postLog(this.log_cuentas).subscribe( resp=>{ console.log(resp); } )
                 }, 
                 error=>{ console.log(<any> error); }

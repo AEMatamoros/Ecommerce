@@ -105,7 +105,7 @@ WSGI_APPLICATION = 'ecomerce.wsgi.application'
     }
 }"""
 
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -117,7 +117,7 @@ DATABASES = {
     }
 } 
 """
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -129,6 +129,16 @@ DATABASES = {
     }
 }
 """
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bddindustria',
+        'USER': 'admin',
+        'PASSWORD': 'industria123',
+        'HOST': 'bddindustria.cfi64ratdk8q.us-east-1.rds.amazonaws.com',
+        'PORT': '3306',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

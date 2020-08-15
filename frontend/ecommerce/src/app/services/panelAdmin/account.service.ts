@@ -69,12 +69,13 @@ export class AccountService {
                                             account.phone_number,account.is_admin,account.is_staff,
                                             account.is_superuser, account.user_img, account.cover_img)
                     );
+                   
                     return {
                       total: response.count,
                       next: response.next,
                       previous: response.previous,
                       cuentas
-              
+                      
                     };
                  }),
                  catchError(err=>{
