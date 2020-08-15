@@ -22,9 +22,9 @@ export class MyproductsComponent implements OnInit {
   constructor(private dataService:ProductsService ) { }
 
   ngOnInit(){
-    this.dataService.getProducts()
+    this.dataService.getAllProducts()
     .subscribe(data =>this.products=data)
-    var product_images=this.dataService.getProductsImages()
+    var product_images=this.dataService.getAllProductsImages()
     .subscribe(data =>this.products_images=data)
     this.cuenta_id= parseInt(localStorage.getItem('id')) 
     return [this.products,this.products_images]

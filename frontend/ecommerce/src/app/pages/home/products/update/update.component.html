@@ -29,10 +29,7 @@
                         </div>
                         
                         <div class="file-field form-group">
-                            <div class="btn btn-outline-success btn-sm float-left form-control">
-                                <span>Imagenes &nbsp;</span>
-                                <input type="file" multiple>
-                            </div>
+                            <input type="file" id="selectedFile{{productDetail.id}}"  (change)="fotoSeleccionada($event)"/>
                         </div> <br>
                         <hr>
                         <input type="text"  hidden [(ngModel)]='productDetail.id ' name="id">

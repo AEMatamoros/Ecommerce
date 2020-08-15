@@ -30,13 +30,21 @@ export class ProductsService {
   API_Url_Category='http://52.201.212.27/api/viewset/category/'
   API_Url_Product_images="http://52.201.212.27/api/viewset/product_image/"
   API_Url_Sells="http://52.201.212.27/api/viewset/sells/"
-
+  API_Url_all_Products="http://52.201.212.27/api/viewset/all_products/"
+  API_Url_all_Product_images="http://52.201.212.27/api/viewset/all_product_images/"
   /*API_Url_Products='http://localhost:8000/api/viewset/product/';
   API_Url_Currency='http://localhost:8000/api/viewset/currency/';
   API_Url_Category='http://localhost:8000/api/viewset/category/';
   API_Url_Product_images="http://localhost:8000/api/viewset/product_image/";*/
   
   //Productos
+  getAllProducts(){
+    return this.http.get<Product[]>(this.API_Url_all_Products).pipe(
+      catchError(err=>{
+        return throwError('ERROR PETICION GET PRODUCTS');
+      })
+    )
+  }
   getProducts(){
     return this.http.get<Product[]>(this.API_Url_Products).pipe(
       catchError(err=>{
@@ -105,7 +113,14 @@ export class ProductsService {
                  })
                )
   }
-
+  getAllProductsImages(){
+    return this.http.get<ProductImages[]>(this.API_Url_all_Product_images)
+               .pipe(
+                 catchError(err=>{
+                   return throwError('ERROR PETICION GET PRODUCTO-IMAGENES');
+                 })
+               )
+  }
   getProductImage(id: number){
 
     return this.http.get<ProductImages>(this.API_Url_Product_images+id+'/')
@@ -120,7 +135,8 @@ export class ProductsService {
                  })
                );
   }
-
+  
+  
   postProductImages(ProductImages){
     console.log(this.API_Url_Product_images)
     return this.http.post<ProductImages[]>(this.API_Url_Product_images, JSON.stringify(ProductImages),this.httpOptions)

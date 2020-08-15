@@ -46,7 +46,7 @@ export class CreateComponent implements OnInit {
   }
   ngOnInit(){
     return this.dataService.getCategory()
-      .subscribe(data =>this.categories=data);
+      .subscribe(data =>this.categories=data['results']);
   }
 
 

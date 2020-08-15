@@ -35,10 +35,10 @@ export class VendedorprofilesComponent implements OnInit {
   this.accountService.getAccount(this.cuenta_id)
     .subscribe(data =>this.cuenta=data)
 
-  this.productService.getProductsImages()
+  this.productService.getAllProductsImages()
     .subscribe(data =>this.products_images=data)
 
-  this.productService.getProducts()
+  this.productService.getAllProducts()
     .subscribe(data =>this.products=data)
   
     return [this.cuenta,this.products_images,this.products]
