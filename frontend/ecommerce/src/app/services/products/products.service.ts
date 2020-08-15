@@ -11,6 +11,7 @@ import { Category } from 'src/app/models/product/category';
 import { Currency} from 'src/app/models/product/currency';
 import { ProductImages} from 'src/app/models/product/product-images';
 import { CargarProductos } from 'src/app/interfaces/cargar-product';
+import { Ventas} from 'src/app/models/general/ventas'
 
 
 
@@ -28,6 +29,7 @@ export class ProductsService {
   API_Url_Currency='http://52.201.212.27/api/viewset/currency/'
   API_Url_Category='http://52.201.212.27/api/viewset/category/'
   API_Url_Product_images="http://52.201.212.27/api/viewset/product_image/"
+  API_Url_Sells="http://52.201.212.27/api/viewset/sells/"
 
   /*API_Url_Products='http://localhost:8000/api/viewset/product/';
   API_Url_Currency='http://localhost:8000/api/viewset/currency/';
@@ -189,5 +191,16 @@ export class ProductsService {
   deleteCurrency(id){
     return this.http.delete<Currency[]>(this.API_Url_Currency+''+id+'/',this.httpOptions)
                .pipe(catchError(err=> throwError('ERROR PETICION ELIMINAR MONEDA')));
+  }
+  //Sells
+  getSells(){
+    return this.http.get<Ventas[]>(this.API_Url_Sells)
+               .pipe(catchError(err=> throwError('ERROR PETICION GET Sell'))); 
+  }
+  postSells(sell){
+    return this.http.post<Ventas[]>(this.API_Url_Sells, JSON.stringify(sell),this.httpOptions)
+               .pipe(
+                 catchError(err=>{ return throwError('ERROR PETICION POST Sell')})
+               );
   }
 }

@@ -7,7 +7,6 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Comprador</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Precio</th>
@@ -15,12 +14,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>data</td>
+              <tr *ngFor="let venta of ventas.results">
+                <td>{{venta.costumer_user_id.first_name +' ' +venta.costumer_user_id.last_name}}</td>
+                <td>{{venta.product_id.name}}</td>
+                <td>{{venta.product_id.price}}</td>
+                <td>{{venta.date}}</td>
               </tr>
               
             </tbody>

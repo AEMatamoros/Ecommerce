@@ -72,6 +72,7 @@ class SellsSerializer(serializers.ModelSerializer):
     def to_representation(self,instance):
         self.fields["seller_user_id"]= AccountSerializer(read_only=True)
         self.fields["costumer_user_id"]= AccountSerializer(read_only=True)
+        self.fields["product_id"]= ProductSerializer(read_only=True)
         return super(SellsSerializer ,self).to_representation(instance)
     class Meta():
         model= Sells
