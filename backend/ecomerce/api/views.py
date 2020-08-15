@@ -461,3 +461,48 @@ class ActionGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModel
 
     def delete(self, request, id = None):
         return self.destroy(request, id)
+
+
+class AllProductGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
+    pagination_class = None
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+    lookup_field = "id"
+
+    def get(self, request, id=None):
+
+        if not (id):
+            return self.list(request)
+        else:
+            return self.retrieve(request)
+
+    def post(self, request,id=None):
+        return self.create(request)
+
+    def put(self, request, id= None):
+        return self.update(request, id)
+
+    def delete(self, request, id = None):
+        return self.destroy(request, id)
+
+class AllImage_productGenericView(viewsets.GenericViewSet, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin):
+    pagination_class = None
+    serializer_class = Image_ProductSerializer
+    queryset = Image_Product.objects.all()
+    lookup_field = "id"
+
+    def get(self, request, id=None):
+
+        if not (id):
+            return self.list(request)
+        else:
+            return self.retrieve(request)
+
+    def post(self, request,id=None):
+        return self.create(request)
+
+    def put(self, request, id= None):
+        return self.update(request, id)
+
+    def delete(self, request, id = None):
+        return self.destroy(request, id)
