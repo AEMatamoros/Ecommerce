@@ -19,7 +19,7 @@ export class VendedorprofilesComponent implements OnInit {
   @Input() complaint =  {problem:'', comment:'', accuser_user_id:localStorage.getItem('id'), denounced_user_id:0}
   
   cuenta_id:string;
-  cuentas:Account[];
+  cuenta:any;
   products_images:ProductImages[];
   products:Product[];
   done:boolean
@@ -32,8 +32,8 @@ export class VendedorprofilesComponent implements OnInit {
     this.done=false;
   });
 
-  this.accountService.getAccounts()
-    .subscribe(data =>this.cuentas=data)
+  this.accountService.getAccount(this.cuenta_id)
+    .subscribe(data =>this.cuenta=data)
 
   this.productService.getProductsImages()
     .subscribe(data =>this.products_images=data)
@@ -41,7 +41,7 @@ export class VendedorprofilesComponent implements OnInit {
   this.productService.getProducts()
     .subscribe(data =>this.products=data)
   
-    return [this.cuentas,this.products_images,this.products]
+    return [this.cuenta,this.products_images,this.products]
   }
 
   report(){

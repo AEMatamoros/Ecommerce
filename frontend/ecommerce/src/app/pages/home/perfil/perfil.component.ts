@@ -18,7 +18,7 @@ export class PerfilComponent implements OnInit {
   constructor(private dataService:AccountService,private uploadService:SubirArchivoService,public router:Router) { }
 
   @Input() accountDetail =  {first_name:'', last_name:'', email:'', phone_number:'',id:localStorage.getItem('id'),birth_date:'',password:'',cover_img:'',user_img:''}
-  cuentas:Account[]
+  cuenta:any;
   cuenta_id=localStorage.getItem('id')
   
   public imgFile: File;
@@ -36,8 +36,11 @@ export class PerfilComponent implements OnInit {
   
   
   ngOnInit(){
-     this.dataService.getAccounts()
-      .subscribe(data =>this.cuentas=data)
+
+     this.dataService.getAccount(this.cuenta_id)
+      .subscribe(data =>{this.cuenta=data
+      console.log(this.cuenta)}
+      )
       
     
   }
@@ -83,11 +86,11 @@ export class PerfilComponent implements OnInit {
           this.message = 'Imagen subida con éxito!';
           console.log('imagen subida ',resp);
               //SetPWD,SetDate
-          this.cuentas.forEach(element => {
+          this.cuenta.forEach(element => {
             if (element.id== parseInt(localStorage.getItem('id'))){
-              this.accountDetail.password=element.password;
-              this.accountDetail.birth_date=element.birth_date.toString()
-              this.accountDetail.cover_img=this.imagenSubida.id
+              this.accountDetail.password=this.cuenta.password;
+              this.accountDetail.birth_date=this.cuenta.birth_date.toString()
+              this.accountDetail.cover_img=this.cuenta.id
             }
           });
           //PUT Request
@@ -107,13 +110,12 @@ export class PerfilComponent implements OnInit {
           this.message2 = 'Imagen subida con éxito!';
           console.log('imagen subida ',resp2);
               //SetPWD,SetDate
-          this.cuentas.forEach(element => {
-            if (element.id== parseInt(localStorage.getItem('id'))){
-              this.accountDetail.password=element.password;
-              this.accountDetail.birth_date=element.birth_date.toString()
+          
+          
+              this.accountDetail.password=this.cuenta.password;
+              this.accountDetail.birth_date=this.cuenta.birth_date.toString()
               this.accountDetail.user_img=this.imagenSubida2.id
-            }
-          });
+            
           //PUT Request
           this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
           .subscribe(data => {this.accountDetail

@@ -17,7 +17,7 @@ export class VendedoresComponent implements OnInit {
 
   ngOnInit(){
     this.dataService.getAccounts()
-    .subscribe(data =>this.cuentas=data)
+    .subscribe(data =>this.cuentas=data['results'])
     //console.log(this.cuentas)
     this.cuenta_id= parseInt(localStorage.getItem('id')) 
     return this.cuentas

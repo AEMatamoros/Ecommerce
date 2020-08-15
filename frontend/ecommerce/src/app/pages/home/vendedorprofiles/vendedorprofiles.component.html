@@ -1,7 +1,4 @@
 <!--Portada-->
-
-<div *ngFor="let cuenta of cuentas">
-        
     <div class="col-md-12 " *ngIf="cuenta.id==cuenta_id" style="background-image: url('{{cuenta.cover_img.img_route}}');background-repeat: no-repeat;background-size: cover;background-size: 100% 100%">
         
         <div class="profile-block">
@@ -12,7 +9,6 @@
             </div>
             <strong><h2 class="ml-3">{{cuenta.first_name}} &nbsp; {{cuenta.last_name}}  </h2></strong>   
         </div>
-    </div>
     </div>
 <h1 class="text-center">Productos</h1>
 <div class="row">
