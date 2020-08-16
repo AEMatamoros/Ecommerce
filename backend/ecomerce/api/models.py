@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -173,9 +172,6 @@ class Followers(models.Model):
     class Meta():
         unique_together =['follower_id','followed_id']
 
-
-        
-    
 class Complaints(models.Model):
     accuser_user_id = models.ForeignKey(Account, related_name="accuser_user_id", on_delete=models.CASCADE, verbose_name='Denunciante')
     denounced_user_id = models.ForeignKey(Account, related_name="denounced_user_id", null=True, on_delete=models.CASCADE, verbose_name='Denunciado')
@@ -265,7 +261,6 @@ class Order(models.Model):
     isv = models.DecimalField(max_digits=10, decimal_places=2)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     direction_id = models.ForeignKey(Direction, related_name='direction_order', on_delete= models.CASCADE)
-
 
 class Product_order(models.Model):
     product_id = models.ForeignKey(Product, related_name='products', on_delete=models.CASCADE)

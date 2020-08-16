@@ -5,7 +5,7 @@
                 <h4 class="card-title">Orden de producto</h4>
                 <hr>
                 <div class="alert alert-success" *ngIf="status=='success'">
-                    <span>{{ message }}, Llena los datos</span>
+                    <span>{{ message }}</span>
                 </div>
                 
                 <form #OrderForm="ngForm" (ngSubmit)="onFormOrder(OrderForm)" class="form-horizontal p-t-20">
@@ -13,24 +13,29 @@
                         <label class="col-sm-3 control-label">Producto</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <select class="form-control" formControlName="producto">
+                                <select class="form-control" 
+                                        name="producto" 
+                                        #producto="ngModel"
+                                        [ngModel]="order.product_id">
                                     <option value="">Seleccione el producto</option>
                                     <option *ngFor="let product of productos" 
-                                            [ngValue]="product.id">{{product.name}}</option>
+                                            [value]="product.id">{{product.name}}</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <label for="" class="col-sm-3 control-label">Cantidad</label>
+                        <label for="cantidad" class="col-sm-3 control-label">Cantidad</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <input type="number"
                                        class="form-control"
-                                        min="1"
+                                       min="1"
                                        placeholder="Cantidad"
-                                       formControlName="cantidad">
+                                       name="quantity"
+                                       #quantity="ngModel"
+                                       [ngModel]="order.quantity">
                             </div>
                         </div>
                     </div>
@@ -39,23 +44,29 @@
                         <label class="col-sm-3 control-label">Estado de la Orden</label>
                         <div class="col-sm-9">
                             <div class="input-group" *ngIf="cargado">
-                                <select class="form-control" formControlName="status">
+                                <select class="form-control" 
+                                        name="status"
+                                        #status="ngModel" 
+                                        [ngModel]="order.status">
                                     <option value="">Seleccione el estado de la Orden</option>
                                     <option *ngFor="let status of statusOrder"
-                                           [ngValue]="status.id" >{{status.description}}</option>
+                                           [value]="status.id" >{{status.description}}</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 control-label">Usuario</label>
+                        <label class="col-sm-3 control-label">Direccion</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <select class="form-control" formControlName="usuario">
-                                    <option value="">Seleccione el usuario</option>
-                                    <option *ngFor="let user of usuarios"
-                                            [ngValue]="user.id">{{user.first_name}}</option>
+                                <select class="form-control" 
+                                        name="direction" 
+                                        [ngModel]="order.direction"
+                                        #direction="ngModel">
+                                    <option value="">Direccion de Envio</option>
+                                    <option *ngFor="let direction of directionsOrder"
+                                            [value]="direction.id">{{direction.direction}}</option>
                                 </select>
                             </div>
                         </div>
@@ -68,8 +79,10 @@
                                 <input  type="number"
                                         class="form-control"
                                         placeholder=""
-                                        formControlName="total">
-                                        
+                                        disabled
+                                        name="total"
+                                        #total="ngModel"
+                                        [(ngModel)]="order.total">
                             </div>
                         </div>
                     </div>

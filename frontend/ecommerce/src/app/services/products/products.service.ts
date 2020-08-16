@@ -138,16 +138,11 @@ export class ProductsService {
   
   
   postProductImages(ProductImages){
-    console.log(this.API_Url_Product_images)
+    //console.log(this.API_Url_Product_images)
     return this.http.post<ProductImages[]>(this.API_Url_Product_images, JSON.stringify(ProductImages),this.httpOptions)
-               .pipe(
-                 catchError(err=>{
-                   return throwError('ERROR PETICION CREAR PRODUCTO-IMAGEN');
-                 })
-               )
+               .pipe(catchError(err=>{return throwError('ERROR PETICION CREAR PRODUCTO-IMAGEN');}))
   }
   
-
   putProductImages(id,ProductImages){
     return this.http.put<ProductImages[]>(this.API_Url_Product_images+''+id+'/', JSON.stringify(ProductImages),this.httpOptions)
                .pipe(
