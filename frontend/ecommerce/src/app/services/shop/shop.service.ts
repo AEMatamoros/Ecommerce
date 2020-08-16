@@ -14,8 +14,8 @@ export class ShopService {
     })
   };
 
-  API_Url_Product_image='http://52.201.212.27/api/viewset/product_image/'
-  API_Url_Products='http://52.201.212.27/api/viewset/product/'
+  API_Url_Product_image='http://52.201.212.27/api/viewset/all_product_images/'
+  API_Url_Products='http://52.201.212.27/api/viewset/all_products/'
 
   getProducts(){
     return this.http.get(this.API_Url_Products);
