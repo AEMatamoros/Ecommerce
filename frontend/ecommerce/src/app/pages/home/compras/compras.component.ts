@@ -12,9 +12,15 @@ export class ComprasComponent implements OnInit {
 
   public productos;
   public productosImagenes;
+  public category;
   public trueArray = [];
   public busquedaArray = [];
   public encontrados = [];
+
+  public categoria1;
+  public categoria2;
+  public categoria3;
+  public categoria4;
 
  /*  public producto; */
 
@@ -27,25 +33,22 @@ export class ComprasComponent implements OnInit {
     this.getDatos();
   }
 
-  buscarProducto( termino:string) {
+  buscarProducto( termino: string ) {
     termino = termino.toLowerCase();
     this.encontrados = [];
     for (let producto of this.busquedaArray) {
       let prodName = producto.product_id.name.toLowerCase();
       let prodDesc = producto.product_id.description.toLowerCase();
-      if (prodName.indexOf(termino) >= 0 || prodDesc.indexOf(termino) >= 0 ) {
+      let categoria = producto.product_id.category_id.category_name.toLowerCase();
+      // console.log('holass ',termino,categoria);
+      if (prodName.indexOf(termino) >= 0 || prodDesc.indexOf(termino) >= 0 || categoria === termino ) {
         this.encontrados.push(producto);
       }
     }
     console.log(this.encontrados);
     this.trueArray = [];
-
   }
 
-
-  ngAfterViewInit() {
-
-  }
 
   getDatos() {
     this.shopService.getProducts()
@@ -56,7 +59,7 @@ export class ComprasComponent implements OnInit {
         this.shopService.getProductsImage()
           .subscribe(data => {
           this.productosImagenes = data;
-          // console.log(this.productosImagenes);
+           console.log(this.productosImagenes);
           for (let prod of this.productos ) {
             for (let prodImg of this.productosImagenes) {
               if (prodImg.product_id.id === prod.id) {
@@ -67,6 +70,16 @@ export class ComprasComponent implements OnInit {
           }
           this.busquedaArray = this.trueArray;
           // console.log(this.trueArray);
+
+          this.shopService.getCategory()
+            .subscribe(data => {
+            this.category = data['results'];
+            // console.log(this.category);
+            this.categoria1 = this.category[0].category_name;
+            this.categoria2 = this.category[1].category_name;
+            this.categoria3 = this.category[2].category_name;
+            this.categoria4 = this.category[3].category_name;
+            });
 
           });
       });

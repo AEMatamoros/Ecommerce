@@ -14,8 +14,10 @@ export class ShopService {
     })
   };
 
-  API_Url_Product_image='http://52.201.212.27/api/viewset/all_product_images/'
-  API_Url_Products='http://52.201.212.27/api/viewset/all_products/'
+  API_Url_Product_image='http://52.201.212.27/api/viewset/all_product_images/';
+  API_Url_Products='http://52.201.212.27/api/viewset/all_products/';
+  API_Url_Category='http://52.201.212.27/api/viewset/category/';
+
 
   getProducts(){
     return this.http.get(this.API_Url_Products);
@@ -23,6 +25,10 @@ export class ShopService {
 
   getProductsImage(){
     return this.http.get(this.API_Url_Product_image);
+  }
+
+  getCategory(){
+    return this.http.get(this.API_Url_Category);
   }
 
 }

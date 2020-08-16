@@ -1,5 +1,5 @@
 .sidenav {
-  height: 70%;
+  height: 85%;
   width: 18%;
   /* position: fixed; */
   position: absolute;
@@ -89,9 +89,25 @@
   border: 1px solid #ffca28;
 }
 
+.centrar-texto {
+  display:block;
+  text-align: center;
+
+}
+.cat-padre {
+  color: #f8ad21;
+  font-weight: 700;
+}
+.cat-hija {
+  color: #f8ad21;
+  font-weight: 400;
+}
+
+
+
 .icono-buscar {
-  border: 1px solid #ffca28;
-  background-color: #ffca28;
+  border: 1px solid #f8ad21;
+  background-color: #f8ad21;
   border-radius: 0px 13px 13px 0px;
 }
 
