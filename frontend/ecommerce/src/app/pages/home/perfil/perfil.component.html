@@ -44,17 +44,38 @@
                   </section>
               <form class="needs-validation" novalidate>
                 <div class="row">
+                    <div class="col-md-12-col-xl-12 col-sm-12"><span>Si desea actualizar las imagenes selecione ambas</span></div>
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="{{cuenta.first_name}}" [(ngModel)]='accountDetail.first_name' name="first_name" id="first_name">
+                    <input type="text" class="form-control" placeholder="{{cuenta.first_name}}" [(ngModel)]='accountDetail.first_name' name="first_name" #first_name="ngModel"id="first_name" required minlength="5">
+                    <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="text-danger">
+                        <span *ngIf="first_name.errors.minlength" class="text-center" >
+                            Debe tener mas de 5 caracteres
+                        </span>
+                        </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="{{cuenta.last_name}}" [(ngModel)]='accountDetail.last_name' name="last_name" id="last_name">
+                    <input type="text" class="form-control" placeholder="{{cuenta.last_name}}" [(ngModel)]='accountDetail.last_name' name="last_name" #last_name="ngModel" id="last_name" required minlength="5">
+                    <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="text-danger">
+                        <span *ngIf="last_name.errors.minlength" class="text-center" >
+                            Debe tener mas de 5 caracteres
+                        </span>
+                        </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="{{cuenta.email}}" [(ngModel)]='accountDetail.email' name="email" id="email" >
+                    <input type="text" class="form-control" placeholder="{{cuenta.email}}" [(ngModel)]='accountDetail.email' name="email" #email="ngModel"id="email" required minlength="5">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <span *ngIf="email.errors.minlength" class="text-center" >
+                            Debe tener mas de 5 caracteres
+                        </span>
+                        </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                    <input type="email" class="form-control" placeholder="{{cuenta.phone_number}}" [(ngModel)]='accountDetail.phone_number' name="phone_number" id="phone_number">
+                    <input type="email" class="form-control" placeholder="{{cuenta.phone_number}}" [(ngModel)]='accountDetail.phone_number' name="phone_number" #phone_number="ngModel" id="phone_number" required minlength="5">
+                    <div *ngIf="phone_number.invalid && (phone_number.dirty || phone_number.touched)" class="text-danger">
+                        <span *ngIf="phone_number.errors.minlength" class="text-center" >
+                            Debe tener mas de 5 caracteres
+                        </span>
+                        </div>
                     </div>
                     
                     <div class="form-row col-md-6">
@@ -64,19 +85,22 @@
                         <div class="form-group col-md-6">
                             <input class="form-control" type="date" name="fecha"  name="birth_day"/>
                         </div>
-                        <input class="form-control" type="text"   [(ngModel)]='accountDetail.password' name="password" value="{{cuenta.password}}" hidden />
+                        <input class="form-control" type="text"   [(ngModel)]='accountDetail.password' name="password"  value="{{cuenta.password}}" hidden />
                     </div>
                     
                     <div class="form-row col-md-6">
                         <div class=" form-group col-md-6 mb-3">
-                            <button type="button" class="btn btn-primary btn-lx botones" (click)="update()">Guardar Cambios</button>
+                            <button type="button" class="btn btn-primary btn-lx botones form-control" (click)="update()">Guardar Cambios</button>
+                            <br>
                             
                         </div>
                         <div class=" form-group col-md-6 mb-3">
                             
-                            <button type="button" class="btn btn-primary btn-lx" routerLink='/landing' > Cancelar</button>
+                            <button type="button" class="btn btn-primary btn-lx form-control text-white" routerLink='/landing' > Cancelar</button>
                         </div>
+                        
                     </div>
+        
                     
 
                 </div>

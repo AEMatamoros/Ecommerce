@@ -76,7 +76,8 @@ export class PerfilComponent implements OnInit {
     }catch{
       alert("Todos los campos deben ser rellenados para actualizar la informacion")
     }
-    setTimeout(function() { alert('Espere un momento antes de actualizar la pagina,se le notificara cuando el proceso haya terminado'); }, 1);
+    setTimeout(function() { 
+    alert('Espere un momento antes de actualizar la pagina,se le notificara cuando el proceso haya terminado'); }, 1);
     if(firstname!="" && lastname!="" && phone!="" && email!=""){
     console.log("Intentando Actualizar")
     this.uploadService.subirFoto(this.imgFile)

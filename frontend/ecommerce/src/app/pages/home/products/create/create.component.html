@@ -1,26 +1,39 @@
 <!-- Modal -->
 <div id="create-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
-        <!-- Modal content-->
+        
+        <!-- Modal content text-white-->
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h4 class="modal-title text-center text-white">Agregar Producto</h4>
+                <h4 class="modal-title text-center " style="color:white">Agregar Producto</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <form action="">
                     <div class="form-group">
-                        <input  type="text" [(ngModel)]='productDetail.name' name="name"class="form form-control" placeholder="Nombre">
+                        <input  type="text" [(ngModel)]='productDetail.name' name="name" #name="ngModel"class="form form-control" placeholder="Nombre" minlength="5">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                        <span *ngIf="name.errors.minlength" class="text-center" >
+                            Debe tener mas de 5 caracteres
+                        </span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <textarea  [(ngModel)]='productDetail.description' name="description"  id="" cols="10" rows="3" class="form form-control"
+                        <textarea  [(ngModel)]='productDetail.description' name="description" #description="ngModel" id="" cols="10" rows="3" class="form form-control" minlength="10"
                             placeholder="Descripcion"></textarea>
+                            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
+                                <span *ngIf="description.errors.minlength" class="text-center" >
+                                    Debe tener mas de 10 caracteres
+                                </span>
+                                </div>
                     </div>
                     <div class="form-group">
-                        <input type="number"  class="form form-control"  name="price" placeholder="Precio" [(ngModel)]='productDetail.price'>
+                        <label for="price">Precio</label>
+                        <input type="number"  class="form form-control"  name="price" #price="ngModel" placeholder="Precio" [(ngModel)]='productDetail.price' >
+                        
                     </div>
                     <div class="form-group">
+                        <label for="category_id" class="text-secondary">Seleccione una Categoria</label>
                         <select class="form-control form-control-sm" [(ngModel)]='productDetail.category_id' name="category_id">
                             <option *ngFor="let category of categories" [value]="category.id" >
                                 {{category.category_name}}

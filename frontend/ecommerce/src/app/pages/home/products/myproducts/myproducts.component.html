@@ -34,7 +34,7 @@
     </div>
     <ng-container *ngFor="let product of products; let i = index ">
       <ng-container *ngIf="product.user_id.id==cuenta_id">
-    <div class="card text-white text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 18rem; height: 300px; width: 400px;"
+    <div class="card  text-left col-md-3 mb-3 ml-5 mr-5 p-0 " style="width: 18rem; height: 300px; width: 400px;"
       >
       <div id="slider">
         <figure>
@@ -49,9 +49,9 @@
 
 
       <div class="card-img-overlay ">
-        <p class="card-title pb-0 ">{{product.name}} &nbsp;
-          <app-update [product]="product"></app-update>
-          <app-delete [product]="product"></app-delete>
+        <p class="card-title pb-0 " style="color: white;">{{product.name}} &nbsp;
+          <app-update [product]="product" class="text-secondary"></app-update>
+          <app-delete [product]="product" class="text-secondary"></app-delete>
         </p>
 
       </div>
@@ -60,7 +60,7 @@
         <div class="flip-card-inner">
           <div class="flip-card-front" >
             <label for="" class="label-desc">
-              {{ product.name }}<app-update [product]="product"></app-update>
+              {{ product.name }}
 
             </label><br/>
             <strong>
