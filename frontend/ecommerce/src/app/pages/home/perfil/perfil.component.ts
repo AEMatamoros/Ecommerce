@@ -76,34 +76,14 @@ export class PerfilComponent implements OnInit {
     }catch{
       alert("Todos los campos deben ser rellenados para actualizar la informacion")
     }
-    setTimeout(function() { 
-    alert('Espere un momento antes de actualizar la pagina,se le notificara cuando el proceso haya terminado'); }, 1);
+    
+    if(firstname.length >5 || lastname.length >5 || phone.length >5 || email.length >5){
     if(firstname!="" && lastname!="" && phone!="" && email!=""){
     console.log("Intentando Actualizar")
-    this.uploadService.subirFoto(this.imgFile)
-        .subscribe(resp => {
-          this.imagenSubida = resp;
-          this.status = 'success';
-          this.message = 'Imagen subida con éxito!';
-          console.log('imagen subida ',resp);
-              //SetPWD,SetDate
-          this.cuenta.forEach(element => {
-            if (element.id== parseInt(localStorage.getItem('id'))){
-              this.accountDetail.password=this.cuenta.password;
-              this.accountDetail.birth_date=this.cuenta.birth_date.toString()
-              this.accountDetail.cover_img=this.cuenta.id
-            }
-          });
-          //PUT Request
-          this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
-          .subscribe(data => this.accountDetail)
-          console.log("Actualizado")
-              }, 
-          error=> {console.log(error)
-          alert("Debe seleccioar una imagen de portada")}
-        );
-
+    setTimeout(function() { 
+      alert('Espere un momento antes de actualizar la pagina,se le notificara cuando el proceso haya terminado'); }, 1);
         //Imagen 2
+        if(this.imgFile && this.imgFile2){
         this.uploadService.subirFoto(this.imgFile2)
         .subscribe(resp2 => {
           this.imagenSubida2 = resp2;
@@ -121,17 +101,53 @@ export class PerfilComponent implements OnInit {
           this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
           .subscribe(data => {this.accountDetail
             alert("Se han actualizado los datos")
-            location.reload();})
+            this.uploadService.subirFoto(this.imgFile)
+        .subscribe(resp => {
+          this.imagenSubida = resp;
+          this.status = 'success';
+          this.message = 'Imagen subida con éxito!';
+          console.log('imagen subida ',resp);
+              //SetPWD,SetDate
+          
+              this.accountDetail.password=this.cuenta.password;
+              this.accountDetail.birth_date=this.cuenta.birth_date.toString()
+              this.accountDetail.cover_img=this.imagenSubida.id
+            
+          //PUT Request
+          this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
+          .subscribe(data => {this.accountDetail
+            location.reload();})})
+          console.log("Actualizado")
+              }, 
+          error=> {console.log(error)
+          alert("Debe seleccioar una imagen de portada")}
+        );
+            
           console.log("Actualizado")
           
               }, 
           error=> {console.log(error)
             alert("Debe seleccioar una imagen de perfil")}
         );
+      }else{
+        //alert("No toda la adata")
+        
+        this.accountDetail.password=this.cuenta.password;
+        this.accountDetail.birth_date=this.cuenta.birth_date.toString()
+        this.accountDetail.cover_img=this.cuenta.cover_img.id
+        this.accountDetail.user_img=this.cuenta.user_img.id
+      
+    //PUT Request
+    this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
+    .subscribe(data => {this.accountDetail
+      location.reload();})
+      }
             }else{
               alert("Debe rellear todos los campos")
             }            
     
+  }else{
+    alert("Los campos no cumplen con los requisitos de tamaño")
   }
-
+}
 }
