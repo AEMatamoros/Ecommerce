@@ -111,11 +111,11 @@ export class CrearOrdenComponent implements OnInit {
       }
 
       const order = new AdminOrder(0, subtotal, quantity, 15, total, parseInt(status_id), parseInt(direction));
-      console.log(order);
+      //console.log(order);
       //ADD ORDER
       this.orderService.addOrden(order).subscribe(
         resp=>{
-          console.log(resp['id']);
+          //console.log(resp['id']);
           const order_id = resp['id'];
           const product_order = new ProductOrder(0, product_id, order_id);
           this.orderService.addProductOrden(product_order).subscribe(

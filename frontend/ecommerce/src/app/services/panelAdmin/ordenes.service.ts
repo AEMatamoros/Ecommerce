@@ -142,7 +142,7 @@ export class OrdenesService {
 
   addOrden(order: AdminOrder){
     let params = JSON.stringify(order);
-    return this.http.post(this.URL+'order/', params, {headers: this.headers}).pipe(
+    return this.http.post(this.URL+'order/', order, {headers: this.headers}).pipe(
       catchError(err=>{
         return throwError('ERROR PETICION AGREGAR ORDEN', err);
       })

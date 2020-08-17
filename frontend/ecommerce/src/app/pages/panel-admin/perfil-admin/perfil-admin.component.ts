@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { delay } from 'rxjs/operators';
@@ -51,12 +50,11 @@ export class PerfilAdminComponent implements OnInit {
   ) { 
     this.id = parseInt(localStorage.getItem('id'));
     this.crearFormulario();
-    console.log('id', this.id);
+    //console.log('id', this.id);
   }
 
   ngOnInit(): void {
     this.cargarAdminUser(this.id);
-
   }
 
   crearFormulario(){
@@ -79,7 +77,7 @@ export class PerfilAdminComponent implements OnInit {
               this.router.navigateByUrl('admin/perfil-admin');
             }
             this.Admin_edit = account;
-            console.log('carga ', account);
+            //console.log('carga ', account);
             const adminForm = {
               nameAdmin: account['first_name'],
               apellidoAdmin: account['last_name'],
@@ -109,7 +107,7 @@ export class PerfilAdminComponent implements OnInit {
     this.SubirArchivoService.subirFoto(this.imgFile)
         .subscribe(resp => {
           this.imagenSubida = resp;
-          console.log(this.imagenSubida);
+          //console.log(this.imagenSubida);
           this.status = 'success';
           this.message = 'Imagen subida con éxito!';
           //console.log('imagen subida ',resp);
@@ -151,10 +149,8 @@ export class PerfilAdminComponent implements OnInit {
         is_staff = true;
       }
 
-      console.log('form antes ',this.imagenSubida);
-
       if(this.imagenSubida){
-        console.log('form ',this.imagenSubida);
+        //console.log('form ',this.imagenSubida);
         user_img = this.imagenSubida['id'];
         cover_img = this.imagenSubida['id'];
       }else{
@@ -164,11 +160,10 @@ export class PerfilAdminComponent implements OnInit {
 
       let password = this.Admin_edit['password'];
       
-      console.log('direccion actualizar', direccion);
+      //console.log('direccion actualizar', direccion);
       
       this.accountService.crearDireccion(direccion).subscribe(
         resp=>{
-          console.log('direccion', resp);
           this.direction_id = resp['id'];
           this.account = new Admin_Account(id, this.direction_id, email, name, lastname, phone, birth_date, password,
             is_admin, is_staff, is_superuser, user_img, cover_img);
@@ -177,6 +172,7 @@ export class PerfilAdminComponent implements OnInit {
           .subscribe(resp => {
             this.status = 'success';
             this.message = 'Cuenta actualizada satisfactoriamente';
+            this.ngOnInit();
             this.router.navigateByUrl('admin/perfil-admin');
             //console.log(resp);
           },
@@ -187,8 +183,6 @@ export class PerfilAdminComponent implements OnInit {
 
         }
       )
-      
-      
     }
   }
 

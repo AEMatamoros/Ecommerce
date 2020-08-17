@@ -7,7 +7,7 @@ import { User } from 'src/app/models/auth/user';
 import { UserService } from 'src/app/services/auth/user.service';
 import { ValidadoresRegisterService } from 'src/app/services/auth/validadores-register.service';
 
-declare function initPlugins();
+declare function customInitFunctions();
 
 @Component({
   selector: 'app-register',
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    initPlugins();
+    customInitFunctions();
   }
   
   get nombreNoValido() {
@@ -81,31 +81,27 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister(){
-    console.log(this.formRegister);
-
+   
     if ( this.formRegister.invalid ) {
 
       return Object.values( this.formRegister.controls ).forEach( control => { control.markAsTouched(); });
      
     }else{
-      console.log('guardamos en la API..');
+      
       let name = this.formRegister.controls.nombre.value;
       let lastname = this.formRegister.controls.apellido.value;
       let phone = this.formRegister.controls.phone_number.value;
-      let birth_date = this.formRegister.controls.birth_date.value; /*this.datePipe.transform(this.formRegister.controls.birth_date.value, 'yyyy/MM/dd');*/
+      let birth_date = this.formRegister.controls.birth_date.value; 
       let email = this.formRegister.controls.email.value;
       let password = this.formRegister.controls.password.value;
       let confirm_password = this.formRegister.controls.confirm_password.value;
 
       this.user = new User(0,name,lastname,email,phone, birth_date, password, confirm_password);
       
-      console.log(this.formRegister.controls.birth_date.value);
-      console.log(this.user);
-
       this.userService.RegisterUser(this.user)
                       .subscribe(
                         response =>{
-                          console.log(response);
+                          //console.log(response);
                           if(response.token){
                             this.status = 'success';
                             this.message = response.response;
@@ -121,25 +117,4 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  /*  onRegister(registerForm){
-    this.userService.RegisterUser(this.user)
-                    .subscribe(
-                      response => {
-                        console.log(response);
-                        if(response.token){
-                          this.registerUser = response.response;
-                          this.status = 'Registro exitoso';
-                          console.log(this.status);
-                          registerForm.reset();
-                          this.router.navigate(['/login']);
-                        }else{
-                          this.status = 'Fallo el registro';
-                          console.log(this.status);
-                        }
-                      },
-                      error =>{console.log(<any>error);}
-                    );
-
-  }
-  */
 }
