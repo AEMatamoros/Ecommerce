@@ -20,6 +20,8 @@ import { AdminOrder } from 'src/app/models/order/AdminOrder';
 import { Direccion } from 'src/app/interfaces/direccion';
 import { ProductOrder } from 'src/app/models/order/productOrder';
 
+//Servicios
+import { UserService } from 'src/app/services/auth/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +36,8 @@ export class OrdenesService {
   public products: CargarProductos[];
   
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private auth: UserService
   ) { 
     //this.URL = 'http://localhost:8000/api/viewset/'; /*Local*/
     this.URL= 'http://52.201.212.27/api/viewset/'; //PRODUCCION */
@@ -142,11 +145,21 @@ export class OrdenesService {
 
   addOrden(order: AdminOrder){
     let params = JSON.stringify(order);
-    return this.http.post(this.URL+'order/', order, {headers: this.headers}).pipe(
+    console.log('orden service', params);
+    return this.http.post(this.URL+'order/', params, {headers: this.headers}).pipe(
       catchError(err=>{
         return throwError('ERROR PETICION AGREGAR ORDEN', err);
       })
     )
+  }
+
+  deleteOrden(id: number){
+    this.headers = this.headers.append('Authorization', 'Token '+this.auth.userToken);
+    return this.http.delete(this.URL+'order/'+id+'/', {headers: this.headers})
+               .pipe(
+                 map(resp=>{ return resp;}), 
+                 catchError(err=>{ return throwError('ERROR PETICION BORRAR ORDEN');
+              }))
   }
 
   addProductOrden(product_order: ProductOrder){
@@ -154,6 +167,15 @@ export class OrdenesService {
     return this.http.post(this.URL+'product_order/', params, {headers: this.headers}).pipe(
       catchError(err=>{ return throwError('ERROR PETICION AGREGAR PRODUCTO-ORDEN');})
     )
+  }
+
+  deleteProductOrden(id: number){
+    this.headers = this.headers.append('Authorization', 'Token '+this.auth.userToken);
+    return this.http.delete(this.URL+'product_order/'+id+'/', {headers: this.headers})
+               .pipe(
+                 map(resp=>{ return resp;}), 
+                 catchError(err=>{ return throwError('ERROR PETICION BORRAR PRODUCT-ORDEN');
+              }))
   }
 
 

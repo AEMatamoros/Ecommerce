@@ -6,6 +6,6 @@ export class AdminOrder {
         public isv:number,
         public total:number,
         public status_id:number,
-        public direction:number
+        public direction_id:number
     ){}
 }

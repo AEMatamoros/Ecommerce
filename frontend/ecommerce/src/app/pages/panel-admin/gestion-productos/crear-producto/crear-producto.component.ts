@@ -213,11 +213,13 @@ export class CrearProductoComponent implements OnInit {
                 .subscribe(
                   resp=>{
                     this.status = 'success';
-                    this.action_log = new Action(0, 'CRUD PRUDUCT '+product.name);
-                    this.logService.postAction(this.action_log).subscribe(
+                    const action = new Action(0, 'CRUD PRUDUCT '+product.name);
+                    let user_id = resp['product_id']['user_id']['id'];
+                    
+                    this.logService.postAction(action).subscribe(
                           resp=>{
                               //console.log(resp);
-                              this.log_cuentas = new Log('AGREGAR PRODUCT DE'+product.name, productImage.product_id['id'], resp['id'])
+                              this.log_cuentas = new Log('AGREGAR PRODUCT '+product.name, user_id, resp['id'])
                               this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
                           }, 
                           error=>{console.log(<any> error);}

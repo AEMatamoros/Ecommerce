@@ -31,9 +31,15 @@ export class GestionOrdenesComponent implements OnInit {
         this.cargado = true;
         this.orders = resp['results'];
         //console.log(this.orders);
-        
       }
     )
+  }
+
+  deleteOrder(order: any){
+    this.orderService.deleteOrden(order.id)
+        .subscribe(resp=>{
+          //this.orderService.deleteProductOrden(order.id);
+        })
   }
 
 }

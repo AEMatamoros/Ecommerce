@@ -12,6 +12,8 @@ import { ProductOrder } from 'src/app/models/order/productOrder';
 //Servicios
 import { OrdenesService } from 'src/app/services/panelAdmin/ordenes.service';
 import { Router } from '@angular/router';
+import { LogService } from 'src/app/services/log/log.service';
+import { Action, Log } from 'src/app/models/log/log';
 
 @Component({
   selector: 'app-crear-orden',
@@ -44,8 +46,8 @@ export class CrearOrdenComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private orderService: OrdenesService
-    
+    private orderService: OrdenesService,
+    private logService: LogService
   ) {
     
   }
@@ -90,11 +92,7 @@ export class CrearOrdenComponent implements OnInit {
   }
 
   onFormOrder(OrderForm: NgForm){
-    console.log(OrderForm);
-    /*
-    ORDER ADD: subtotal, quantity, isv, total, status_id, direction_id 
-    PRODUCT_ORDER ADD: product_id Order_id 
-    */
+   
     if(OrderForm.valid){
       let product_id = OrderForm.form.value.producto;
       var total = OrderForm.form.value.total;
@@ -122,6 +120,16 @@ export class CrearOrdenComponent implements OnInit {
             resp=> {
               this.status = 'success';
               this.message = 'Orden agregada EXITOSAMENTE!';
+              //console.log(resp);
+              const action = new Action(0, 'CRUD AGREGAR ORDER');
+              const user_id = resp['product_id']['user_id']['id'];
+              
+              this.logService.postAction(action).subscribe(
+                resp=>{ 
+                  const log = new Log('CREACION DE ORDEN DE PRODUCTO', user_id, resp['id']);
+                  this.logService.postLog(log).subscribe(resp=>{console.log(resp)});
+                }
+              )
               this.router.navigateByUrl('admin/ordenes');
             }
           )
@@ -129,7 +137,5 @@ export class CrearOrdenComponent implements OnInit {
         error=>{ console.log(<any> error);}
       );
     }
-
-    
   }
 }

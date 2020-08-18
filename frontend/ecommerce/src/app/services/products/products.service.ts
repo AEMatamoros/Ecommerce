@@ -25,6 +25,7 @@ export class ProductsService {
       'Content-Type':  'application/json',
     })
   };
+ 
   API_Url_Products='http://52.201.212.27/api/viewset/product/'
   API_Url_Currency='http://52.201.212.27/api/viewset/currency/'
   API_Url_Category='http://52.201.212.27/api/viewset/category/'
@@ -138,7 +139,7 @@ export class ProductsService {
   
   
   postProductImages(ProductImages){
-    //console.log(this.API_Url_Product_images)
+    console.log(JSON.stringify(ProductImages));
     return this.http.post<ProductImages[]>(this.API_Url_Product_images, JSON.stringify(ProductImages),this.httpOptions)
                .pipe(catchError(err=>{return throwError('ERROR PETICION CREAR PRODUCTO-IMAGEN');}))
   }
