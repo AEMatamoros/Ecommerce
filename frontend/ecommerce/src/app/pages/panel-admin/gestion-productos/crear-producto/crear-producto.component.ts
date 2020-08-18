@@ -175,26 +175,40 @@ export class CrearProductoComponent implements OnInit {
         let id = params.id;
         this.productService.putProduct(id, product).subscribe(
           resp=>{
-            this.status='success';
-            this.message='Producto editado satisfactoriamente!';
-        
-            const productImage = new AdminProductImages(0, image, resp.id);
-
-            this.productService.putProductImages(id, productImage)
-                .subscribe(
-                  resp=>{
-                    this.status = 'success';
-                    this.action_log = new Action(0, 'CRUD PRUDUCT, ACTION:UPDATE PRODUCT: '+product.name);
-                    this.logService.postAction(this.action_log).subscribe(
+            const product = resp;
+            this.productService.getAllProductsImages().subscribe(
+              resp=>{
+                const product_images = resp;
+                product_images.forEach(element=>{
+                  if(element.product_id['id'] == product.id){
+                    this.productService.deleteProductImages(element.id).subscribe(
+                      resp=>{
+                        this.subirArchivo.subirFoto(this.productFile).subscribe(
                           resp=>{
-                            this.log_cuentas = new Log('EDITO PRODUCT '+product.name, this.id_admin, resp['id'])
-                            this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
-                          }, 
-                          error=>{console.log(<any> error);}
+                            product_images['images_id'] = resp['id'];
+                            this.productService.postProductImages(product_images).subscribe(
+                              resp=>{
+                                this.status='success';
+                                this.message='Producto editado satisfactoriamente!';
+                                
+                                this.action_log = new Action(0, 'CRUD PRUDUCT, ACTION:UPDATE PRODUCT: '+product.name);
+                                this.logService.postAction(this.action_log).subscribe(
+                                    resp=>{
+                                      this.log_cuentas = new Log('EDITO PRODUCT '+product.name, this.id_admin, resp['id'])
+                                      this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
+                                    }, 
+                                    error=>{console.log(<any> error);}
+                                )
+                              }
+                            )
+                          }  
+                        )
+                      }
                     )
-                  },
-                  error =>{ console.log(<any> error); }
-                );
+                  }
+                })
+              }
+            )  
             this.router.navigateByUrl('admin/productos');
           },
           error=>{ console.log(<any>error); }
