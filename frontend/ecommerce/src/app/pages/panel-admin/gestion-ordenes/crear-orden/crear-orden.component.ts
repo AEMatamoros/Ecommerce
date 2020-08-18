@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 //Modelos
@@ -8,18 +9,19 @@ import { Account } from 'src/app/models/account/account';
 import { Direccion } from 'src/app/interfaces/direccion';
 import { AdminOrder } from 'src/app/models/order/AdminOrder';
 import { ProductOrder } from 'src/app/models/order/productOrder';
-
+import { Action, Log } from 'src/app/models/log/log';
 //Servicios
 import { OrdenesService } from 'src/app/services/panelAdmin/ordenes.service';
-import { Router } from '@angular/router';
 import { LogService } from 'src/app/services/log/log.service';
-import { Action, Log } from 'src/app/models/log/log';
+
 
 @Component({
   selector: 'app-crear-orden',
   templateUrl: './crear-orden.component.html'
 })
 export class CrearOrdenComponent implements OnInit {
+  public id_admin: number;  
+
   public status:string;
   public message:string;
   public cargado:boolean = false;
@@ -49,7 +51,7 @@ export class CrearOrdenComponent implements OnInit {
     private orderService: OrdenesService,
     private logService: LogService
   ) {
-    
+    this.id_admin = parseInt(localStorage.getItem('id'));
   }
 
   ngOnInit(): void {
@@ -107,26 +109,24 @@ export class CrearOrdenComponent implements OnInit {
           total = (subtotal*1.15).toFixed(2);  //ISV(15%) - REDONDEO A 2 DECIMALES
         }
       }
-
       const order = new AdminOrder(0, subtotal, quantity, 15, total, parseInt(status_id), parseInt(direction));
-      //console.log(order);
+     
       //ADD ORDER
       this.orderService.addOrden(order).subscribe(
         resp=>{
-          //console.log(resp['id']);
           const order_id = resp['id'];
           const product_order = new ProductOrder(0, product_id, order_id);
           this.orderService.addProductOrden(product_order).subscribe(
             resp=> {
               this.status = 'success';
               this.message = 'Orden agregada EXITOSAMENTE!';
-              //console.log(resp);
-              const action = new Action(0, 'CRUD AGREGAR ORDER');
-              const user_id = resp['product_id']['user_id']['id'];
+              
+              const action = new Action(0, 'CRUD ORDER, ACTION: AGREGAR');
+              //const user_id = resp['product_id']['user_id']['id'];
               
               this.logService.postAction(action).subscribe(
                 resp=>{ 
-                  const log = new Log('CREACION DE ORDEN DE PRODUCTO', user_id, resp['id']);
+                  const log = new Log('CREACION DE ORDEN DE PRODUCTO',this.id_admin, resp['id']);
                   this.logService.postLog(log).subscribe(resp=>{console.log(resp)});
                 }
               )

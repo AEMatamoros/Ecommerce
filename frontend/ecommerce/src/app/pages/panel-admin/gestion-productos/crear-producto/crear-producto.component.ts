@@ -22,24 +22,29 @@ interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget
 }
 
-
 @Component({
   selector: 'app-crear-producto',
   templateUrl: './crear-producto.component.html'
 })
 export class CrearProductoComponent implements OnInit {
-  
+  public id_admin:number;
+
   public cargado:boolean = false;
   public status:string = '';
   public message:string = '';
+
   public formProduct: FormGroup;
+
   public log_cuentas: Log;
   public action_log: Action;
+  
   public products: any;
   public product_edit: any;
+  public productFile: File;
+
   public categories: any;
   public usuarios: any;
-  public productFile: File;
+ 
   public imagenSubida: any;
   public fotoSelected: string | ArrayBuffer;
 
@@ -53,6 +58,7 @@ export class CrearProductoComponent implements OnInit {
     private accountService: AccountService
   ) {
     this.crearFormulario();
+    this.id_admin = parseInt(localStorage.getItem('id'));
    }
 
   ngOnInit(): void {
@@ -149,9 +155,7 @@ export class CrearProductoComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     if(this.formProduct.invalid){
       return Object.values( this.formProduct.controls ).forEach( control => { control.markAsTouched(); });
-    }else{
-      //console.log('form editado', this.formProduct);
-      
+    }else{ 
       let name = this.formProduct.value.name;
       let price = this.formProduct.value.precio;
       let descripcion = this.formProduct.value.descripcion;
@@ -165,8 +169,6 @@ export class CrearProductoComponent implements OnInit {
         image = null;
       }
 
-      //console.log('campos ', usuario, categoria);
-
       const product = new AdminProduct(0,name,descripcion,price,categoria,usuario);
       
       if(params.id){
@@ -175,21 +177,18 @@ export class CrearProductoComponent implements OnInit {
           resp=>{
             this.status='success';
             this.message='Producto editado satisfactoriamente!';
-            //console.log('imagen: ',image);
-            //console.log(resp);
+        
             const productImage = new AdminProductImages(0, image, resp.id);
 
             this.productService.putProductImages(id, productImage)
                 .subscribe(
                   resp=>{
                     this.status = 'success';
-                    //console.log(resp);
-                    this.action_log = new Action(0, 'CRUD PRUDUCT '+product.name);
+                    this.action_log = new Action(0, 'CRUD PRUDUCT, ACTION:UPDATE PRODUCT: '+product.name);
                     this.logService.postAction(this.action_log).subscribe(
                           resp=>{
-                              //console.log(resp);
-                              this.log_cuentas = new Log('EDITAR PRODUCT '+product.name, id, resp['id'])
-                              this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
+                            this.log_cuentas = new Log('EDITO PRODUCT '+product.name, this.id_admin, resp['id'])
+                            this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
                           }, 
                           error=>{console.log(<any> error);}
                     )
@@ -206,21 +205,18 @@ export class CrearProductoComponent implements OnInit {
           resp=>{
             this.status = 'success';
             this.message = 'Producto creado exitosamente!';
-            console.log(this.imagenSubida['id']);
             const productImage = new AdminProductImages(0, this.imagenSubida['id'], resp['id']);
 
             this.productService.postProductImages(productImage)
                 .subscribe(
                   resp=>{
                     this.status = 'success';
-                    const action = new Action(0, 'CRUD PRUDUCT '+product.name);
-                    let user_id = resp['product_id']['user_id']['id'];
+                    const action = new Action(0, 'CRUD PRUDUCT, ACTION: CREATE PRODUCT: '+product.name);
                     
                     this.logService.postAction(action).subscribe(
                           resp=>{
-                              //console.log(resp);
-                              this.log_cuentas = new Log('AGREGAR PRODUCT '+product.name, user_id, resp['id'])
-                              this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
+                            this.log_cuentas = new Log('AGREGAR PRODUCT '+product.name, this.id_admin, resp['id'])
+                            this.logService.postLog(this.log_cuentas).subscribe( resp=>{console.log(resp);} )
                           }, 
                           error=>{console.log(<any> error);}
                     )
@@ -232,9 +228,7 @@ export class CrearProductoComponent implements OnInit {
           },
           error=>{ console.log(<any>error); }
         )
-      }
-      
+      }      
     }
   }
-
 }

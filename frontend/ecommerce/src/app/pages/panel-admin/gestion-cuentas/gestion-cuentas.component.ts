@@ -3,28 +3,34 @@ import { Component, OnInit } from '@angular/core';
 //Modelos
 import { Account } from 'src/app/models/account/account';
 import { Image } from 'src/app/models/general/general-models';
+import { Action, Log } from 'src/app/models/log/log';
 
 //Servicio
 import { AccountService } from 'src/app/services/panelAdmin/account.service';
+import { LogService } from 'src/app/services/log/log.service';
 
 @Component({
   selector: 'app-gestion-cuentas',
   templateUrl: './gestion-cuentas.component.html'
 })
 export class GestionCuentasComponent implements OnInit {
+  public id_admin:number;
+
   public cuentas: Account[] = [];
   public image: Image[] = [];
+
   public desde: number = 1;
   public status: boolean = false;
   public message: string = '';
+
   public txtTermino: any = 0;
   public totalCuentas: number = 0;
 
   constructor(
-    public accountService: AccountService
+    public accountService: AccountService,
+    private logService: LogService
   ) {
-    
-    
+    this.id_admin = parseInt(localStorage.getItem('id')); 
   }
 
   ngOnInit(): void {
@@ -34,10 +40,17 @@ export class GestionCuentasComponent implements OnInit {
   borrarCuenta(cuenta: Account){
     this.accountService.borrarCuenta(cuenta.id)
               .subscribe(response => {
-                this.obtenerCuentasPaginadas();
                 this.status = true;
-                this.message = 'Cuenta borrada exitosamente!'
-                console.log(response);
+                this.message = 'Cuenta borrada exitosamente!';
+                const action = new Action(0, 'CRUD ACCOUNT, ACTION: DELETE ');
+                this.logService.postAction(action).subscribe(
+                  resp=>{ 
+                    const log = new Log('ELIMINO CUENTA DE USUARIO '+cuenta.email,this.id_admin, resp['id']);
+                    this.logService.postLog(log).subscribe(resp=>{console.log(resp)});
+                  }
+                )
+                this.obtenerCuentasPaginadas();
+                //console.log(response);
               },
                 error => {
                 console.log(error);

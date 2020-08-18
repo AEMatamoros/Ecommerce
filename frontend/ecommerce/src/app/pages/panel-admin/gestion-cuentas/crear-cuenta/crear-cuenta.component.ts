@@ -191,13 +191,11 @@ export class CrearCuentaComponent implements OnInit {
               this.status = 'success';
               this.message = 'Cuenta actualizada satisfactoriamente';
               
-              //console.log(resp);
-              
-              this.action_log = new Action(0, 'CRUD ACCOUNT DE '+this.account.email);
+              this.action_log = new Action(0, 'CRUD ACCOUNT, ACTION:UPDATE OF '+this.account.email);
               this.logService.postAction(this.action_log).subscribe(
                 resp=>{
                   //console.log(resp);
-                  this.log_cuentas = new Log('EDITAR ACCOUNT DE '+this.account.email, id, resp['id'])
+                  this.log_cuentas = new Log('EDITO CUENTA DE '+this.account.email, id, resp['id'])
                   this.logService.postLog(this.log_cuentas).subscribe( resp=>{ console.log(resp); } )
                 }, 
                 error=>{ console.log(<any> error); }
@@ -216,11 +214,11 @@ export class CrearCuentaComponent implements OnInit {
             this.message = 'Cuenta creada satisfactoriamente';
             //console.log(this.message);
             //console.log(resp);
-            this.action_log = new Action(0, 'CRUD ACCOUNT DE '+this.account.email);
+            this.action_log = new Action(0, 'CRUD ACCOUNT, ACTION:CREATE OF '+this.account.email);
               this.logService.postAction(this.action_log).subscribe(
                 resp=>{
                   //console.log(resp);
-                  this.log_cuentas = new Log('CREAR ACCOUNT DE '+this.account.email, this.account.id, resp['id'])
+                  this.log_cuentas = new Log('CREO CUENTA DE '+this.account.email, this.account.id, resp['id'])
                   this.logService.postLog(this.log_cuentas).subscribe( resp=>{ console.log(resp); } )
                 }, 
                 error=>{ console.log(<any> error); }
