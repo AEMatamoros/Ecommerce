@@ -30,16 +30,18 @@ export class GestionOrdenesComponent implements OnInit {
       resp=>{
         this.cargado = true;
         this.orders = resp['results'];
-        //console.log(this.orders);
       }
     )
   }
 
   deleteOrder(order: any){
-    this.orderService.deleteOrden(order.id)
+    this.orderService.deleteProductOrden(order.id)
         .subscribe(resp=>{
-          //this.orderService.deleteProductOrden(order.id);
-        })
+          this.status = 'success';
+          this.message = 'Orden eliminada correctamente!';
+          this.ngOnInit();
+        },
+        err=> console.log(<any>err))
   }
 
 }
