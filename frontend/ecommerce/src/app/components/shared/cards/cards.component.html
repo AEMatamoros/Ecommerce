@@ -9,7 +9,7 @@
        </div>
        <!--Segunda Card-->
       <div  class="col-3 ">
-        <img src="assets/images/carousel/imagen2.jpg" class="d-block w-100 h-70 shadow" alt=".." > 
+        <img src="assets/images/carousel/imagen2.jpg" class="d-block w-100 h-70 shadow" alt=".." >
       <label for="" >Dell Lattitude i-7 9900k</label><br>
       <strong>HNL. 20,000L</strong>
       </div>
@@ -30,29 +30,29 @@
   <!--Segundo slice-->
   <div class="carousel-item ">
     <div class="row " style="text-align: center;">
-         <!--Primer Card-->
-        <div class="col-3 ">
-          <img src="assets/images/carousel/imagen5.jpg" class="d-block w-100 h-70 shadow" alt="alexa">
-           <label>Iphone 11 256GB</label><br>
-          <strong>HNL. 20,000L</strong>
+
+        <div class="col-3 " *ngFor="let producto of productosCarrusel">
+          <img src="{{producto.images_id.img_route}}" class="d-block w-100 h-70 shadow" alt="alexa">
+           <label>{{ producto.product_id.name }}</label><br>
+          <strong>HNL. {{ producto.product_id.price }}</strong>
          </div>
-         <!--Segunda Card-->
-        <div  class="col-3 ">
+
+       <!--  <div  class="col-3 ">
           <img src="assets/images/carousel/imagen6.png" class="d-block w-100 h-70 shadow" alt="samsung tablet">
           <label for="">Beats Studio 2Gen.</label><br>
           <strong>HNL. 2,000L</strong>
         </div>
-         <!--Tercer Card-->
+
         <div class="col-3 ">
           <img src="assets/images/carousel/imagen7.jpg" class="d-block w-100 h-70 shadow" alt="ipords">
           <p>Cargador Samsung Blanco</p>
           <strong>HNL. 20,000L</strong>
         </div>
-        <!--Cuarta Card-->
+
         <div class="col-3 ">
           <img src="assets/images/carousel/imagen8.jpg" class="d-block w-100 h-70 shadow" alt="ipords">
           <p>Cargador Samsung Blanco</p>
           <strong>HNL. 20,000L</strong>
-        </div>
+        </div> -->
   </div>
   </div>
