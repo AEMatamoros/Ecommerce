@@ -32,7 +32,9 @@
     <div class="row " style="text-align: center;">
 
         <div class="col-3 " *ngFor="let producto of productosCarrusel">
-          <img src="{{producto.images_id.img_route}}" class="d-block w-100 h-70 shadow" alt="alexa">
+          <a [routerLink]="['/detalle',producto.product_id.id]">
+            <img src="{{producto.images_id.img_route}}" class="d-block w-100 h-70 shadow" alt="alexa">
+          </a>
            <label>{{ producto.product_id.name }}</label><br>
           <strong>HNL. {{ producto.product_id.price }}</strong>
          </div>

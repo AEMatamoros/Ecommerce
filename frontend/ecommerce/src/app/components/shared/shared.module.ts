@@ -28,7 +28,7 @@ import { BannerCartComponent } from './banner-cart/banner-cart.component';
         BoxCardsComponent,
         CardsComponent,
         CorouselCardsComponent,
-        CorouselImgComponent,     
+        CorouselImgComponent,
         FooterComponent,
         FilterComponent,
         ProductListComponent,
@@ -37,14 +37,14 @@ import { BannerCartComponent } from './banner-cart/banner-cart.component';
         CartItemComponent,
         PaypalComponent,
         BannerCartComponent
-           
+
     ],
     exports: [
         NavbarComponent,
         BoxCardsComponent,
         CardsComponent,
         CorouselCardsComponent,
-        CorouselImgComponent, 
+        CorouselImgComponent,
         FooterComponent,
         FilterComponent,
         ProductListComponent,
@@ -54,6 +54,6 @@ import { BannerCartComponent } from './banner-cart/banner-cart.component';
         PaypalComponent,
         BannerCartComponent
     ],
-    
+
 })
 export class SharedHomeModule { }

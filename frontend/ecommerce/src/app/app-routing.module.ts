@@ -19,7 +19,9 @@ const routes: Routes = [
   imports: [
     AdminRoutingModule,
     HomeRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes,{
+      scrollPositionRestoration: 'enabled'
+    })
   ],
   exports: [RouterModule]
 })
