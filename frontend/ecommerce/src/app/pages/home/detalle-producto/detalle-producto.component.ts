@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShopService } from '../../../services/shop/shop.service';
+import { MessengerService } from '../../../services/msg/messenger.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -14,7 +15,7 @@ export class DetalleProductoComponent implements OnInit {
   public detalleProducto;
 
   constructor(private activatedRoute:ActivatedRoute,
-              private shopService:ShopService ) {
+              private shopService:ShopService, private msg: MessengerService) {
 
    }
 
@@ -39,6 +40,10 @@ export class DetalleProductoComponent implements OnInit {
 
     });
 
+  }
+
+  handleAddProduct(){
+    this.msg.sendMsg(this.detalleProducto)
   }
 
 
