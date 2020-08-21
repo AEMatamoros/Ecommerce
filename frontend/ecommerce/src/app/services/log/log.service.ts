@@ -20,8 +20,8 @@ export class LogService {
     })
   };
 
-  API_Url_Log='http://52.201.212.27/api/viewset/log/'
-  API_Url_Action='http://52.201.212.27/api/viewset/action/'
+  API_Url_Log='https://phoenixstore.site/api/viewset/log/'
+  API_Url_Action='https://phoenixstore.site/api/viewset/action/'
 
   //Log
   getLog(){

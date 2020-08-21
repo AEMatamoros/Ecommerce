@@ -22,11 +22,11 @@ export class GeneralService {//Complaints Puntuation Image Followers Direction
     })
   };
 
-  API_Url_Complaints="http://52.201.212.27/api/viewset/complaints/"
-  API_Url_Puntuation="http://52.201.212.27/api/viewset/puntuation/"
-  API_Url_Image="http://52.201.212.27/api/viewset/image/"
-  API_Url_Followers="http://52.201.212.27/api/viewset/followers/"
-  API_Url_Direction="http://52.201.212.27/api/viewset/direction/"
+  API_Url_Complaints="https://phoenixstore.site/api/viewset/complaints/"
+  API_Url_Puntuation="https://phoenixstore.site/api/viewset/puntuation/"
+  API_Url_Image="https://phoenixstore.site/api/viewset/image/"
+  API_Url_Followers="https://phoenixstore.site/api/viewset/followers/"
+  API_Url_Direction="https://phoenixstore.site/api/viewset/direction/"
   
   //Quejas
   getComplaints(){

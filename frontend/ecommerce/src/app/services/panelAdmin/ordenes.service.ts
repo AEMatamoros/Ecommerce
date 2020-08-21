@@ -40,7 +40,7 @@ export class OrdenesService {
     private auth: UserService
   ) { 
     //this.URL = 'http://localhost:8000/api/viewset/'; /*Local*/
-    this.URL= 'http://52.201.212.27/api/viewset/'; //PRODUCCION */
+    this.URL= 'https://phoenixstore.site/api/viewset/'; //PRODUCCION */
     this.headers = new HttpHeaders()
     this.headers = this.headers.append('Content-Type','application/json');
     

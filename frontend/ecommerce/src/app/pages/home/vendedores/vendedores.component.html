@@ -4,12 +4,12 @@
       <!--For-->
       <ng-container *ngFor="let cuenta of cuentas">
         <ng-container *ngIf="cuenta.id!=cuenta_id">
-      <div class=" col-sm-6 col-md-5 col-lg-3 mb-3" >
+      <div class=" col-sm-6 col-md-4 col-lg-3 mb-3" >
           <!--Inicio CArd-->
           
           <a [routerLink]="['/vendedor', cuenta.id]">
           <div class="card shadow h-100 pb-2">
-              <a href="link"><img class="card-img-top no-border-top-left" src="{{cuenta.user_img.img_route}}" alt="Responsive image"></a>
+              <a href="link"><img class="card-img-top no-border-top-left" src="{{cuenta.user_img.img_route}}" alt="Responsive image" height="350px" width="600px"></a>
               <div class="card-body mb-0 pb-0">
                 <h5 class="card-title"><a href="linnk">{{cuenta.first_name}}&nbsp;{{cuenta.last_name}} </a> </h5>
  

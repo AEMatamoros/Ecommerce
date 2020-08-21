@@ -54,6 +54,7 @@ export class UpdateComponent implements OnInit {
   updateproduct() {
     console.log("Actualizando")
     console.log(this.productDetail)
+    if(this.imgFile){
     this.dataService.putProduct(this.product.id,this.productDetail)
         .subscribe((data: {}) => {
         this.product=data
@@ -95,7 +96,9 @@ export class UpdateComponent implements OnInit {
         
         
         //location.reload();
-      })
+      })}else{
+        alert("Sebe seleccionar una imagen para el producto")
+      }
     
     
   }

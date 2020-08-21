@@ -26,13 +26,13 @@ export class ProductsService {
     })
   };
  
-  API_Url_Products='http://52.201.212.27/api/viewset/product/'
-  API_Url_Currency='http://52.201.212.27/api/viewset/currency/'
-  API_Url_Category='http://52.201.212.27/api/viewset/category/'
-  API_Url_Product_images="http://52.201.212.27/api/viewset/product_image/"
-  API_Url_Sells="http://52.201.212.27/api/viewset/sells/"
-  API_Url_all_Products="http://52.201.212.27/api/viewset/all_products/"
-  API_Url_all_Product_images="http://52.201.212.27/api/viewset/all_product_images/"
+  API_Url_Products='https://phoenixstore.site/api/viewset/product/'
+  API_Url_Currency='https://phoenixstore.site/api/viewset/currency/'
+  API_Url_Category='https://phoenixstore.site/api/viewset/category/'
+  API_Url_Product_images="https://phoenixstore.site/api/viewset/product_image/"
+  API_Url_Sells="https://phoenixstore.site/api/viewset/sells/"
+  API_Url_all_Products="https://phoenixstore.site/api/viewset/all_products/"
+  API_Url_all_Product_images="https://phoenixstore.site/api/viewset/all_product_images/"
   /*API_Url_Products='http://localhost:8000/api/viewset/product/';
   API_Url_Currency='http://localhost:8000/api/viewset/currency/';
   API_Url_Category='http://localhost:8000/api/viewset/category/';

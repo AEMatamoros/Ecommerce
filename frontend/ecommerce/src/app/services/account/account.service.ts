@@ -20,7 +20,7 @@ export class AccountService {
     })
   };
 
-  API_Url_Account='http://52.201.212.27/api/viewset/account/'
+  API_Url_Account='https://phoenixstore.site/api/viewset/account/'
   //API_Url_Account="http://127.0.0.1:8000/api/viewset/account/"
 
   getAccounts(){

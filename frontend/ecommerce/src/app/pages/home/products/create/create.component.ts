@@ -52,6 +52,7 @@ export class CreateComponent implements OnInit {
 
   addproduct() {
     console.log("Subiendo")
+    if(this.imgFile){
     this.dataService.postProduct(this.productDetail)
         .subscribe(data => {
             this.productoSubido=data
@@ -76,7 +77,9 @@ export class CreateComponent implements OnInit {
           error=> console.log(error)
         );
           })
-    
+        }else{
+          alert("Debe Seleccionar Una Imagen")
+        }
     //SUbir imagen del Producto
     
     

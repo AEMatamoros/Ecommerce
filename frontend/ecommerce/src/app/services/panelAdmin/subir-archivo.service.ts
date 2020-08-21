@@ -12,7 +12,7 @@ export class SubirArchivoService {
     private http: HttpClient
   ) { 
     //this.URL = 'http://localhost:8000/api/viewset/'; /*LOCAL*/
-    this.URL = 'http://52.201.212.27/api/viewset/image/'; /*PRODUCCION*/
+    this.URL = 'https://phoenixstore.site/api/viewset/image/'; /*PRODUCCION*/
   }
 
   subirFoto(imgFile: File){

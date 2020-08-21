@@ -21,8 +21,8 @@ export class OrderService {
     })
   };
 
-  API_Url_Status='http://52.201.212.27/api/viewset/status/'
-  API_Url_Order='http://52.201.212.27/api/viewset/order/'
+  API_Url_Status='https://phoenixstore.site/api/viewset/status/'
+  API_Url_Order='https://phoenixstore.site/api/viewset/order/'
 
   //Status
   getStatus(){
