@@ -8,48 +8,59 @@
     </p>
     <div class="collapse show" id="collapseExample">
       <div class="card card-body">
-        <a class="centrar-texto cat-hija" (click)="buscarProducto('Computadora')" data-toggle="collapse" href="#">Computadoras</a>
+        <a class="centrar-texto cat-hija" (click)="buscarProducto('Comput')" data-toggle="collapse" href="#">Computadoras</a>
         <a class="centrar-texto cat-hija" (click)="buscarProducto('Celular')" data-toggle="collapse" href="#">Celulares</a>
-        <a class="centrar-texto cat-hija" (click)="buscarProducto('Auricular')" data-toggle="collapse" href="#">Auriculares</a>
       </div>
     </div>
 
     <p>
-      <a class="" data-toggle="collapse" (click)="buscarProducto('Interiores')" class="centrar-texto cat-padre" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
-        {{ categoria3 }}
+      <a class="" data-toggle="collapse" (click)="buscarProducto('Hogar')" class="centrar-texto cat-padre" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+        {{ categoria2 }}
       </a>
     </p>
     <div class="collapse show" id="collapseExample3">
       <div class="card card-body">
         <a class="centrar-texto cat-hija" (click)="buscarProducto('Mueble')" data-toggle="collapse" href="#">Muebles</a>
         <a class="centrar-texto cat-hija" (click)="buscarProducto('Mesa')" data-toggle="collapse" href="#">Mesas</a>
-        <a class="centrar-texto cat-hija" (click)="buscarProducto('Silla')" data-toggle="collapse" href="#">Sillas</a>
+
       </div>
     </div>
 
     <p>
       <a class="" data-toggle="collapse" (click)="buscarProducto('Instrumentos musicales')" class="centrar-texto cat-padre" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
-        {{ categoria4 }}
+        {{ categoria3 }}
       </a>
     </p>
     <div class="collapse show" id="collapseExample4">
       <div class="card card-body">
        <a class="centrar-texto cat-hija" (click)="buscarProducto('Guitarra')" data-toggle="collapse" href="#">Guitarras</a>
        <a class="centrar-texto cat-hija" (click)="buscarProducto('Bateria')" data-toggle="collapse" href="#">Baterias</a>
-       <a class="centrar-texto cat-hija" (click)="buscarProducto('Amplificador')" data-toggle="collapse" href="#">Amplificadores</a>
+
       </div>
     </div>
 
     <p>
-      <a class="" data-toggle="collapse" (click)="buscarProducto('Electrodomesticos')" class="centrar-texto cat-padre" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
-        {{ categoria2 }}
+      <a class="" data-toggle="collapse" (click)="buscarProducto('Deportes')" class="centrar-texto cat-padre" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+        {{ categoria4 }}
       </a>
     </p>
     <div class="collapse show" id="collapseExample2">
       <div class="card card-body">
-        <a class="centrar-texto cat-hija" (click)="buscarProducto('Percoladora')" data-toggle="collapse" href="#">Percoladoras</a>
-        <a class="centrar-texto cat-hija" (click)="buscarProducto('Licuadora')" data-toggle="collapse" href="#">Licuadoras</a>
-        <a class="centrar-texto cat-hija" (click)="buscarProducto('Microonda')" data-toggle="collapse" href="#">Microondas</a>
+        <a class="centrar-texto cat-hija" (click)="buscarProducto('Camis')" data-toggle="collapse" href="#">Camisetas</a>
+        <a class="centrar-texto cat-hija" (click)="buscarProducto('Tacos')" data-toggle="collapse" href="#">Tacos</a>
+
+      </div>
+    </div>
+
+    <p>
+      <a class="" data-toggle="collapse" (click)="buscarProducto('Vestimenta')" class="centrar-texto cat-padre" href="#buscarTexto" role="button" aria-expanded="false" aria-controls="collapseExample">
+        {{ categoria5 }}
+      </a>
+    </p>
+    <div class="collapse show" id="collapseExample2">
+      <div class="card card-body">
+        <a class="centrar-texto cat-hija" (click)="buscarProducto('Camis')" data-toggle="collapse" href="#">Camisetas</a>
+        <a class="centrar-texto cat-hija" (click)="buscarProducto('Abrig')" data-toggle="collapse" href="#">Abrigos</a>
       </div>
     </div>
 
@@ -78,7 +89,7 @@
             <div class="flip-card-inner">
               <div class="flip-card-front" >
                 <label for="" class="label-desc">
-                  {{ producto.id }}
+                  {{ producto.product_id.name }}
                 </label><br/>
                 <strong>
                   HNL. {{ producto.product_id.price }}
@@ -103,7 +114,7 @@
           <div class="flip-card-inner">
             <div class="flip-card-front" >
               <label for="" class="label-desc">
-                {{ pro.id }}
+                {{ pro.product_id.name }}
               </label><br/>
               <strong>
                 HNL. {{ pro.product_id.price }}

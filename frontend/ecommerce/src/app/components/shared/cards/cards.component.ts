@@ -30,7 +30,7 @@ export class CardsComponent implements OnInit {
           .subscribe(data => {
           this.productosImagenes = data;
           // console.log(this.productosImagenes);
-          while (this.c <= 4 ) {
+          while (this.c <= 8 ) {
             // console.log('hola beibe', this.c);
             // console.log(this.productos[this.c].id);
             for (let prodImg of this.productosImagenes) {

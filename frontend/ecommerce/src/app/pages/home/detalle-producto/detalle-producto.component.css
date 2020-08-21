@@ -25,6 +25,8 @@ a:hover{
 
 .contenedor-img {
   border: 1px solid rgb(218, 210, 210);
+  display: relative;
+  text-align: center;
 }
 
 th {

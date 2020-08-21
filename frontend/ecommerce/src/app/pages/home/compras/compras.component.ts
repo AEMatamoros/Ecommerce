@@ -21,6 +21,7 @@ export class ComprasComponent implements OnInit {
   public categoria2;
   public categoria3;
   public categoria4;
+  public categoria5;
 
  /*  public producto; */
 
@@ -74,11 +75,12 @@ export class ComprasComponent implements OnInit {
           this.shopService.getCategory()
             .subscribe(data => {
             this.category = data['results'];
-            // console.log(this.category);
+             console.log(this.category);
             this.categoria1 = this.category[0].category_name;
             this.categoria2 = this.category[1].category_name;
             this.categoria3 = this.category[2].category_name;
             this.categoria4 = this.category[3].category_name;
+            this.categoria5 = this.category[4].category_name;
             });
 
           });

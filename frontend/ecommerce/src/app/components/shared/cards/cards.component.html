@@ -1,43 +1,33 @@
 
-<div class="carousel-item active">
+  <div class="carousel-item active">
     <div class="row "  style="text-align: center;">
-       <!--Primer Card-->
-      <div class="col-3 ">
-        <img src="assets/images/carousel/imagen1.jpg" class="d-block w-100 h-70 shadow" alt="..">
-        <label for="">Reloj OTTUM dorado</label><br>
-        <strong>HNL. 2,000L</strong>
-       </div>
-       <!--Segunda Card-->
-      <div  class="col-3 ">
-        <img src="assets/images/carousel/imagen2.jpg" class="d-block w-100 h-70 shadow" alt=".." >
-      <label for="" >Dell Lattitude i-7 9900k</label><br>
-      <strong>HNL. 20,000L</strong>
-      </div>
-       <!--Tercer Card-->
-      <div class="col-3">
-        <img src="assets/images/carousel/imagen3.jpg" class="d-block w-100 h-70 shadow" alt="">
-       <label for="">Ipad Apple</label><br>
-        <strong>HNL. 16,000L</strong>
-      </div>
-      <!--Cuarta Card-->
-      <div class="col-3 ">
-        <img src="assets/images/carousel/imagen4.jpg" class="d-block w-100 h-70 shadow" alt="gamer">
-        <label for="">Ipords 3Gen.</label><br>
-        <strong>HNL. 5,000L</strong>
-      </div>
-  </div>
-  </div>
-  <!--Segundo slice-->
-  <div class="carousel-item ">
-    <div class="row " style="text-align: center;">
 
-        <div class="col-3 " *ngFor="let producto of productosCarrusel">
+      <ng-container *ngFor="let producto of productosCarrusel; let i = index;">
+        <div class="col-3 " *ngIf="i<=4" >
           <a [routerLink]="['/detalle',producto.product_id.id]">
             <img src="{{producto.images_id.img_route}}" class="d-block w-100 h-70 shadow" alt="alexa">
           </a>
            <label>{{ producto.product_id.name }}</label><br>
           <strong>HNL. {{ producto.product_id.price }}</strong>
          </div>
+      </ng-container>
+
+    </div>
+  </div>
+  <!--Segundo slice-->
+  <div class="carousel-item ">
+    <div class="row " style="text-align: center;">
+
+      <ng-container *ngFor="let producto of productosCarrusel; let i = index;">
+        <div class="col-3 " *ngIf="i>=4" >
+          <a [routerLink]="['/detalle',producto.product_id.id]">
+            <img src="{{producto.images_id.img_route}}" class="d-block w-100 h-70 shadow" alt="alexa">
+          </a>
+           <label>{{ producto.product_id.name }}</label><br>
+          <strong>HNL. {{ producto.product_id.price }}</strong>
+         </div>
+      </ng-container>
+
 
        <!--  <div  class="col-3 ">
           <img src="assets/images/carousel/imagen6.png" class="d-block w-100 h-70 shadow" alt="samsung tablet">
