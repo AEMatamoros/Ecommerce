@@ -85,6 +85,21 @@
                           <li><a routerLink="/landing"> Mas vendidos</a></li>
                           <li><a routerLink="/landing"> Novedades</a></li>
                           <li><a routerLink="/blog"> Blog</a></li>
+
+                          <ng-container  *ngIf="!auth.estaAutenticado()">
+                            <br>
+                            <li><a routerLink="/login">Registrarse / Acceder</a></li>
+                          </ng-container>
+
+                          <br>
+
+                          <ng-container *ngIf="auth.estaAutenticado()">
+                            <li><a routerLink="/perfil">Perfil</a></li>
+                            <li><a routerLink="/shopping">Carrito</a></li>
+                            <li><a routerLink="/misProductos">Mis Productos</a></li>
+                            <li><a class="btn btn-outline-danger" (click)="salir()">Cerrar Sesión</a></li>
+                          </ng-container>
+
                         </ul>
                       </div>
                     </div>
