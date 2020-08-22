@@ -7,19 +7,22 @@ import { map, catchError, retry } from 'rxjs/operators';
 //Modelos
 import { Product } from 'src/app/models/product/product';
 import { AdminProduct } from 'src/app/models/product/AdminProduct';
+import { Product_Order } from 'src/app/models/order/product_Order';
 import { Category } from 'src/app/models/product/category';
 import { Currency} from 'src/app/models/product/currency';
 import { ProductImages} from 'src/app/models/product/product-images';
-import { CargarProductos } from 'src/app/interfaces/cargar-product';
 import { Ventas} from 'src/app/models/general/ventas'
 
-
+//Servicios
+import { OrdenesService } from '../panelAdmin/ordenes.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private orderService: OrdenesService,
+    private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -33,10 +36,7 @@ export class ProductsService {
   API_Url_Sells="https://phoenixstore.site/api/viewset/sells/"
   API_Url_all_Products="https://phoenixstore.site/api/viewset/all_products/"
   API_Url_all_Product_images="https://phoenixstore.site/api/viewset/all_product_images/"
-  /*API_Url_Products='http://localhost:8000/api/viewset/product/';
-  API_Url_Currency='http://localhost:8000/api/viewset/currency/';
-  API_Url_Category='http://localhost:8000/api/viewset/category/';
-  API_Url_Product_images="http://localhost:8000/api/viewset/product_image/";*/
+  API_Url_Products_Orders = "https://phoenixstore.site/api/viewset/product_order/"
   
   //Productos
   getAllProducts(){
@@ -60,6 +60,36 @@ export class ProductsService {
         return throwError('ERROR PETICION GET PRODUCTO');
       })
     );
+  }
+
+  getIdOrder(product_id: number){
+    let product_order: Product_Order = null;
+    this.getProductOrders().subscribe(
+      prod=>{
+        let index = prod.product_id.findIndex(product=> product.id == product_id );
+        if(index !== -1){
+          //Crear orden de compra 
+          
+          product_order[index] = null;
+        }else{
+          product_order[index] = prod;
+        }
+      }
+    )
+    return product_order;
+  }
+
+  getProductOrders(){
+    return this.http.get<Product_Order>(this.API_Url_Products_Orders).pipe(
+      catchError(err=> { return throwError('ERROR PETICION GET ALL PRODUCT_ORDER');})
+    )
+  }
+
+  getProductOrder(id:number){
+    let id_order = this.getIdOrder(id);
+    return this.http.get<Product_Order>(this.API_Url_Products_Orders+id_order+'/').pipe(
+      catchError(err=>{ return throwError('ERROR PETICION GET PRODUCT_ORDER');})
+    )
   }
 
   postProduct(product){

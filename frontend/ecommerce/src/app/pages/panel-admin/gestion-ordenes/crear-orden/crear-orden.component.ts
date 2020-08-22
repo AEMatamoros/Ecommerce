@@ -60,6 +60,13 @@ export class CrearOrdenComponent implements OnInit {
     this.obtenerDirections();
   }
 
+  cargarOrden(id:number){
+    if(id == undefined){
+      return false;
+    }
+    
+  }
+
   
   obtenerStatus(){
     this.orderService.getStatus().subscribe(
@@ -87,7 +94,6 @@ export class CrearOrdenComponent implements OnInit {
         this.cargado = true;
         this.totalProductos = total;
         this.productos = products;
-        
         console.log(this.productos);
       }
     )
@@ -122,7 +128,6 @@ export class CrearOrdenComponent implements OnInit {
               this.message = 'Orden agregada EXITOSAMENTE!';
               
               const action = new Action(0, 'CRUD ORDER, ACTION: AGREGAR');
-              //const user_id = resp['product_id']['user_id']['id'];
               
               this.logService.postAction(action).subscribe(
                 resp=>{ 

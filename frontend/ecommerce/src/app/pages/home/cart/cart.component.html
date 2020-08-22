@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="text-center my-5">
+        <h4>El carrito esta vacio</h4>
+        <button class="btn btn-primary btn-lg mt-3" routerLink="/compras">Regresa a comprar</button>
+    </div>
+
+    <ng-container *ngIf="prueba">
+        <div class="row">
+            <div class="col my-4">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr class="text-center">
+                            <th>Image</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="d-flex align-items-center justify-content-around">
+                                Image
+                                <img src="" alt="product-name" height="60" class="order-1">
+                                <span class="text-danger" style="cursor: pointer;"><i class="fa fa-trash"></i></span>  
+                            </td>
+                            <td>Producto</td>
+                            <td>Precio</td>
+                            <td>
+                                Cantidad
+                                <form>
+                                    <div class="value-button" id="decrease">
+                                        <i class="fa fa-minus"></i>     
+                                    </div>
+                                    <input type="number" id="number" readonly  value="" max="">
+                                    <div class="value-button" id="increase">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                Subtotal
+                            </td>
+                        </tr>
+                        <tr class="border-0">
+                            <td style="border: none;"></td>
+                            <td></td>
+                            <td></td>
+                            <td>TOTAL</td>
+                            <td>VALOR AQUI</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-12 d-flex mb-5">
+                <div class="d-flex w-100 justify-content-between flex-sm-column flex-md-row">
+                  <a class="btn btn-danger btn-sm order-1">Checkout</a>
+                  <a routerLink="/compras" class="btn btn-success btn-sm order-0">Continua Comprando</a>
+                </div>
+            </div>
+
+        </div>
+    </ng-container>
+</div>

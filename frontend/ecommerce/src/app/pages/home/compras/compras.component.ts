@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ShopService } from '../../../services/shop/shop.service';
+import { CartService } from 'src/app/services/cart.service';
 import { EventEmitterService } from 'src/app/services/shared/event-emitter.service';
-
-
 
 @Component({
   selector: 'app-compras',
@@ -27,10 +27,11 @@ export class ComprasComponent implements OnInit {
 
  /*  public producto; */
 
-  constructor( private shopService:ShopService,
-               private eventEmitterService:EventEmitterService ) {
-
-  }
+  constructor( 
+    private cartService:CartService,
+    private shopService: ShopService,
+    private eventEmitterService:EventEmitterService
+  ){}
 
   ngOnInit(): void {
 
@@ -41,17 +42,16 @@ export class ComprasComponent implements OnInit {
       invokeFirstComponentFunction.subscribe((name: string) => {
         this.terminoCategoria = false;
         this.buscarProducto(name);
-
       });
     }
-
   }
 
-  holas(hola: string) {
-    console.log('Event emitter funcionando ', hola);
-
+  addCarrito(product_id: number){
+    console.log('AGREGANDO AL CARRITO SERVICES', product_id);
+    this.cartService.addProductCarrito(product_id);
   }
 
+  
   buscarProducto( termino: string ) {
     termino = termino.toLowerCase();
     this.encontrados = [];
@@ -59,12 +59,11 @@ export class ComprasComponent implements OnInit {
       let prodName = producto.product_id.name.toLowerCase();
       let prodDesc = producto.product_id.description.toLowerCase();
       let categoria = producto.product_id.category_id.category_name.toLowerCase();
-      // console.log('holass ',termino,categoria);
+  
       if (prodName.indexOf(termino) >= 0 || prodDesc.indexOf(termino) >= 0 || categoria === termino ) {
         this.encontrados.push(producto);
       }
     }
-    console.log(this.encontrados,'siuuu');
     this.trueArray = [];
   }
 
@@ -73,12 +72,11 @@ export class ComprasComponent implements OnInit {
     this.shopService.getProducts()
       .subscribe(data => {
         this.productos = data;
-        // console.log(this.productos);
-
+        
         this.shopService.getProductsImage()
           .subscribe(data => {
           this.productosImagenes = data;
-           console.log(this.productosImagenes);
+    
           for (let prod of this.productos ) {
             for (let prodImg of this.productosImagenes) {
               if (prodImg.product_id.id === prod.id) {
@@ -88,19 +86,16 @@ export class ComprasComponent implements OnInit {
             }
           }
           this.busquedaArray = this.trueArray;
-          // console.log(this.trueArray);
-
+          
           this.shopService.getCategory()
             .subscribe(data => {
             this.category = data['results'];
-             console.log(this.category);
             this.categoria1 = this.category[0].category_name;
             this.categoria2 = this.category[1].category_name;
             this.categoria3 = this.category[2].category_name;
             this.categoria4 = this.category[3].category_name;
             this.categoria5 = this.category[4].category_name;
             });
-
 
           });
       });

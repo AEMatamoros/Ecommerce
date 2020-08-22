@@ -89,7 +89,7 @@ export class CrearCuentaComponent implements OnInit {
             }
             //console.log('account edit', account);
             this.account_edit = account;
-            console.log(this.account_edit);
+            //console.log(this.account_edit);
             const accountForm = {
               name: account['first_name'],
               apellido: account['last_name'],
@@ -120,7 +120,6 @@ export class CrearCuentaComponent implements OnInit {
           this.imagenSubida = resp;
           this.status = 'success';
           this.message = 'Imagen subida con éxito!';
-          //console.log('imagen subida ',resp);
         }, 
           error=> console.log(error)
         );
@@ -130,12 +129,10 @@ export class CrearCuentaComponent implements OnInit {
   obtenerImagenes(){
     this.accountService.obtenerImagenes().subscribe((images: Image[])=>{
       this.imagen = images['results'][0];
-      //console.log('imagen ',this.imagen);
     })
   }
 
   onCrearCuenta(){
-    //console.log('formulario', this.formAccount);
     const params = this.activatedRoute.snapshot.params;
     if(this.formAccount.invalid){
       return Object.values( this.formAccount.controls ).forEach( control => { control.markAsTouched(); });

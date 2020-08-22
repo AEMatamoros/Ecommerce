@@ -14,8 +14,12 @@ import { OffersComponent } from './offers/offers.component';
 import { VendedoresComponent } from './vendedores/vendedores.component';
 import { VendedorprofilesComponent } from './vendedorprofiles/vendedorprofiles.component';
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
+
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CartComponent } from 'src/app/components/shared/cart/cart.component';
+
 import { VentasComponent} from './ventas/ventas/ventas.component'
+
 
 const childHomeRoutes: Routes = [
     {
@@ -42,7 +46,7 @@ const childHomeRoutes: Routes = [
     },
     {
         path: 'shopping',
-        component: ShoppingCartComponent
+        component: CartComponent
     },
     {
         path: 'offers',
