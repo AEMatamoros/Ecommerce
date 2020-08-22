@@ -3,11 +3,14 @@ import {Product} from 'src/app/models/product/product';
 import {ProductImages} from 'src/app/models/product/product-images'
 import { ProductsService } from 'src/app/services/products/products.service'
 
+
 @Component({
   selector: 'app-myproducts',
   templateUrl: './myproducts.component.html',
-  styleUrls: ['./myproducts.component.css']
+  styleUrls: ['./myproducts.component.css'],
+  template: `<button class="button button-primary" (click)="subscribeToNotifications()">Subscribe</button>`
 })
+
 
 export class MyproductsComponent implements OnInit {
   
@@ -20,8 +23,9 @@ export class MyproductsComponent implements OnInit {
   
   //Llamar al servicio
   constructor(private dataService:ProductsService ) { }
-
+  
   ngOnInit(){
+    
     this.dataService.getAllProducts()
     .subscribe(data =>this.products=data)
     var product_images=this.dataService.getAllProductsImages()
@@ -30,4 +34,5 @@ export class MyproductsComponent implements OnInit {
     return [this.products,this.products_images]
   }
 
+  
 }
