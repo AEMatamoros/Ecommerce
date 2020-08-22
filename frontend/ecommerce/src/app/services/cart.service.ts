@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 
 //modelos
 import { CartModelPublic, CartModelServer } from '../models/cart/cart.model';
+import { Product } from '../models/product/product';
 
 //servicios
 import { ProductsService } from '../services/products/products.service';
@@ -33,12 +34,36 @@ export class CartService {
     this.dataCarrito$.next(this.carritoServer);
 
     //Obtener product al localstorage
+    let info: CartModelPublic = JSON.parse(localStorage.getItem('carrito'));
+    if (info !== null && info !== undefined && info.productData[0].enCarrito !== 0) {
+      this.carritoData = info;
+      this.carritoData.productData.forEach(p =>{
+        this.productService.getProduct(p.product_id).subscribe((actualProduct:Product)=>{
+          if (this.carritoServer.productData[0].numEnCarrito === 0) {
+            this.carritoServer.productData[0].numEnCarrito = p.enCarrito;
+            this.carritoServer.productData[0].product = actualProduct;
+            this.calcularTotalPagar();
+            this.carritoData.total = this.carritoServer.total;
+            localStorage.setItem('carrito', JSON.stringify(this.carritoData));
+          } else {
+            this.carritoServer.productData.push({
+              numEnCarrito: p.enCarrito,
+              product: actualProduct
+            });
+            this.calcularTotalPagar();
+            this.carritoData.total = this.carritoServer.total;
+            localStorage.setItem('carrito', JSON.stringify(this.carritoData));
+          }
+          this.dataCarrito$.next({...this.carritoServer});
+        });
+      });
+    }
 
   }
 
   addProductCarrito(id:number, cantidad?:number){
     
-    this.productService.getProductOrder(id).subscribe(
+    this.productService.getProduct(id).subscribe(
       prod=>{
         //Cuando el carrito esta vacio
         if(this.carritoServer.productData[0].product == undefined){
@@ -50,7 +75,7 @@ export class CartService {
           this.calcularTotalPagar();
           //Actualizar data de carrito Data del server
           this.carritoData.productData[0].enCarrito = this.carritoServer.productData[0].numEnCarrito;
-          this.carritoData.productData[0].product_id = prod.product_id['id'];
+          this.carritoData.productData[0].product_id = prod.id;
           this.carritoData.total = this.carritoServer.total;
           //Editamos el local storage
           localStorage.setItem('carrito', JSON.stringify(this.carritoData));
@@ -61,17 +86,24 @@ export class CartService {
 
         }else{
           //Cuando el carrito ya tiene productos
-          let index = this.carritoServer.productData.findIndex(p => p.product.product_id['id'] == prod.id);
+          let index = this.carritoServer.productData.findIndex(p => p.product.id == prod.id);
+          let orders:Product_Order;
+          this.productService.getProductOrders().subscribe(
+            prodOrder =>{
+              orders = prodOrder
+            }
+          )
           
           if(index !== -1){
-            if(cantidad !== undefined && cantidad <= prod.order_id['quantity']){
-              this.carritoServer.productData[index].numEnCarrito = this.carritoServer.productData[index].numEnCarrito < prod.order_id['quantity'] ? cantidad : prod.order_id['quantity'];
+            if(cantidad !== undefined && cantidad <= orders.order_id['quantity']){
+              this.carritoServer.productData[index].numEnCarrito = this.carritoServer.productData[index].numEnCarrito < orders.order_id['quantity'] ? cantidad : orders.order_id['quantity'];
             }else{
-              this.carritoServer.productData[index].numEnCarrito < prod.order_id['quantity'] ? this.carritoServer.productData[index].numEnCarrito++ : prod.order_id['quantity'];
+              this.carritoServer.productData[index].numEnCarrito < orders.order_id['quantity'] ? this.carritoServer.productData[index].numEnCarrito++ : orders.order_id['quantity'];
             }
 
             this.carritoData.productData[index].enCarrito = this.carritoServer.productData[index].numEnCarrito;
             //Mensaje de salida: cantidad actualizada en el carrito
+
           }else{
             //Si no esta en el carrito
             this.carritoServer.productData.push({
@@ -81,7 +113,7 @@ export class CartService {
 
             this.carritoData.productData.push({
               enCarrito: 1,
-              product_id: prod.product_id['id']
+              product_id: prod.id
             });
 
             //Mensaje de salida: agregamos product al carrito
@@ -98,14 +130,16 @@ export class CartService {
 
   updateCarrito(index, incrementar:boolean){
     let data = this.carritoServer.productData[index];
-    
+    let orders:Product_Order;
+    this.productService.getProductOrders().subscribe(prodOrder =>{orders = prodOrder})
+  
     if(incrementar){
-      data.numEnCarrito < data.product.order_id['quantity'] ? data.numEnCarrito++ : data.product.order_id['quantity'];
+      data.numEnCarrito < orders.order_id['quantity'] ? data.numEnCarrito++ : orders.order_id['quantity'];
       this.carritoData.productData[index].enCarrito = data.numEnCarrito;
       this.calcularTotalPagar();
       this.carritoData.total = this.carritoServer.total;
       this.dataCarrito$.next({...this.carritoServer});
-      localStorage.setItem('cart', JSON.stringify(this.carritoData));
+      localStorage.setItem('carrito', JSON.stringify(this.carritoData));
     }else{
       data.numEnCarrito--;
       if (data.numEnCarrito < 1) {
@@ -117,7 +151,7 @@ export class CartService {
         this.carritoData.productData[index].enCarrito = data.numEnCarrito;
         this.calcularTotalPagar();
         this.carritoData.total = this.carritoServer.total;
-        localStorage.setItem('cart', JSON.stringify(this.carritoData));
+        localStorage.setItem('carrito', JSON.stringify(this.carritoData));
       }
     }
   }
@@ -152,7 +186,7 @@ export class CartService {
 
     this.carritoServer.productData.forEach(p => {
       const {numEnCarrito} = p;
-      const price = p.product.product_id['price'];
+      const {price} = p.product;
       total += numEnCarrito * price;
     });
     this.carritoServer.total = total;

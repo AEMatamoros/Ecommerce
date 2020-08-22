@@ -1,10 +1,10 @@
 <div class="container">
-    <div class="text-center my-5">
+    <div *ngIf="carritoData.productData[0].numEnCarrito == 0;" class="text-center my-5">
         <h4>El carrito esta vacio</h4>
         <button class="btn btn-primary btn-lg mt-3" routerLink="/compras">Regresa a comprar</button>
     </div>
 
-    <ng-container *ngIf="prueba">
+    <ng-container *ngIf="carritoData.productData[0].numEnCarrito !==0">
         <div class="row">
             <div class="col my-4">
                 <table class="table">
@@ -18,13 +18,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let c of carritoData.productData">
                             <td class="d-flex align-items-center justify-content-around">
-                                Image
-                                <img src="" alt="product-name" height="60" class="order-1">
+                                <img [src]="c.product.image_id" alt="product-name" height="60" class="order-1">
                                 <span class="text-danger" style="cursor: pointer;"><i class="fa fa-trash"></i></span>  
                             </td>
-                            <td>Producto</td>
+                            <td>{{c.product.name}}</td>
                             <td>Precio</td>
                             <td>
                                 Cantidad

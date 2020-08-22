@@ -15,11 +15,16 @@ import { Ventas} from 'src/app/models/general/ventas'
 
 //Servicios
 import { OrdenesService } from '../panelAdmin/ordenes.service';
+import { AdminOrder } from 'src/app/models/order/AdminOrder';
+import { ProductOrder } from 'src/app/models/order/productOrder';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+
+  public cargado:boolean = false;
+
   constructor(
     private orderService: OrdenesService,
     private http: HttpClient) { }
@@ -62,23 +67,6 @@ export class ProductsService {
     );
   }
 
-  getIdOrder(product_id: number){
-    let product_order: Product_Order = null;
-    this.getProductOrders().subscribe(
-      prod=>{
-        let index = prod.product_id.findIndex(product=> product.id == product_id );
-        if(index !== -1){
-          //Crear orden de compra 
-          
-          product_order[index] = null;
-        }else{
-          product_order[index] = prod;
-        }
-      }
-    )
-    return product_order;
-  }
-
   getProductOrders(){
     return this.http.get<Product_Order>(this.API_Url_Products_Orders).pipe(
       catchError(err=> { return throwError('ERROR PETICION GET ALL PRODUCT_ORDER');})
@@ -86,8 +74,8 @@ export class ProductsService {
   }
 
   getProductOrder(id:number){
-    let id_order = this.getIdOrder(id);
-    return this.http.get<Product_Order>(this.API_Url_Products_Orders+id_order+'/').pipe(
+    
+    return this.http.get<Product_Order>(this.API_Url_Products_Orders+id+'/').pipe(
       catchError(err=>{ return throwError('ERROR PETICION GET PRODUCT_ORDER');})
     )
   }
