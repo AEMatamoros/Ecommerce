@@ -1,9 +1,9 @@
-import { Product_Order } from '../order/product_Order';
+import { Product } from '../product/product';
 
 export interface CartModelServer {
     total: number;
     productData: [{
-      product: Product_Order,
+      product: Product,
       numEnCarrito: number
     }];
   }

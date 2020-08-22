@@ -43,7 +43,6 @@ export class OrdenesService {
     this.URL= 'https://phoenixstore.site/api/viewset/'; //PRODUCCION */
     this.headers = new HttpHeaders()
     this.headers = this.headers.append('Content-Type','application/json');
-    
   }
 
   getOrdenes(){

@@ -126,7 +126,6 @@ export class CrearOrdenComponent implements OnInit {
             resp=> {
               this.status = 'success';
               this.message = 'Orden agregada EXITOSAMENTE!';
-              
               const action = new Action(0, 'CRUD ORDER, ACTION: AGREGAR');
               
               this.logService.postAction(action).subscribe(
