@@ -1,42 +1,77 @@
 <app-corousel-img></app-corousel-img>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<br>
+<button *ngIf="esconderCategorias" (click)="regresar()" class="btn btn-regresar" >REGRESAR</button>
+
 <div class="card-columns">
-    <div  (click)="filtrar('Tecnologia')" class="card text-center">
-        <img src="assets/images/products/card1.jpg" class="card-img-top" alt="">
-        <div class="card-img-overlay">
-            <a routerLink="/compras"  href="" class="btn btn-carrito1 btn-sm">TECNOLOGIA</a>
-        </div>
-    </div>
-    <div routerLink="/compras" class="card text-center">
-        <img src="assets/images/products/muebleria3.jpg" class="card-img-top" alt="">
-        <div class="card-img-overlay text-center">
-            <a routerLink="/compras" href="" class="btn btn-carrito btn-sm">HOGAR</a>
-        </div>
-    </div>
-    <div routerLink="/compras" class="card text-center">
-        <img src="assets/images/products/card3.jpg" class="card-img-top" alt="">
-        <div class="card-img-overlay text-center">
-            <a routerLink="/compras" href="" class="btn btn-carrito btn-sm">CELULARES</a>
-        </div>
-    </div>
 
-    <div routerLink="/compras" class="card text-center">
-        <img src="assets/images/products/vestimenta-min.jpg" class="card-img-top" alt="">
-        <div class="card-img-overlay text-center">
-            <a routerLink="/compras" href="" class="btn btn-carrito1 btn-sm">VESTIMENTA</a>
-        </div>
-    </div>
-
-    <div routerLink="/compras" class="card text-center">
-      <img src="assets/images/products/juve.png" class="card-img-top" alt="">
+  <ng-container *ngIf="!esconderCategorias">
+    <div (click)="buscarProducto('Tecnologia')" class="card text-center">
+      <img src="assets/images/products/card1.jpg" class="card-img-top" alt="">
       <div class="card-img-overlay">
-          <a routerLink="/compras" href="" class="btn btn-carrito1 btn-sm">DEPORTES</a>
+          <a href="" class="btn btn-carrito1 btn-sm">TECNOLOGIA</a>
       </div>
   </div>
-    <div routerLink="/compras" class="card text-center ">
-        <img src="assets/images/products/instrumentos.jpg" class="card-img-top" alt="">
-        <div class="card-img-overlay text-center">
-            <a routerLink="/compras" href="" class="btn btn-carrito btn-sm">INSTRUMENTOS</a>
-        </div>
+  <div (click)="buscarProducto('Hogar')" class="card text-center">
+      <img src="assets/images/products/muebleria3.jpg" class="card-img-top" alt="">
+      <div class="card-img-overlay text-center">
+          <a href="" class="btn btn-carrito btn-sm">HOGAR</a>
+      </div>
+  </div>
+  <div (click)="buscarProducto('cel')" class="card text-center">
+      <img src="assets/images/products/card3.jpg" class="card-img-top" alt="">
+      <div class="card-img-overlay text-center">
+          <a href="" class="btn btn-carrito btn-sm">CELULARES</a>
+      </div>
+  </div>
+
+  <div (click)="buscarProducto('Vestimenta')" class="card text-center">
+      <img src="assets/images/products/vestimenta-min.jpg" class="card-img-top" alt="">
+      <div class="card-img-overlay text-center">
+          <a href="" class="btn btn-carrito1 btn-sm">VESTIMENTA</a>
+      </div>
+  </div>
+
+  <div (click)="buscarProducto('Deportes')" class="card text-center">
+    <img src="assets/images/products/juve.png" class="card-img-top" alt="">
+    <div class="card-img-overlay">
+        <a href="" class="btn btn-carrito1 btn-sm">DEPORTES</a>
     </div>
+  </div>
+  <div  (click)="buscarProducto('Instrumentos musicales')" class="card text-center ">
+      <img src="assets/images/products/instrumentos.jpg" class="card-img-top" alt="">
+      <div class="card-img-overlay text-center">
+          <a href="" class="btn btn-carrito btn-sm">INSTRUMENTOS</a>
+      </div>
+  </div>
+  </ng-container>
+
+  <ng-container *ngIf="esconderCategorias">
+   <!--  <div class="card text-center" *ngFor="let pro of encontrados ; let i = index;">
+      <img src="{{pro.images_id.img_route}}" class="card-img-top" alt="">
+      <div class="card-img-overlay text-center">
+          <a [routerLink]="['/detalle',pro.product_id.id]" href="" class="btn btn-carrito btn-sm"> </a>
+      </div>
+    </div> -->
+
+    <div class="card text-center" *ngFor="let pro of encontrados ; let i = index;">
+      <a [routerLink]="['/detalle',pro.product_id.id]">
+        <img src="{{pro.images_id.img_route}}" class="card-img-top" alt="">
+      </a>
+      <div class=" flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" >
+            <label for="" class="label-desc">
+              {{ pro.product_id.name }}
+            </label><br/>
+            <strong>
+              HNL. {{ pro.product_id.price }}
+            </strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 
 </div>
+

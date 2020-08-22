@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ShopService } from '../../../services/shop/shop.service';
 import { CartService } from 'src/app/services/cart.service';
-import { EventEmitterService } from 'src/app/services/shared/event-emitter.service';
+import { EventEmitterService } from '../../../services/shared/event-emitter.service';
 
 @Component({
   selector: 'app-compras',
@@ -27,7 +27,7 @@ export class ComprasComponent implements OnInit {
 
  /*  public producto; */
 
-  constructor( 
+  constructor(
     private cartService:CartService,
     private shopService: ShopService,
     private eventEmitterService:EventEmitterService
@@ -37,13 +37,7 @@ export class ComprasComponent implements OnInit {
 
     this.getDatos();
 
-    if (this.eventEmitterService.subsVar === undefined) {
-      this.eventEmitterService.subsVar = this.eventEmitterService.
-      invokeFirstComponentFunction.subscribe((name: string) => {
-        this.terminoCategoria = false;
-        this.buscarProducto(name);
-      });
-    }
+
   }
 
   addCarrito(product_id: number){
@@ -51,7 +45,7 @@ export class ComprasComponent implements OnInit {
     this.cartService.addProductCarrito(product_id);
   }
 
-  
+
   buscarProducto( termino: string ) {
     termino = termino.toLowerCase();
     this.encontrados = [];
@@ -59,12 +53,13 @@ export class ComprasComponent implements OnInit {
       let prodName = producto.product_id.name.toLowerCase();
       let prodDesc = producto.product_id.description.toLowerCase();
       let categoria = producto.product_id.category_id.category_name.toLowerCase();
-  
+
       if (prodName.indexOf(termino) >= 0 || prodDesc.indexOf(termino) >= 0 || categoria === termino ) {
         this.encontrados.push(producto);
       }
     }
     this.trueArray = [];
+    // console.log(this.encontrados);
   }
 
 
@@ -72,11 +67,11 @@ export class ComprasComponent implements OnInit {
     this.shopService.getProducts()
       .subscribe(data => {
         this.productos = data;
-        
+
         this.shopService.getProductsImage()
           .subscribe(data => {
           this.productosImagenes = data;
-    
+
           for (let prod of this.productos ) {
             for (let prodImg of this.productosImagenes) {
               if (prodImg.product_id.id === prod.id) {
@@ -86,7 +81,7 @@ export class ComprasComponent implements OnInit {
             }
           }
           this.busquedaArray = this.trueArray;
-          
+
           this.shopService.getCategory()
             .subscribe(data => {
             this.category = data['results'];
@@ -96,6 +91,16 @@ export class ComprasComponent implements OnInit {
             this.categoria4 = this.category[3].category_name;
             this.categoria5 = this.category[4].category_name;
             });
+
+
+          /* if (this.eventEmitterService.subsVar === undefined) {
+            this.eventEmitterService.subsVar = this.eventEmitterService.
+            invokeFirstComponentFunction.subscribe((name: string) => {
+              this.terminoCategoria = false;
+              this.buscarProducto(name);
+            });
+          } */
+
 
           });
       });
