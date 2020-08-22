@@ -41,7 +41,7 @@ export class CardsComponent implements OnInit {
             }
             this.c += 1;
           }
-          console.log(this.productosCarrusel);
+          // console.log(this.productosCarrusel);
 
           });
       });

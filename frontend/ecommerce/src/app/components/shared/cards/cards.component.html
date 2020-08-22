@@ -3,7 +3,7 @@
     <div class="row "  style="text-align: center;">
 
       <ng-container *ngFor="let producto of productosCarrusel; let i = index;">
-        <div class="col-3 " *ngIf="i<=4" >
+        <div class="col-3 " *ngIf="i<4" >
           <a [routerLink]="['/detalle',producto.product_id.id]">
             <img src="{{producto.images_id.img_route}}" class="d-block w-100 h-70 shadow" alt="alexa">
           </a>
