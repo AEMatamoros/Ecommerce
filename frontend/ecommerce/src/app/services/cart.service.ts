@@ -137,12 +137,14 @@ export class CartService {
   updateCarrito(index, incrementar:boolean){
     let data = this.carritoServer.productData[index];
     let orders:Product_Order;
+    let cargado:boolean = false;
     this.productService.getProductOrders().subscribe(prodOrder =>{
       orders = prodOrder; 
+      cargado = true;
     })
   
     if(incrementar){
-      data.numEnCarrito < orders.order_id[0].quantity ? data.numEnCarrito++ : orders.order_id[0].quantity;
+      data.numEnCarrito < 5 ? data.numEnCarrito++ : 1;
       this.carritoData.productData[index].enCarrito = data.numEnCarrito;
       this.calcularTotalPagar();
       this.carritoData.total = this.carritoServer.total;
