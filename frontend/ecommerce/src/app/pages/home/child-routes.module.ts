@@ -16,7 +16,7 @@ import { VendedorprofilesComponent } from './vendedorprofiles/vendedorprofiles.c
 import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CartComponent } from 'src/app/components/shared/cart/cart.component';
+import { CartComponent } from './cart/cart.component';
 
 import { VentasComponent} from './ventas/ventas/ventas.component'
 

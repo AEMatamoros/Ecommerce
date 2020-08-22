@@ -1,16 +1,15 @@
-<div class="container">
+<div class="container" *ngIf="cargado">
     <div *ngIf="carritoData.productData[0].numEnCarrito == 0;" class="text-center my-5">
         <h4>El carrito esta vacio</h4>
-        <button class="btn btn-primary btn-lg mt-3" routerLink="/compras">Regresa a comprar</button>
+        <button class="btn btn-primary mt-3" routerLink="/compras">Regresa a comprar</button>
     </div>
 
-    <ng-container *ngIf="carritoData.productData[0].numEnCarrito !==0">
+    <ng-container *ngIf="carritoData.productData[0].numEnCarrito !== 0">
         <div class="row">
             <div class="col my-4">
                 <table class="table">
                     <thead class="table-dark">
                         <tr class="text-center">
-                            <th>Image</th>
                             <th>Producto</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
@@ -18,27 +17,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let c of carritoData.productData">
-                            <td class="d-flex align-items-center justify-content-around">
-                                <img [src]="c.product.image_id" alt="product-name" height="60" class="order-1">
-                                <span class="text-danger" style="cursor: pointer;"><i class="fa fa-trash"></i></span>  
-                            </td>
+                        <tr *ngFor="let c of carritoData.productData let i=index">
                             <td>{{c.product.name}}</td>
-                            <td>Precio</td>
+                            <td>{{c.product.price}}</td>
                             <td>
-                                Cantidad
                                 <form>
-                                    <div class="value-button" id="decrease">
+                                    <div class="value-button" id="decrease" (click)="cambiarCantidad(i, false)">
                                         <i class="fa fa-minus"></i>     
                                     </div>
-                                    <input type="number" id="number" readonly  value="" max="">
-                                    <div class="value-button" id="increase">
+                                    <input type="number" id="number" readonly  [value]="c.numEnCarrito" [max]="c.product.quantity">
+                                    <div class="value-button" id="increase" (click)="cambiarCantidad(i, true)">
                                         <i class="fa fa-plus"></i>
                                     </div>
                                 </form>
                             </td>
                             <td>
-                                Subtotal
+                                {{ cartService.subtotal(i) }}
                             </td>
                         </tr>
                         <tr class="border-0">
@@ -46,7 +40,7 @@
                             <td></td>
                             <td></td>
                             <td>TOTAL</td>
-                            <td>VALOR AQUI</td>
+                            <td>{{carritoData.total}} LPS.</td>
                         </tr>
                     </tbody>
                 </table>

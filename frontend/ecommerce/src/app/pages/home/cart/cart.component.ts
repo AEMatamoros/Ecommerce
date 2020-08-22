@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { CartModelServer } from 'src/app/models/cart/cart.model';
+import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,15 +14,36 @@ export class CartComponent implements OnInit {
   public totalCarrito: number;
   public subtotal: number;
 
-  prueba:boolean = true;
+  public productImage: any;
+  public cargado: boolean = false;
+  public tempData: any;
 
   constructor(
-    public cartService: CartService
-  ) { }
+    public cartService: CartService,
+    public productService: ProductsService
+  ) { 
+    
+  }
 
   ngOnInit(): void {
-    this.cartService.dataCarrito$.subscribe(response=> this.carritoData = response);
-    this.cartService.totalCarrito$.subscribe(response=> this.totalCarrito = response);
+    this.cartService.dataCarrito$.subscribe(response=>{ this.cargado = true; this.carritoData = response;} );
+    this.cartService.totalCarrito$.subscribe(response=>{ this.cargado = true; this.totalCarrito = response} );
+    this.getProductImages();
+    console.log(this.carritoData);
+  }
+
+  getProductImages(){
+    this.productService.getProductsImages().subscribe(
+      response=>{
+        this.cargado = true;
+        console.log(response)
+        this.productImage = response;
+      }
+    )
+  }
+
+  cambiarCantidad(id:number, incrementarCantidad: boolean){
+    this.cartService.updateCarrito(id, incrementarCantidad);
   }
 
 }

@@ -83,6 +83,8 @@ export class CartService {
           this.dataCarrito$.next({...this.carritoServer});
 
           //Mensaje de sálida: Agregando al carrito
+          const message = 'Producto agregado al carrito!';
+          alert(message);
 
         }else{
           //Cuando el carrito ya tiene productos
@@ -103,6 +105,8 @@ export class CartService {
 
             this.carritoData.productData[index].enCarrito = this.carritoServer.productData[index].numEnCarrito;
             //Mensaje de salida: cantidad actualizada en el carrito
+            const message = 'Cantidad actualizada a el producto!';
+            alert(message);
 
           }else{
             //Si no esta en el carrito
@@ -117,6 +121,8 @@ export class CartService {
             });
 
             //Mensaje de salida: agregamos product al carrito
+            const message = 'Producto agregado al carrito!';
+            alert(message);
           }
           this.calcularTotalPagar();
           this.carritoData.total = this.carritoServer.total;
@@ -131,10 +137,12 @@ export class CartService {
   updateCarrito(index, incrementar:boolean){
     let data = this.carritoServer.productData[index];
     let orders:Product_Order;
-    this.productService.getProductOrders().subscribe(prodOrder =>{orders = prodOrder})
+    this.productService.getProductOrders().subscribe(prodOrder =>{
+      orders = prodOrder; 
+    })
   
     if(incrementar){
-      data.numEnCarrito < orders.order_id['quantity'] ? data.numEnCarrito++ : orders.order_id['quantity'];
+      data.numEnCarrito < orders.order_id[0].quantity ? data.numEnCarrito++ : orders.order_id[0].quantity;
       this.carritoData.productData[index].enCarrito = data.numEnCarrito;
       this.calcularTotalPagar();
       this.carritoData.total = this.carritoServer.total;
@@ -157,7 +165,7 @@ export class CartService {
   }
 
   deleteProductCarrito(index){
-    if(window.confirm('Estas seguro de elimar el producto del carrito?')){
+    if(window.confirm('Estas seguro de eliminar el producto del carrito?')){
       this.carritoServer.productData.splice(index, 1);
       this.carritoData.productData.splice(index, 1);
       this.calcularTotalPagar();
@@ -191,6 +199,16 @@ export class CartService {
     });
     this.carritoServer.total = total;
     this.totalCarrito$.next(this.carritoServer.total);
+  }
+
+  subtotal(index){
+    let subTotal = 0;
+
+    let p = this.carritoServer.productData[index];
+    
+    subTotal = p.product.price * p.numEnCarrito;
+
+    return subTotal;
   }
 
 }
