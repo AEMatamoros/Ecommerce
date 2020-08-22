@@ -72,7 +72,7 @@ export class BoxCardsComponent implements OnInit {
             }
           }
           this.busquedaArray = this.trueArray;
-          console.log(this.trueArray);
+          // console.log(this.trueArray);
           });
       });
 

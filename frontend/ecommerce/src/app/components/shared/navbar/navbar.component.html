@@ -15,16 +15,16 @@
                               <li><a routerLinkActive="active" routerLink="/landing">Inicio</a></li>
                               <li><a routerLinkActive="active" routerLink="/compras" >Comprar</a></li>
                               <li><a routerLinkActive="active" routerLink="/about">Conocenos</a></li>
-                              <li class="hot"><a href="#">Ofertas</a>
+                              <li class="hot"><a >Ofertas</a>
                                   <ul class="submenu">
                                       <li><a routerLink="/landing"> Mas vendidos</a></li>
                                       <li><a routerLink="/landing"> Novedades</a></li>
                                   </ul>
                               </li>
-                              <li><a href="/landing">Blog</a>
+                              <li><a >Ventas</a>
                                   <ul class="submenu">
                                       <li><a routerLink="/vendedores">Vendedores</a></li>
-                                      <li><a routerLink="/ventas">Mis Ventas</a></li>
+                                      <li *ngIf="auth.estaAutenticado()"><a routerLink="/ventas">Mis Ventas</a></li>
                                   </ul>
                               </li>
                               <!-- <li *ngIf="!auth.estaAutenticado()" ><a routerLink="/login">Registrarse / Acceder</a></li> -->
@@ -84,7 +84,8 @@
                           <li><a routerLink="/about">Conocenos</a></li>
                           <li><a routerLink="/landing"> Mas vendidos</a></li>
                           <li><a routerLink="/landing"> Novedades</a></li>
-                          <li><a routerLink="/blog"> Blog</a></li>
+                          <li><a routerLink="/vendedores">Vendedores</a></li>
+                          <li *ngIf="auth.estaAutenticado()"><a routerLink="/ventas">Mis Ventas</a></li>
 
                           <ng-container  *ngIf="!auth.estaAutenticado()">
                             <br>
