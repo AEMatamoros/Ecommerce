@@ -13,13 +13,16 @@ import { environment } from '../environments/environment';
 
 //Componentes
 import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component'; 
+import { RegisterComponent } from './components/auth/register/register.component';
 
 //Modulos
 import { PagesAdminModule } from './pages/panel-admin/panel-admin.module';
 import { PagesHomeModule } from './pages/home/home.module';
 import { SharedHomeModule } from './components/shared/shared.module';
 import { VentasComponent } from './pages/home/ventas/ventas/ventas.component';
+
+
+import { EventEmitterService } from './services/shared/event-emitter.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { VentasComponent } from './pages/home/ventas/ventas/ventas.component';
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+              EventEmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

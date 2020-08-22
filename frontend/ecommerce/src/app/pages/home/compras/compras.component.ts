@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../../../services/shop/shop.service';
+import { EventEmitterService } from 'src/app/services/shared/event-emitter.service';
 
 
 
@@ -16,6 +17,7 @@ export class ComprasComponent implements OnInit {
   public trueArray = [];
   public busquedaArray = [];
   public encontrados = [];
+  public terminoCategoria;
 
   public categoria1;
   public categoria2;
@@ -25,13 +27,29 @@ export class ComprasComponent implements OnInit {
 
  /*  public producto; */
 
-  constructor( private shopService:ShopService ) {
+  constructor( private shopService:ShopService,
+               private eventEmitterService:EventEmitterService ) {
 
   }
 
   ngOnInit(): void {
 
     this.getDatos();
+
+    if (this.eventEmitterService.subsVar === undefined) {
+      this.eventEmitterService.subsVar = this.eventEmitterService.
+      invokeFirstComponentFunction.subscribe((name: string) => {
+        this.terminoCategoria = false;
+        this.buscarProducto(name);
+
+      });
+    }
+
+  }
+
+  holas(hola: string) {
+    console.log('Event emitter funcionando ', hola);
+
   }
 
   buscarProducto( termino: string ) {
@@ -46,7 +64,7 @@ export class ComprasComponent implements OnInit {
         this.encontrados.push(producto);
       }
     }
-    console.log(this.encontrados);
+    console.log(this.encontrados,'siuuu');
     this.trueArray = [];
   }
 
@@ -82,6 +100,7 @@ export class ComprasComponent implements OnInit {
             this.categoria4 = this.category[3].category_name;
             this.categoria5 = this.category[4].category_name;
             });
+
 
           });
       });
