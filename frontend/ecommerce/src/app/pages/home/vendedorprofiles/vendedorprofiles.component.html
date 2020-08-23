@@ -12,6 +12,8 @@
         </div>
     </div>
 <h1 class="text-center">Productos</h1>
+
+
 <div class="row">
   <div class="col-md-12">
     <button class="btn btn-danger float-right" type="button"  data-toggle="modal" data-target="#reportModal">Reportar Usuario</button>
@@ -25,8 +27,9 @@
 
 <ng-container *ngFor="let product of products; let i = index;">
   <ng-container *ngIf="product.user_id.id==cuenta_id">
+    <ng-container *ngIf="auth.estaAutenticado()">
 <div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas mb-0" >
-    <a [routerLink]="['/detalle', product.id]">
+    <a [routerLink]="['/detalle', product.id]" >
       <div class="contenedor-img text-center">
         <div id="slider">
             <figure>
@@ -59,9 +62,61 @@
       </div>
 
   </div>
+
+
+
+  
+</ng-container>
+</ng-container>
+</ng-container>
+
+<ng-container *ngFor="let product of products; let i = index;">
+  <ng-container *ngIf="product.user_id.id==cuenta_id">
+    <ng-container *ngIf="!auth.estaAutenticado()">
+<div class="col-lg-4 col-md-4 col-sm-6 col-6 columnas mb-0" >
+    <a routerLink="/login" >
+      <div class="contenedor-img text-center">
+        <div id="slider">
+            <figure>
+              <div *ngFor="let image of products_images ">
+                <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" 
+                  alt="Card image" height="200px" width="200px">
+              </div>
+            </figure>
+          </div>
+      </div>
+    </a>
+
+
+      <div class=" flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" >
+            <label for="" class="label-desc">
+              {{ product.name }}
+
+            </label><br/>
+            <strong>
+              HNL. {{ product.price }}
+            </strong>
+          </div>
+          <div class="flip-card-back">
+
+            <a routerLink="/login" class="btn btn-carrito">Agregar al carrito</a>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+
+  
+</ng-container>
 </ng-container>
 </ng-container>
 </div>
+
+
 <!--FinPortada-->
 
 <!--Modal-->

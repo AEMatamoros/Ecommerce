@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Account } from 'src/app/models/account/account'
 import {Product} from 'src/app/models/product/product';
 import {ProductImages} from 'src/app/models/product/product-images'
+import { UserService } from 'src/app/services/auth/user.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {ProductImages} from 'src/app/models/product/product-images'
   styleUrls: ['./vendedorprofiles.component.css']
 })
 export class VendedorprofilesComponent implements OnInit {
-  constructor(private _Activatedroute:ActivatedRoute,private accountService:AccountService,private productService:ProductsService,private complaintService:GeneralService,public router:Router) { }
+  constructor(private _Activatedroute:ActivatedRoute,private accountService:AccountService,private productService:ProductsService,private complaintService:GeneralService,public router:Router,public auth: UserService) { }
   @Input() complaint =  {problem:'', comment:'', accuser_user_id:localStorage.getItem('id'), denounced_user_id:0}
   
   cuenta_id:string;
