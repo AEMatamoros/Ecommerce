@@ -29,6 +29,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { VendedoresComponent } from './vendedores/vendedores.component';
 import { VendedorprofilesComponent } from './vendedorprofiles/vendedorprofiles.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { CartComponent } from './cart/cart.component';
         VendedorprofilesComponent,
         DetalleProductoComponent,
         ShoppingCartComponent,
-        CartComponent
+        CartComponent,
+        CheckoutComponent
     ],
     exports: [
         PerfilComponent,

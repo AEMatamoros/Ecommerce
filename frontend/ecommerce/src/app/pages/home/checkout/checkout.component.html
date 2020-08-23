@@ -1,0 +1,19 @@
+
+<div class="container">
+    <div class="row" *ngIf="carritoData.productData[0].numEnCarrito !== 0">
+        <div class="col-md-6">
+            <h2>Datos de la Compra</h2>
+            <hr>
+            <div class="card-body">
+                <h4 class="card-title">Total a Pagar</h4>
+                <p class="text-center price__shop">
+                    {{ carritoData.total }} Lps.
+                </p>
+            </div>
+            <div class="card-footer">
+                <app-paypal></app-paypal>
+            </div> 
+        </div>
+        
+    </div>
+</div>

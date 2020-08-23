@@ -19,6 +19,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CartComponent } from './cart/cart.component';
 
 import { VentasComponent} from './ventas/ventas/ventas.component'
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 const childHomeRoutes: Routes = [
@@ -47,6 +48,10 @@ const childHomeRoutes: Routes = [
     {
         path: 'shopping',
         component: CartComponent
+    },
+    {
+        path:'checkout',
+        component: CheckoutComponent
     },
     {
         path: 'offers',
