@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { map } from 'rxjs/operators';
+import { AccountService } from '../account/account.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValidadoresRegisterService {
 
-  constructor() { }
-
+  constructor(
+    private accounts: AccountService
+  ) { }
 
   passwordsIguales( password: string, confirm_password: string ) {
 
@@ -24,6 +28,24 @@ export class ValidadoresRegisterService {
       }
 
     }
-
   }
+
+  existeEmail(email: string){
+    
+    return(formGroup: FormGroup) =>{
+      const emailControl = formGroup.controls[email];
+      this.accounts.getAccounts().subscribe(
+        accounts=>{
+          accounts.forEach((element)=>{
+            if(element.email == emailControl.value){
+              return emailControl.setErrors({existeEmail: true})
+            }else{
+              return emailControl.setErrors(null)
+            }
+          })
+        }
+      )
+    }
+  }
+
 }

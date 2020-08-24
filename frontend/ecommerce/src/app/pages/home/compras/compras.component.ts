@@ -42,7 +42,7 @@ export class ComprasComponent implements OnInit {
   }
 
   addCarrito(product_id: number){
-    console.log('AGREGANDO AL CARRITO SERVICES', product_id);
+    //console.log('AGREGANDO AL CARRITO SERVICES', product_id);
     this.cartService.addProductCarrito(product_id);
   }
 

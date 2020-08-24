@@ -63,6 +63,7 @@ export class UserService {
     localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('expira');
+    localStorage.removeItem('carrito');
     this.router.navigateByUrl('/login');
   }
 

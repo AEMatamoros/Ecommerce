@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ShopService } from '../../../services/shop/shop.service';
 import { MessengerService } from '../../../services/msg/messenger.service';
 import { UserService } from 'src/app/services/auth/user.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -15,10 +16,20 @@ export class DetalleProductoComponent implements OnInit {
   public productos;
   public detalleProducto;
 
-  constructor(private activatedRoute:ActivatedRoute,
-              private shopService:ShopService, private msg: MessengerService,public auth: UserService,) {
-
+  constructor(
+    private activatedRoute:ActivatedRoute,
+    private shopService:ShopService, 
+    private msg: MessengerService,
+    public auth: UserService,
+    private cartService:CartService) {
    }
+
+   
+  addCarrito(product_id: number){
+    //console.log('AGREGANDO AL CARRITO SERVICES', product_id);
+    this.cartService.addProductCarrito(product_id);
+  }
+
 
   ngOnInit(): void {
 

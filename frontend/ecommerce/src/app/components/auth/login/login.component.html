@@ -15,19 +15,26 @@
 
                 <h3>Inicia sessión</h3>
                 <p>Ingresa para tener acceso al repertorio de nuestra tienda</p>
-                <form (ngSubmit)="login(f)" #f="ngForm">
+                <form (ngSubmit)="login()" [formGroup]="formLogin">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Usuario" name="username"
-                            #username="ngModel" [(ngModel)]="loginAuth.username" required email />
-                        <small *ngIf="f.submitted && f.controls['username'].errors" class="text-info">
-                            Correo no válido
+                        <input type="email" 
+                               class="form-control"
+                               placeholder="Usuario"
+                               formControlName="username"
+                               [class.is-invalid]="correoNoValido"
+                              required/>
+                        <small *ngIf="correoNoValido" class="text-info">
+                            Correo no existe
                         </small>
 
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Contraseña *" name="password"
-                            #password="ngModel" [(ngModel)]="loginAuth.password" required />
-                        <small *ngIf="f.submitted && f.controls['password'].errors" class="text-info">
+                        <input type="password"
+                               class="form-control"
+                               placeholder="Contraseña" 
+                               formControlName="password"
+                               required />
+                        <small *ngIf="passwordNoValida" class="text-info">
                             Contraseña no válida
                         </small>
                         <small *ngIf="status=='Error'" class="text-info">
