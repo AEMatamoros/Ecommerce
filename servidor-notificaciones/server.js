@@ -11,8 +11,11 @@ const fakeDatabase = []
 const app = express()
 
 app.use(cors())
-//app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended:true }))
+//Parse Json
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
 
 webpush.setVapidDetails('mailto:you@domain.com', PUBLIC_VAPID, PRIVATE_VAPID)
 
