@@ -26,6 +26,7 @@ import { EventEmitterService } from './services/shared/event-emitter.service';
 //SW
 import {SwPush, SwUpdate} from '@angular/service-worker'
 import { interval } from 'rxjs';
+import { PushNotificationService } from './services/push-notification.service';
 
 @NgModule({
   declarations: [
@@ -47,14 +48,15 @@ import { interval } from 'rxjs';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [DatePipe,
-              EventEmitterService],
+              EventEmitterService,
+              PushNotificationService],
   bootstrap: [AppComponent]
 })
-export class AppModule implements OnInit{ 
+export class AppModule implements OnInit{
   constructor(private update:SwUpdate, private push:SwPush, private appRef:ApplicationRef){/*this.updateClient;this.checkUpdate()*/}
 
   ngOnInit(){
-    
+
   }
   /*
   updateClient(){
@@ -73,7 +75,7 @@ export class AppModule implements OnInit{
      this.update.activated.subscribe((event)=>{
        console.log('En uso', event.previous, 'Disponible', event.current)
      });
-     
+
 
   }
 

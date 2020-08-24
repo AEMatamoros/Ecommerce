@@ -20,9 +20,14 @@ import { CartComponent } from './cart/cart.component';
 
 import { VentasComponent} from './ventas/ventas/ventas.component'
 import { CheckoutComponent } from './checkout/checkout.component';
+import { Pagina404Component } from './pagina404/pagina404.component';
 
 
 const childHomeRoutes: Routes = [
+    {
+    path: '',
+    component: LandingComponent
+    },
     {
         path: 'landing',
         component: LandingComponent
@@ -72,7 +77,9 @@ const childHomeRoutes: Routes = [
     {
         path: 'ventas',
         component: VentasComponent
-      }
+    },
+    { path: '**',
+    component: Pagina404Component}
 ];
 
 @NgModule({
