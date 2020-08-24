@@ -25,5 +25,21 @@
         ]
       }
     }
+  ],
+
+  "dataGroups": [
+    {
+      "name": "products",
+      "urls": [
+        "https://phoenixstore.site/api/viewset/all_products/",
+        "https://phoenixstore.site/api/viewset/all_product_images/"
+      ],
+      "cacheConfig": {
+        "maxSize": 10,
+        "maxAge": "50m",
+        "timeout": "10s",
+        "strategy": "performance"
+      }
+    }
   ]
 }

@@ -15,11 +15,11 @@
                               <li><a routerLinkActive="active" routerLink="/landing">Inicio</a></li>
                               <li><a routerLinkActive="active" routerLink="/compras" >Comprar</a></li>
                               <li><a routerLinkActive="active" routerLink="/about">Conocenos</a></li>
-                              <li class="hot"><a >Ofertas</a>
+                              <!-- <li class="hot"><a >Ofertas</a>
                                   <ul class="submenu">
                                       <li><a routerLink="/landing"> Mas vendidos</a></li>
                                   </ul>
-                              </li>
+                              </li> -->
                               <li><a >Ventas</a>
                                   <ul class="submenu">
                                       <li><a routerLink="/vendedores">Vendedores</a></li>
@@ -32,7 +32,7 @@
                   </div>
 
                   <!-- Header Right -->
-                  <div class="main-menu div-perfil d-none d-lg-block" *ngIf="!auth.estaAutenticado()">
+                  <div class="main-menu  d-none d-lg-block" *ngIf="!auth.estaAutenticado()">
                     <ul>
                       <li><a routerLink="/login">Registrarse / Acceder</a></li>
                     </ul>
@@ -84,8 +84,8 @@
                         <ul class="navbar-nav mr-auto menu-responsive" style="text-align: center;" >
                           <li><a routerLinkActive="active"  routerLink="/compras" >Comprar</a></li>
                           <li><a routerLink="/about">Conocenos</a></li>
-                          <li><a routerLink="/landing"> Mas vendidos</a></li>
-                          <li><a routerLink="/landing"> Novedades</a></li>
+                        <!--   <li><a routerLink="/landing"> Mas vendidos</a></li>
+                          <li><a routerLink="/landing"> Novedades</a></li> -->
                           <li><a routerLink="/vendedores">Vendedores</a></li>
                           <li *ngIf="auth.estaAutenticado()"><a routerLink="/ventas">Mis Ventas</a></li>
 

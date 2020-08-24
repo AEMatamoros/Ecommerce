@@ -18,6 +18,15 @@
 
 }
 
+.btn-categ {
+  color: white !important;
+
+}
+
+.btn-categ:hover {
+  color: black !important;
+}
+
 .btn-regresar {
   display: block;
   margin: auto;
