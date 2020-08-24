@@ -19,6 +19,11 @@ app.use(bodyParser.json());
 
 webpush.setVapidDetails('mailto:you@domain.com', PUBLIC_VAPID, PRIVATE_VAPID)
 
+//Test
+app.get('', (req, res) => {
+  console.log("Server On");
+});
+
 
 app.post('/subscription', (req, res) => {
     const subscription = req.body
@@ -49,6 +54,6 @@ app.post('/sendNotification', (req, res) => {
 
 })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server started on port 3000')
   })
