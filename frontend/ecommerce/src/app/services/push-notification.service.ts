@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+
 import { Subscription } from 'rxjs';
 //const SERVER_URL = 'http://localhost:3000/subscription';
-const SERVER_URL = 'https://unah-push-notifications.herokuapp.com';
+const SERVER_URL = 'https://unah-push-notifications.herokuapp.com/subscription';
 
 @Injectable({
   providedIn: 'root'
