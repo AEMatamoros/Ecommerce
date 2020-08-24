@@ -29,9 +29,10 @@
 
             </div>
           </div>
-          <div class="mx-4">
-            <button type="Button" class="btn btn-carrito mx-3 lg-2" (click)="addCarrito(detalleProducto?.product_id.id)">Agregar al carrito
-              <a class="mx-2"><img src="assets/icons/carritoRojo.png" style="width: 20px;" alt=""></a>
+          <div class="mx-4" ngIf="!auth.estaAutenticado()">
+            <button type="Button" class="btn btn-carrito mx-3 lg-2" (click)="addCarrito(detalleProducto?.product_id.id)">
+              <i class="fa fa-shopping-cart"></i>
+              Agregar al carrito
             </button>
           </div>
         </div>
@@ -42,9 +43,12 @@
             </div>
           </div>
           <div class="mx-4">
-            <a routerLink="/login"><button type="Button" class="btn btn-carrito mx-3 lg-2" >Agregar al carrito
-              <a class="mx-2"><img src="assets/icons/carritoRojo.png" style="width: 20px;" alt=""></a>
-            </button></a>
+            <a routerLink="/login">
+              <button type="Button" class="btn btn-carrito mx-3 lg-2" >
+                <i class="fa fa-fa-shopping-cart"></i>
+                Agregar al carrito
+              </button>
+            </a>
 
           </div>
         </div>

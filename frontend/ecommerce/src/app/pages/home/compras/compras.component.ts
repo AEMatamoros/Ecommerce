@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../../../services/shop/shop.service';
 import { CartService } from 'src/app/services/cart.service';
 import { EventEmitterService } from '../../../services/shared/event-emitter.service';
+import { UserService } from 'src/app/services/auth/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-compras',
@@ -31,6 +33,8 @@ export class ComprasComponent implements OnInit {
   constructor(
     private cartService:CartService,
     private shopService: ShopService,
+    public auth: UserService,
+    public router: Router,
     private eventEmitterService:EventEmitterService
   ){}
 
@@ -43,7 +47,12 @@ export class ComprasComponent implements OnInit {
 
   addCarrito(product_id: number){
     //console.log('AGREGANDO AL CARRITO SERVICES', product_id);
-    this.cartService.addProductCarrito(product_id);
+    if(this.auth.estaAutenticado()){
+      this.cartService.addProductCarrito(product_id);
+    }else{
+      this.router.navigateByUrl('/login');
+    }
+    
   }
 
 
