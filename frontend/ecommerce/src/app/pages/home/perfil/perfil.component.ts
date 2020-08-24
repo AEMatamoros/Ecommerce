@@ -33,13 +33,11 @@ export class PerfilComponent implements OnInit {
   public message2: string = '';
   public fotoSelected2: string | ArrayBuffer;
   
-  
-  
   ngOnInit(){
 
      this.dataService.getAccount(this.cuenta_id)
       .subscribe(data =>{this.cuenta=data
-      console.log(this.cuenta)}
+      /*console.log(this.cuenta)*/}
       )
       
     
@@ -79,7 +77,7 @@ export class PerfilComponent implements OnInit {
     
     if(firstname.length >5 || lastname.length >5 || phone.length >5 || email.length >5){
     if(firstname!="" && lastname!="" && phone!="" && email!=""){
-    console.log("Intentando Actualizar")
+    //console.log("Intentando Actualizar")
     setTimeout(function() { 
       alert('Espere un momento antes de actualizar la pagina,se le notificara cuando el proceso haya terminado'); }, 1);
         //Imagen 2
@@ -89,10 +87,8 @@ export class PerfilComponent implements OnInit {
           this.imagenSubida2 = resp2;
           this.status2 = 'success';
           this.message2 = 'Imagen subida con éxito!';
-          console.log('imagen subida ',resp2);
-              //SetPWD,SetDate
-          
-          
+          //console.log('imagen subida ',resp2);
+              //SetPWD,SetDate      
               this.accountDetail.password=this.cuenta.password;
               this.accountDetail.birth_date=this.cuenta.birth_date.toString()
               this.accountDetail.user_img=this.imagenSubida2.id
@@ -106,7 +102,7 @@ export class PerfilComponent implements OnInit {
           this.imagenSubida = resp;
           this.status = 'success';
           this.message = 'Imagen subida con éxito!';
-          console.log('imagen subida ',resp);
+          //console.log('imagen subida ',resp);
               //SetPWD,SetDate
           
               this.accountDetail.password=this.cuenta.password;
@@ -117,13 +113,13 @@ export class PerfilComponent implements OnInit {
           this.dataService.putAccount(localStorage.getItem('id'),this.accountDetail)
           .subscribe(data => {this.accountDetail
             location.reload();})})
-          console.log("Actualizado")
+          //console.log("Actualizado")
               }, 
           error=> {console.log(error)
           alert("Debe seleccioar una imagen de portada")}
         );
             
-          console.log("Actualizado")
+          //console.log("Actualizado")
           
               }, 
           error=> {console.log(error)
@@ -144,8 +140,7 @@ export class PerfilComponent implements OnInit {
       }
             }else{
               alert("Debe rellear todos los campos")
-            }            
-    
+            }                
   }else{
     alert("Los campos no cumplen con los requisitos de tamaño")
   }

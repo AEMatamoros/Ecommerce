@@ -1,5 +1,11 @@
 # IndustriaCracks
 
+# Deploy App
+```
+API - https://phoenixstore.site/
+PWA - https://phoenixstoreunah.web.app/landing
+```
+
 #Para iniciar el proyecto
 1. Clonar el repositorio
 ```
