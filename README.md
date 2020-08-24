@@ -2,8 +2,8 @@
 
 # Deploy App
 ```
-API - https://phoenixstore.site/
-PWA - https://phoenixstoreunah.web.app/landing
+[API] (https://phoenixstore.site/)
+[PWA] (https://e-phoenixstoreunah.web.app/landing)
 ```
 
 #Para iniciar el proyecto
