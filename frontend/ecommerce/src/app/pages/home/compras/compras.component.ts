@@ -24,6 +24,7 @@ export class ComprasComponent implements OnInit {
   public categoria3;
   public categoria4;
   public categoria5;
+  public noEncontrado;
 
  /*  public producto; */
 
@@ -56,7 +57,13 @@ export class ComprasComponent implements OnInit {
 
       if (prodName.indexOf(termino) >= 0 || prodDesc.indexOf(termino) >= 0 || categoria === termino ) {
         this.encontrados.push(producto);
+        this.noEncontrado = false;
       }
+    }
+
+    if (this.encontrados.length === 0) {
+      console.log('No se encontro');
+      this.noEncontrado = true;
     }
     this.trueArray = [];
     // console.log(this.encontrados);

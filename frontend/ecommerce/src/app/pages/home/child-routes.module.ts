@@ -78,8 +78,7 @@ const childHomeRoutes: Routes = [
         path: 'ventas',
         component: VentasComponent
     },
-    { path: '**',
-    component: Pagina404Component}
+
 ];
 
 @NgModule({
