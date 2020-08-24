@@ -1,0 +1,17 @@
+#cuadro {
+  /* -webkit-clip-path: inset(50px 200px); */
+  /* clip: rect(200px, 100px, 100px, 150px); */
+ /*  position: absolute;
+  clip-path: inset(0% 25% 0% 25%);
+  margin-left:-60%; */
+
+  height: 220px;
+  object-fit: cover;
+
+  /* margin-left: -10px;
+  margin-right: -10px; */
+}
+
+img:hover {
+  opacity: 0.8;
+}
