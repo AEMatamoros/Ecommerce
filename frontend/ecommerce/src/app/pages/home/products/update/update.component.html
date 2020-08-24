@@ -11,10 +11,10 @@
                 <div class="modal-body">
                     <form action="">
                         <div class="form-group">
-                            <input  type="text" [(ngModel)]='productDetail.name' name="name"class="form form-control" placeholder="Nombre" minlength="5" #name="ngModel">
+                            <input  type="text" [(ngModel)]='productDetail.name' name="name"class="form form-control" placeholder="Nombre" minlength="3" #name="ngModel">
                             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
                                 <span *ngIf="name.errors.minlength" class="text-center" >
-                                    Debe tener mas de 5 caracteres
+                                    Debe tener mas de 3 caracteres
                                 </span>
                                 </div>
                         </div>

@@ -75,7 +75,7 @@ export class PerfilComponent implements OnInit {
       alert("Todos los campos deben ser rellenados para actualizar la informacion")
     }
     
-    if(firstname.length >5 || lastname.length >5 || phone.length >5 || email.length >5){
+    if(firstname.length >3 || lastname.length >3 || phone.length >5 || email.length >5){
     if(firstname!="" && lastname!="" && phone!="" && email!=""){
     //console.log("Intentando Actualizar")
     setTimeout(function() { 
