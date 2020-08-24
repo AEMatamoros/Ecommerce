@@ -6,7 +6,7 @@
             <div class="profile-block-thumb cover-container"
                 ></div>
             <div class="">
-                <img src="{{cuenta.user_img.img_route}}" alt="Imagen de perfil"  height="300px" width="300px" class="mt-3 mb-3 ml-3 mr-3">
+                <img src="{{cuenta.user_img.img_route}}" alt="Imagen de perfil"  height="300px" width="300px" class="mt-3 mb-3 ml-3 mr-3" style="object-fit: cover;">
             </div>
              
         </div>
@@ -35,7 +35,7 @@
             <figure>
               <div *ngFor="let image of products_images ">
                 <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" 
-                  alt="Card image" height="200px" width="200px">
+                  alt="Card image" height="200px" width="200px" style="object-fit: cover;">
               </div>
             </figure>
           </div>
@@ -80,7 +80,7 @@
             <figure>
               <div *ngFor="let image of products_images ">
                 <img *ngIf="product.id==image.product_id.id" src="{{image.images_id.img_route}}" alt="" 
-                  alt="Card image" height="200px" width="200px">
+                  alt="Card image" height="200px" width="200px" style="object-fit: cover;">
               </div>
             </figure>
           </div>
