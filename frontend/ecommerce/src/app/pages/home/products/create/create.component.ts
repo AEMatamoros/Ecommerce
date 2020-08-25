@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Category } from 'src/app/models/product/category';
 import { Currency } from 'src/app/models/product/currency';
 import { ProductImages} from 'src/app/models/product/product-images'
+import {PushNotificationService} from 'src/app/services/push-notification.service'
 
 //interfaz para imagen
 interface HtmlInputEvent extends Event{
@@ -17,7 +18,7 @@ interface HtmlInputEvent extends Event{
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  constructor(private dataService:ProductsService,public router:Router,private uploadService:SubirArchivoService) { }
+  constructor(private dataService:ProductsService,public router:Router,private uploadService:SubirArchivoService,private not:PushNotificationService) { }
 
   //PostProductInputForm
   @Input() productDetail =  {name:'', description:'', price:0, category_id:0,user_id:localStorage.getItem('id')}
@@ -71,7 +72,10 @@ export class CreateComponent implements OnInit {
           this.dataService.postProductImages(this.productImage)
           .subscribe(data=>{this.productImage
           console.log("Finalizado")
-          location.reload();})
+          location.reload();
+          this.not.notificationCall(this.productDetail.name)
+          .subscribe(data=>console.log("Se ha enviado la notificacion"))                  
+        })
           
           }, 
           error=> console.log(error)
