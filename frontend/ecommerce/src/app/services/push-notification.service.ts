@@ -7,9 +7,9 @@ import { map, catchError, retry } from 'rxjs/operators';
 
 import { Subscription } from 'rxjs';
 //const SERVER_URL = 'http://localhost:3000/subscription';
-const SERVER_URL = 'https://unah-push-notifications.herokuapp.com/subscription';
+const SERVER_URL = 'https://notificationsfrontend.herokuapp.com/subscription';
 //const NOTIFICATION_URL ="http://localhost:3000/sendNotification"
-const NOTIFICATION_URL ="https://unah-push-notifications.herokuapp.com/sendNotification"
+const NOTIFICATION_URL ="https://notificationsfrontend.herokuapp.com/sendNotification"
 
 @Injectable({
   providedIn: 'root'
